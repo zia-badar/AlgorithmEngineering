@@ -20,6 +20,8 @@ using namespace std;
 // converts a graph into a cluster graph with given value of cost if possible
 class cluster_graph
 {
+    friend class verifier;
+
 public:
     int rec_steps = 0;
 
@@ -363,10 +365,14 @@ private:
 
     void add_connection_from_to(int f, int t, int cost, unsigned int status_ft)
     {
-        if (get_connection_presest_status_from_to(f, t) || (cost > 0 && !(status_ft & CONNECTION_CONNECTED)) || (cost < 0 && (status_ft & CONNECTION_CONNECTED)))
+        if (get_connection_presest_status_from_to(f, t))
             int i = 1 / 0;
+        if ((cost > 0 && !(status_ft & CONNECTION_CONNECTED)))
+            int i = 1 / 0;
+        if ((cost < 0 && (status_ft & CONNECTION_CONNECTED)))
+            int i = 1/0;
 
-        all_edge_statuses[f][t] = status_ft;
+            all_edge_statuses[f][t] = status_ft;
         (status_ft & CONNECTION_CONNECTED ? all_nodes[f].connected_nodes : all_nodes[f].disconnected_nodes).insert(node_weight_pair(t, cost));
     }
 
@@ -393,8 +399,10 @@ private:
 
     void flip_connection_from_to(int f, int t)
     {
-        if (!get_connection_presest_status_from_to(f, t) || get_connection_changed_status_from_to(f, t))
+        if (!get_connection_presest_status_from_to(f, t))
             int i = 1 / 0;
+        if(get_connection_changed_status_from_to(f, t))
+            int i= 1/0;
 
         bool connection_status = get_connection_connected_status_from_to(f, t);
 
@@ -425,7 +433,7 @@ private:
         NOT_POSSIBLE_EDGES_MODIFIED,
         POSSIBLE_WITH_COST
     };
-    pair<merge_result, int> merge(int u, int v, int budget)
+    pair<merge_result, int> merge_(int u, int v, int budget)
     {
         int cost_ui, cost_vi;
         unsigned int status_ui, status_vi;
@@ -539,6 +547,130 @@ private:
         return pair<merge_result, int>(POSSIBLE_WITH_COST, total_cost_of_merge);
     }
 
+    pair<merge_result, int> merge(int u, int v, int budget)
+    {
+        bool connection_changed_status_ui;
+        bool connection_changed_status_vi;
+        bool connectivity_status_ui;
+        bool connectivity_status_vi;
+        int cost_ui;
+        int cost_vi;
+        bool atleast_one_unchanged;
+        int merge_cost = 0;
+        int min_merge_cost_i;
+        bool both_unchanged;
+        for (int i = 0; i < n + m; i++)
+            if (i != u && i != v && are_non_composed_nodes(u, i) && are_non_composed_nodes(v, i))
+            {
+                connection_changed_status_ui = get_connection_changed_status_from_to(u, i);
+                connection_changed_status_vi = get_connection_changed_status_from_to(v, i);
+                connectivity_status_ui = get_connection_connected_status_from_to(u, i);
+                connectivity_status_vi = get_connection_connected_status_from_to(v, i);
+                cost_ui = get_weight_between(u, i);
+                cost_vi = get_weight_between(v, i);
+                atleast_one_unchanged = !connection_changed_status_ui || !connection_changed_status_vi;
+                both_unchanged = !connection_changed_status_ui && !connection_changed_status_vi;
+
+                // if(!both_unchanged && atleast_one_unchanged && (connectivity_status_ui != connectivity_status_vi))
+                if(!both_unchanged)
+                        return pair<merge_result, int>(NOT_POSSIBLE_EDGES_MODIFIED, -1);
+
+                if (connectivity_status_ui != connectivity_status_vi)
+                {
+                    if (atleast_one_unchanged)
+                    {
+                        min_merge_cost_i = INT32_MAX;
+                        if (!connection_changed_status_ui)
+                            min_merge_cost_i = min_merge_cost_i < abs(cost_ui) ? min_merge_cost_i : abs(cost_ui);
+                        if (!connection_changed_status_vi)
+                            min_merge_cost_i = min_merge_cost_i < abs(cost_vi) ? min_merge_cost_i : abs(cost_vi);
+                        if (min_merge_cost_i == INT32_MAX)
+                            int i = 1 / 0;
+                        merge_cost += min_merge_cost_i != INT32_MAX ? min_merge_cost_i : 0;
+                    }
+                    else
+                        return pair<merge_result, int>(NOT_POSSIBLE_EDGES_MODIFIED, -1);
+                }
+            }
+
+        if (min_merge_cost_i > budget)
+            return pair<merge_result, int>(TOO_EXPENSIVE, -1);
+
+        if (m >= n)
+            int i = 1 / 0;
+        int _m = n + m;
+        m++;
+
+        all_nodes[_m].composed_node_index_1 = u;
+        all_nodes[_m].composed_node_index_2 = v;
+        remove_all_p3s_possible_from(u);
+        remove_all_p3s_possible_from(v, true);
+        remove_connection_from_to(v, u);
+
+        bool same_connectivity;
+        unsigned int status_mi;
+        int cost_mi;
+        for (int i = 0; i < n + m - 1; i++)
+            if (i != u && i != v && are_non_composed_nodes(u, i) && are_non_composed_nodes(v, i))
+            {
+                connection_changed_status_ui = get_connection_changed_status_from_to(u, i);
+                connection_changed_status_vi = get_connection_changed_status_from_to(v, i);
+                connectivity_status_ui = get_connection_connected_status_from_to(u, i);
+                connectivity_status_vi = get_connection_connected_status_from_to(v, i);
+                both_unchanged = !connection_changed_status_ui && !connection_changed_status_vi;
+                atleast_one_unchanged = !connection_changed_status_ui || !connection_changed_status_vi;
+                same_connectivity = connectivity_status_ui == connectivity_status_vi;
+                cost_ui = get_weight_between(u, i);
+                cost_vi = get_weight_between(v, i);
+
+                if (both_unchanged)
+                {
+                    if (same_connectivity)
+                    {
+                        cost_mi = cost_ui + cost_vi;
+                        status_mi = CONNECTION_PRESENT | (connectivity_status_ui ? CONNECTION_CONNECTED : 0) | 0;
+                    }
+                    else
+                    {
+                        cost_mi = cost_ui + cost_vi;
+                        status_mi = CONNECTION_PRESENT |
+                                    ((abs(cost_ui) > abs(cost_vi) ? connectivity_status_ui : connectivity_status_vi) ? CONNECTION_CONNECTED : 0) | 0;
+                    }
+                }
+                else if (atleast_one_unchanged)
+                {
+                    if (same_connectivity)
+                    {
+                        cost_mi = cost_ui + cost_vi;
+                        status_mi = CONNECTION_PRESENT | (connectivity_status_ui ? CONNECTION_CONNECTED : 0) | CONNECTION_CHANGED;
+                    }
+                    else
+                    {
+                        cost_mi = connection_changed_status_ui ? cost_ui : cost_vi;
+                        status_mi = CONNECTION_PRESENT | ((connection_changed_status_ui ? connectivity_status_ui : connectivity_status_vi) ? CONNECTION_CONNECTED : 0) | CONNECTION_CHANGED;
+                    }
+                }
+                else
+                {
+                    if (same_connectivity)
+                    {
+                        cost_mi = cost_ui + cost_vi;
+                        status_mi = CONNECTION_PRESENT | (connectivity_status_ui ? CONNECTION_CONNECTED : 0) | CONNECTION_CHANGED;
+                    }
+                    else
+                        int i = 1 / 0;
+                }
+
+                remove_connection_from_to(i, u);
+                remove_connection_from_to(i, v);
+                add_connection_between(_m, i, cost_mi, status_mi);
+            }
+
+        add_all_p3s_possible_from(_m);
+
+        return pair<merge_result, int>(POSSIBLE_WITH_COST, merge_cost);
+    }
+
     void demerge(bool solution_found)
     {
         if (m == 0)
@@ -566,14 +698,14 @@ private:
                 add_connection_from_to(i, u, cost_ui, status_ui);
                 add_connection_from_to(i, v, cost_vi, status_vi);
 
-                if(solution_found)
+                if (solution_found)
                 {
-                if ((status_mi & CONNECTION_CONNECTED) != (status_ui & CONNECTION_CONNECTED))
-                    flip_connection_between(u, i);
+                    if ((status_mi & CONNECTION_CONNECTED) != (status_ui & CONNECTION_CONNECTED))
+                        flip_connection_between(u, i);
 
-                if ((status_mi & CONNECTION_CONNECTED) != (status_vi & CONNECTION_CONNECTED))
-                    flip_connection_between(v, i);
-            }
+                    if ((status_mi & CONNECTION_CONNECTED) != (status_vi & CONNECTION_CONNECTED))
+                        flip_connection_between(v, i);
+                }
             }
 
         add_all_p3s_possible_from(u);
@@ -611,7 +743,7 @@ public:
 
         *input_stream >> n;
 
-        p3::set_n(2*n);
+        p3::set_n(2 * n);
         if (all_nodes != NULL)
             delete[] all_nodes; // delete old nodes;
         all_nodes = new node[2 * n];
@@ -705,12 +837,12 @@ public:
         return -1;
     }
 
+    int step_count;
     bool with_merging = false;
     // O(3^k*n*log(n)), k is budget, n is no. of nodes.
     int solve(int budget)
     {
-        if (budget == 8)
-            cout << "";
+        step_count++;
         if (budget < 0)
             return -1;
 
@@ -754,7 +886,7 @@ public:
             {
                 while (m != previous_merge_nodes)
                     demerge(true);
-            rec_steps--;
+                rec_steps--;
                 return budget_left;
             }
 
@@ -773,7 +905,7 @@ public:
 
                 while (m != previous_merge_nodes)
                     demerge(true);
-            rec_steps--;
+                rec_steps--;
                 return budget_left;
             }
 
@@ -791,7 +923,7 @@ public:
             {
                 while (m != previous_merge_nodes)
                     demerge(true);
-            rec_steps--;
+                rec_steps--;
                 return budget_left;
             }
 
@@ -806,25 +938,25 @@ public:
     bool data_reduction_rules(int u, int v)
     {
         // return true;
-        if(!are_non_composed_nodes(u, v))
-            int i=1/0;
+        if (!are_non_composed_nodes(u, v))
+            int i = 1 / 0;
 
-        if(!get_connection_connected_status_from_to(u, v))
+        if (!get_connection_connected_status_from_to(u, v))
         {
             int sum = 0;
-            for(auto i=all_nodes[u].connected_nodes.begin(); i != all_nodes[u].connected_nodes.end(); i++)
-                if(i->node_index != v)
+            for (auto i = all_nodes[u].connected_nodes.begin(); i != all_nodes[u].connected_nodes.end(); i++)
+                if (i->node_index != v)
                     sum += (*i).weight;
 
-            if(sum <= abs(get_weight_between(u,v)))
+            if (sum <= abs(get_weight_between(u, v)))
                 return false;
 
             sum = 0;
-            for(auto i=all_nodes[v].connected_nodes.begin(); i != all_nodes[v].connected_nodes.end(); i++)
-                if(i->node_index != u)
+            for (auto i = all_nodes[v].connected_nodes.begin(); i != all_nodes[v].connected_nodes.end(); i++)
+                if (i->node_index != u)
                     sum += (*i).weight;
 
-            if(sum <= abs(get_weight_between(u,v)))
+            if (sum <= abs(get_weight_between(u, v)))
                 return false;
         }
 
@@ -834,20 +966,20 @@ public:
     bool merge_reduction_rule_1(int u, int v)
     {
         return false;
-        if(!are_non_composed_nodes(u, v))
-            int i=1/0;
+        if (!are_non_composed_nodes(u, v))
+            int i = 1 / 0;
 
         int sum = 0;
-        if(get_connection_connected_status_from_to(u, v))
+        if (get_connection_connected_status_from_to(u, v))
         {
-            for(auto i=all_nodes[u].connected_nodes.begin(); i != all_nodes[u].connected_nodes.end(); i++)
-                if(i->node_index != v)
+            for (auto i = all_nodes[u].connected_nodes.begin(); i != all_nodes[u].connected_nodes.end(); i++)
+                if (i->node_index != v)
                     sum += i->weight;
-            for(auto i=all_nodes[u].disconnected_nodes.begin(); i != all_nodes[u].disconnected_nodes.end(); i++)
-                if(i->node_index != v)
+            for (auto i = all_nodes[u].disconnected_nodes.begin(); i != all_nodes[u].disconnected_nodes.end(); i++)
+                if (i->node_index != v)
                     sum += abs(i->weight);
 
-            if(sum <= get_weight_between(u, v))
+            if (sum <= get_weight_between(u, v))
                 return true;
         }
 
@@ -856,21 +988,21 @@ public:
 
     bool merge_reduction_rule_2(int u, int v)
     {
-        if(!are_non_composed_nodes(u, v))
-            int i=1/0;
+        if (!are_non_composed_nodes(u, v))
+            int i = 1 / 0;
 
         int sum = 0;
-        if(get_connection_connected_status_from_to(u, v))
+        if (get_connection_connected_status_from_to(u, v))
         {
-            for(auto i=all_nodes[u].connected_nodes.begin(); i != all_nodes[u].connected_nodes.end(); i++)
-                if(i->node_index != v)
-                    sum += (*i).weight;
-            
-            for(auto i=all_nodes[v].connected_nodes.begin(); i != all_nodes[v].connected_nodes.end(); i++)
-                if(i->node_index != u)
+            for (auto i = all_nodes[u].connected_nodes.begin(); i != all_nodes[u].connected_nodes.end(); i++)
+                if (i->node_index != v)
                     sum += (*i).weight;
 
-            if(sum <= get_weight_between(u, v))
+            for (auto i = all_nodes[v].connected_nodes.begin(); i != all_nodes[v].connected_nodes.end(); i++)
+                if (i->node_index != u)
+                    sum += (*i).weight;
+
+            if (sum <= get_weight_between(u, v))
                 return true;
         }
 
@@ -890,8 +1022,8 @@ public:
             for (int j = 0; j < n; j++)
                 all_edge_statuses[i][j] = CONNECTION_PRESENT | (all_nodes[i].connected_nodes.find(node_weight_pair(j, 0)) != all_nodes[i].connected_nodes.end() ? CONNECTION_CONNECTED : 0) | 0;
 
-        for (int i = n; i < 2*n; i++)
-            for (int j = n; j < 2*n; j++)
+        for (int i = n; i < 2 * n; i++)
+            for (int j = n; j < 2 * n; j++)
                 all_edge_statuses[i][j] = 0;
     }
 };

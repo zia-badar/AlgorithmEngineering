@@ -6,6 +6,7 @@
 #include <ctime>
 #include <string>
 #include "include/cluster_graph.h"
+#include "include/verifier.h"
 
 using namespace std;
 
@@ -148,32 +149,12 @@ vector<vector<string>> generate_permutations_of_demerge()
 // O(3^log(k)*n*log(n) + log(k)*n^(2) + n^3)  -- n^3 is for calculating p3 for the first time when graph data is loaded
 int main(int argc, char **args)
 {
-    srand(time(NULL));
-    // create_random_input_file(5, 5);
-    cg.load_graph(argc == 1 ? "" : args[1]);
-    // cg.load_graph("/home/zia/studies/algeng_wce_solver/wce-students/2-real-world/w037.dimacs");
-    // cg.load_graph("/home/zia/studies/algeng_wce_solver/wce-students/1-random/r007.dimacs");
+    string filename = "";
+    // filename = "/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w037.dimacs";
+    filename = "/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r043.dimacs";
 
-
-    // string filename = "/home/zia/studies/algeng_wce_solver/test1";
-
-    // cg.load_graph(filename);
-    cg.with_merging = true;
-    int k;
-    for (k = 1; cg.solve(k) == -1; k *= 2); // if no solution is found, graph remains in original state
-    cg.reset_graph();
-
-    k = binary_search_for_optimal_k(k / 2 + 1, k);
-    // cout << k << endl;
-    cg.solve(k);
-    // cout <<    "-------------------------------------------------\n";
-    for (int i = 0; i < cg.n; i++)
-    {
-        for (int j = i + 1; j < cg.n; j++)
-            if (cg.all_edge_statuses[i][j] & 0b100)
-                cout << i + 1 << " " << j + 1 << endl;
-    }
-    // cout << "-------------------------------------------------\n";
+    // verifier::verify(filename);
+    verifier::verify("");
 
     return 0;
 }
