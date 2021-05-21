@@ -1,0 +1,35 @@
+file;vertices;edges;time;solsize;recsteps;finished;verified
+/home/zia/studies/algeng_wce_solver/wce-students/1-random/r001.dimacs;10;22;0.04;93;;1;correct;
+/home/zia/studies/algeng_wce_solver/wce-students/1-random/r003.dimacs;10;13;0.01;66;;1;correct;
+/home/zia/studies/algeng_wce_solver/wce-students/1-random/r005.dimacs;10;22;0.01;62;;1;correct;
+/home/zia/studies/algeng_wce_solver/wce-students/1-random/r007.dimacs;10;17;0.02;98;;1;correct;
+/home/zia/studies/algeng_wce_solver/wce-students/1-random/r009.dimacs;10;22;0.03;93;;1;correct;
+/home/zia/studies/algeng_wce_solver/wce-students/1-random/r011.dimacs;10;13;0.02;66;;1;correct;
+/home/zia/studies/algeng_wce_solver/wce-students/1-random/r013.dimacs;10;22;0.01;62;;1;correct;
+/home/zia/studies/algeng_wce_solver/wce-students/1-random/r015.dimacs;10;17;0.02;98;;1;correct;
+/home/zia/studies/algeng_wce_solver/wce-students/1-random/r017.dimacs;10;22;0.03;93;;1;correct;
+/home/zia/studies/algeng_wce_solver/wce-students/1-random/r019.dimacs;10;13;0.01;66;;1;correct;
+/home/zia/studies/algeng_wce_solver/wce-students/1-random/r021.dimacs;10;22;0.01;62;;1;correct;
+/home/zia/studies/algeng_wce_solver/wce-students/1-random/r023.dimacs;10;17;0.02;98;;1;correct;
+/home/zia/studies/algeng_wce_solver/wce-students/1-random/r025.dimacs;10;20;0.03;85;;1;correct;
+/home/zia/studies/algeng_wce_solver/wce-students/1-random/r027.dimacs;10;20;0.03;85;;1;correct;
+/home/zia/studies/algeng_wce_solver/wce-students/1-random/r029.dimacs;10;20;0.05;85;;1;correct;
+/home/zia/studies/algeng_wce_solver/wce-students/1-random/r031.dimacs;20;159;214.41;367;;1;correct;
+/home/zia/studies/algeng_wce_solver/wce-students/1-random/r033.dimacs;20;162;64.30;280;;1;correct;
+/home/zia/studies/algeng_wce_solver/wce-students/1-random/r035.dimacs;20;165;16.44;243;;1;correct;
+/home/zia/studies/algeng_wce_solver/wce-students/1-random/r037.dimacs;20;159;218.00;367;;1;correct;
+/home/zia/studies/algeng_wce_solver/wce-students/1-random/r039.dimacs;20;162;62.03;280;;1;correct;
+/home/zia/studies/algeng_wce_solver/wce-students/1-random/r041.dimacs;20;116;4.58;233;;1;correct;
+/home/zia/studies/algeng_wce_solver/wce-students/1-random/r043.dimacs;20;72;65.84;336;;1;correct;
+/home/zia/studies/algeng_wce_solver/wce-students/1-random/r045.dimacs;20;108;59.62;359;;1;correct;
+/home/zia/studies/algeng_wce_solver/wce-students/1-random/r047.dimacs;20;104;165.78;322;;1;correct;
+/home/zia/studies/algeng_wce_solver/wce-students/1-random/r049.dimacs;20;66;202.41;1143;;1;>>BAD COST<< ;674
+/home/zia/studies/algeng_wce_solver/wce-students/1-random/r051.dimacs;20;114;261.99;411;;1;correct;
+/home/zia/studies/algeng_wce_solver/wce-students/1-random/r053.dimacs;20;114;152.91;440;;1;correct;
+/home/zia/studies/algeng_wce_solver/wce-students/1-random/r055.dimacs;20;116;4.60;233;;1;correct;
+/home/zia/studies/algeng_wce_solver/wce-students/1-random/r057.dimacs;20;72;65.83;336;;1;correct;
+/home/zia/studies/algeng_wce_solver/wce-students/1-random/r059.dimacs;20;108;59.75;359;;1;correct;
+/home/zia/studies/algeng_wce_solver/wce-students/1-random/r061.dimacs;30;231;;;;0;
+/home/zia/studies/algeng_wce_solver/wce-students/1-random/r063.dimacs;30;141;245.09;2785;;1;>>BAD COST<< ;1934
+/home/zia/studies/algeng_wce_solver/wce-students/1-random/r065.dimacs;30;223;23.03;5526;;1;>>BAD COST<< ;4507
+/home/zia/studies/algeng_wce_solver/wce-students/1-random/r067.dimacs;30;159;;;;0;

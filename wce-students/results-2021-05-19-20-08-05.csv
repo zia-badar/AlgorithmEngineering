@@ -1,0 +1,11 @@
+file;vertices;edges;time;solsize;recsteps;finished;verified
+/home/zia/studies/algeng_wce_solver/wce-students/3-actionseq/a001.dimacs;10;8;0.00;41;;1;correct;
+/home/zia/studies/algeng_wce_solver/wce-students/3-actionseq/a003.dimacs;10;7;0.00;142;;1;correct;
+/home/zia/studies/algeng_wce_solver/wce-students/3-actionseq/a005.dimacs;10;14;0.02;229;;1;correct;
+/home/zia/studies/algeng_wce_solver/wce-students/3-actionseq/a007.dimacs;10;3;0.00;0;;1;correct;
+/home/zia/studies/algeng_wce_solver/wce-students/3-actionseq/a009.dimacs;10;3;0.00;28;;1;correct;
+/home/zia/studies/algeng_wce_solver/wce-students/3-actionseq/a011.dimacs;20;8;0.00;24;;1;correct;
+/home/zia/studies/algeng_wce_solver/wce-students/3-actionseq/a013.dimacs;20;20;0.03;204;;1;correct;
+/home/zia/studies/algeng_wce_solver/wce-students/3-actionseq/a015.dimacs;20;15;0.02;259;;1;correct;
+/home/zia/studies/algeng_wce_solver/wce-students/3-actionseq/a017.dimacs;20;23;0.12;328;;1;correct;
+/home/zia/studies/algeng_wce_solver/wce-students/3-actionseq/a019.dimacs;20;10;0.02;252;;1;correct;

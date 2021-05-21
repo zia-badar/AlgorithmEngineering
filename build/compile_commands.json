@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/build",
+  "command": "/usr/bin/c++ -g -std=gnu++14 -o CMakeFiles/main.dir/main.cpp.o -c /home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/main.cpp",
+  "file": "/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/main.cpp"
+}
+]
