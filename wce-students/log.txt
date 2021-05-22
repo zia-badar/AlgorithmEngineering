@@ -1,0 +1,3689 @@
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a001.dimacs
+1 4
+2 9
+5 6
+7 10
+#recursive steps: 1
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a003.dimacs
+1 9
+4 7
+6 7
+7 8
+#recursive steps: 1
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a005.dimacs
+1 5
+1 7
+1 8
+3 5
+5 7
+5 10
+6 8
+8 10
+9 10
+#recursive steps: 39
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a007.dimacs
+#recursive steps: 1
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a009.dimacs
+5 7
+8 9
+#recursive steps: 1
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a011.dimacs
+3 12
+13 15
+14 15
+18 20
+#recursive steps: 1
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a013.dimacs
+2 6
+3 4
+3 5
+3 9
+6 9
+11 12
+11 18
+12 18
+13 15
+15 18
+16 17
+#recursive steps: 41
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a015.dimacs
+1 6
+3 7
+3 12
+3 14
+3 15
+3 16
+3 17
+6 15
+14 19
+#recursive steps: 1
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a017.dimacs
+1 4
+1 8
+2 12
+3 13
+6 15
+7 13
+8 10
+8 12
+8 15
+8 20
+10 12
+11 13
+14 16
+14 17
+#recursive steps: 351
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a019.dimacs
+1 13
+1 17
+7 17
+9 17
+16 17
+#recursive steps: 8
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a021.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a023.dimacs
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a001.dimacs
+1 4
+2 9
+5 6
+7 10
+#recursive steps: 1
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a003.dimacs
+1 9
+4 7
+6 7
+7 8
+#recursive steps: 1
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a005.dimacs
+1 5
+1 7
+1 8
+3 5
+5 7
+5 10
+6 8
+8 10
+9 10
+#recursive steps: 39
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a007.dimacs
+#recursive steps: 1
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a009.dimacs
+5 7
+8 9
+#recursive steps: 1
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a011.dimacs
+3 12
+13 15
+14 15
+18 20
+#recursive steps: 1
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a013.dimacs
+2 6
+3 4
+3 5
+3 9
+6 9
+11 12
+11 18
+12 18
+13 15
+15 18
+16 17
+#recursive steps: 41
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a015.dimacs
+1 6
+3 7
+3 12
+3 14
+3 15
+3 16
+3 17
+6 15
+14 19
+#recursive steps: 1
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a017.dimacs
+1 4
+1 8
+2 12
+3 13
+6 15
+7 13
+8 10
+8 12
+8 15
+8 20
+10 12
+11 13
+14 16
+14 17
+#recursive steps: 351
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a019.dimacs
+1 13
+1 17
+7 17
+9 17
+16 17
+#recursive steps: 8
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a021.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a023.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a025.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a027.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a029.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a031.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a033.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a035.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a037.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a039.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r001.dimacs
+1 7
+1 8
+1 10
+3 5
+4 8
+6 9
+8 9
+8 10
+#recursive steps: 78
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r003.dimacs
+1 8
+1 9
+2 4
+4 7
+8 9
+8 10
+#recursive steps: 5
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r005.dimacs
+1 8
+1 9
+2 3
+2 9
+3 5
+3 6
+5 8
+5 10
+6 10
+8 10
+#recursive steps: 1
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r007.dimacs
+1 4
+1 7
+2 5
+2 9
+3 7
+3 9
+4 10
+6 8
+6 9
+7 8
+7 9
+#recursive steps: 51
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r009.dimacs
+1 7
+1 8
+1 10
+3 5
+4 8
+6 9
+8 9
+8 10
+#recursive steps: 78
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r011.dimacs
+1 8
+1 9
+2 4
+4 7
+8 9
+8 10
+#recursive steps: 5
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r013.dimacs
+1 8
+1 9
+2 3
+2 9
+3 5
+3 6
+5 8
+5 10
+6 10
+8 10
+#recursive steps: 1
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r015.dimacs
+1 4
+1 7
+2 5
+2 9
+3 7
+3 9
+4 10
+6 8
+6 9
+7 8
+7 9
+#recursive steps: 51
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r017.dimacs
+1 7
+1 8
+1 10
+3 5
+4 8
+6 9
+8 9
+8 10
+#recursive steps: 78
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r019.dimacs
+1 8
+1 9
+2 4
+4 7
+8 9
+8 10
+#recursive steps: 5
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r021.dimacs
+1 8
+1 9
+2 3
+2 9
+3 5
+3 6
+5 8
+5 10
+6 10
+8 10
+#recursive steps: 1
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r023.dimacs
+1 4
+1 7
+2 5
+2 9
+3 7
+3 9
+4 10
+6 8
+6 9
+7 8
+7 9
+#recursive steps: 51
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r025.dimacs
+1 7
+1 10
+2 4
+2 6
+2 7
+2 9
+#recursive steps: 18
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r027.dimacs
+1 7
+1 10
+2 4
+2 6
+2 7
+2 9
+#recursive steps: 18
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r029.dimacs
+1 7
+1 10
+2 4
+2 6
+2 7
+2 9
+#recursive steps: 18
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r031.dimacs
+1 7
+1 17
+1 19
+2 16
+3 5
+3 18
+4 10
+4 14
+4 15
+5 7
+5 8
+5 9
+5 12
+5 16
+6 7
+7 11
+7 20
+8 10
+9 10
+9 16
+10 13
+11 17
+11 20
+12 13
+12 15
+12 18
+13 18
+13 20
+15 20
+16 17
+18 19
+#recursive steps: 3363
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r033.dimacs
+1 3
+1 6
+1 7
+1 10
+1 13
+2 6
+2 8
+2 9
+2 10
+2 11
+2 13
+2 17
+3 6
+4 5
+4 6
+4 8
+5 12
+5 15
+5 20
+7 12
+7 18
+8 14
+8 16
+10 20
+11 19
+13 14
+13 19
+14 18
+#recursive steps: 884
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r035.dimacs
+timeout: the monitored command dumped core
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r037.dimacs
+1 7
+1 17
+1 19
+2 16
+3 5
+3 18
+4 10
+4 14
+4 15
+5 7
+5 8
+5 9
+5 12
+5 16
+6 7
+7 11
+7 20
+8 10
+9 10
+9 16
+10 13
+11 17
+11 20
+12 13
+12 15
+12 18
+13 18
+13 20
+15 20
+16 17
+18 19
+#recursive steps: 3363
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r039.dimacs
+1 3
+1 6
+1 7
+1 10
+1 13
+2 6
+2 8
+2 9
+2 10
+2 11
+2 13
+2 17
+3 6
+4 5
+4 6
+4 8
+5 12
+5 15
+5 20
+7 12
+7 18
+8 14
+8 16
+10 20
+11 19
+13 14
+13 19
+14 18
+#recursive steps: 884
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r041.dimacs
+1 5
+1 14
+1 19
+2 14
+2 18
+3 11
+4 5
+4 8
+4 20
+5 7
+5 15
+5 17
+5 19
+6 7
+6 10
+6 13
+6 19
+8 11
+8 17
+9 14
+9 19
+12 16
+12 17
+12 20
+15 16
+#recursive steps: 279
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r043.dimacs
+2 3
+2 6
+2 10
+2 13
+2 15
+2 18
+3 4
+3 13
+3 16
+4 6
+4 7
+5 12
+5 15
+5 18
+6 7
+6 20
+7 14
+7 18
+8 11
+8 12
+9 17
+9 18
+9 19
+11 14
+12 15
+12 16
+13 16
+13 18
+14 17
+15 17
+16 18
+16 20
+#recursive steps: 13707
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r045.dimacs
+1 3
+1 7
+1 8
+2 15
+2 16
+2 20
+3 12
+3 13
+4 12
+4 13
+4 14
+4 15
+5 10
+5 12
+6 7
+6 11
+6 17
+7 11
+9 10
+9 18
+12 13
+12 14
+12 19
+13 16
+13 17
+18 20
+#recursive steps: 2257
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r047.dimacs
+1 2
+1 3
+1 4
+1 18
+2 3
+3 14
+3 15
+4 7
+4 9
+4 17
+5 14
+5 20
+6 7
+7 8
+8 9
+8 11
+9 13
+11 12
+11 18
+11 20
+12 15
+13 17
+14 19
+14 20
+19 20
+#recursive steps: 3113
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r049.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r051.dimacs
+1 3
+1 7
+1 8
+1 9
+1 10
+1 11
+1 14
+1 18
+2 5
+2 13
+2 19
+3 7
+4 6
+4 8
+4 15
+4 18
+5 10
+5 13
+5 16
+5 18
+5 20
+6 11
+6 16
+8 15
+8 17
+10 12
+11 15
+11 18
+12 18
+#recursive steps: 12336
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r053.dimacs
+1 13
+2 11
+2 12
+2 16
+2 18
+3 5
+3 6
+3 7
+4 8
+4 10
+4 17
+5 8
+5 12
+5 19
+6 19
+7 13
+7 19
+8 14
+8 16
+8 18
+8 19
+9 13
+10 12
+10 16
+10 19
+11 20
+13 16
+13 18
+14 18
+14 19
+15 17
+16 17
+16 18
+18 20
+#recursive steps: 13328
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r055.dimacs
+1 5
+1 14
+1 19
+2 14
+2 18
+3 11
+4 5
+4 8
+4 20
+5 7
+5 15
+5 17
+5 19
+6 7
+6 10
+6 13
+6 19
+8 11
+8 17
+9 14
+9 19
+12 16
+12 17
+12 20
+15 16
+#recursive steps: 279
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r057.dimacs
+2 3
+2 6
+2 10
+2 13
+2 15
+2 18
+3 4
+3 13
+3 16
+4 6
+4 7
+5 12
+5 15
+5 18
+6 7
+6 20
+7 14
+7 18
+8 11
+8 12
+9 17
+9 18
+9 19
+11 14
+12 15
+12 16
+13 16
+13 18
+14 17
+15 17
+16 18
+16 20
+#recursive steps: 13707
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r059.dimacs
+1 3
+1 7
+1 8
+2 15
+2 16
+2 20
+3 12
+3 13
+4 12
+4 13
+4 14
+4 15
+5 10
+5 12
+6 7
+6 11
+6 17
+7 11
+9 10
+9 18
+12 13
+12 14
+12 19
+13 16
+13 17
+18 20
+#recursive steps: 2257
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r061.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r063.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r065.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r067.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r069.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r071.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r073.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r075.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r077.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w001.dimacs
+#recursive steps: 1
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w003.dimacs
+2 3
+2 4
+2 5
+2 6
+#recursive steps: 1
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w005.dimacs
+8 12
+8 14
+#recursive steps: 1
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w007.dimacs
+5 9
+9 11
+#recursive steps: 1
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w009.dimacs
+7 12
+#recursive steps: 1
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w011.dimacs
+9 13
+11 13
+13 14
+#recursive steps: 1
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w013.dimacs
+2 13
+3 8
+3 9
+3 12
+3 15
+#recursive steps: 1
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w015.dimacs
+1 6
+1 8
+3 6
+4 6
+#recursive steps: 1
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w017.dimacs
+2 12
+3 12
+4 11
+6 12
+#recursive steps: 1
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w019.dimacs
+1 11
+3 5
+5 11
+6 14
+8 11
+11 12
+11 13
+14 15
+#recursive steps: 1
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w021.dimacs
+2 8
+3 8
+4 8
+7 8
+8 11
+9 11
+#recursive steps: 19
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w023.dimacs
+2 3
+2 8
+2 9
+2 10
+2 13
+2 14
+2 15
+3 10
+8 12
+8 15
+9 10
+10 15
+#recursive steps: 124
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w025.dimacs
+1 6
+2 15
+3 6
+4 6
+4 15
+5 6
+6 8
+6 10
+6 11
+6 12
+6 13
+6 14
+7 12
+7 13
+#recursive steps: 1
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w027.dimacs
+1 5
+2 5
+2 13
+2 16
+3 4
+3 6
+3 7
+3 8
+3 10
+3 12
+4 13
+4 16
+5 11
+5 14
+6 13
+6 16
+7 13
+7 15
+7 16
+8 13
+8 16
+10 13
+10 16
+12 13
+12 16
+13 14
+14 16
+#recursive steps: 1
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w029.dimacs
+1 16
+2 5
+2 11
+2 14
+2 15
+6 15
+#recursive steps: 26
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w031.dimacs
+4 8
+8 12
+9 12
+#recursive steps: 164
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w033.dimacs
+1 12
+2 3
+2 5
+2 11
+3 4
+3 5
+3 6
+3 7
+3 9
+3 12
+3 13
+4 10
+5 6
+5 12
+6 12
+7 12
+8 12
+9 14
+11 12
+12 15
+#recursive steps: 1
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w035.dimacs
+2 8
+2 9
+2 12
+2 14
+2 16
+3 4
+3 7
+3 9
+3 14
+4 8
+4 11
+5 8
+5 12
+9 14
+#recursive steps: 651
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w037.dimacs
+1 2
+1 3
+1 4
+1 6
+1 7
+1 8
+1 9
+1 15
+2 4
+2 6
+2 8
+3 7
+4 8
+4 12
+5 11
+5 14
+6 8
+6 12
+7 8
+7 10
+7 11
+7 14
+9 14
+10 11
+10 14
+10 15
+11 14
+11 15
+14 15
+#recursive steps: 7072
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w039.dimacs
+4 7
+5 7
+7 16
+#recursive steps: 1
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w041.dimacs
+1 5
+1 6
+1 10
+1 16
+3 7
+7 14
+10 17
+15 17
+#recursive steps: 1
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w043.dimacs
+1 11
+4 11
+5 11
+6 11
+7 11
+8 11
+9 11
+10 11
+11 12
+11 13
+11 14
+#recursive steps: 1
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w045.dimacs
+1 5
+2 5
+4 5
+5 10
+5 11
+5 14
+7 15
+#recursive steps: 1
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w047.dimacs
+2 10
+4 8
+4 13
+6 8
+6 13
+8 10
+8 11
+8 14
+8 15
+10 13
+11 13
+13 14
+#recursive steps: 1
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w049.dimacs
+1 15
+5 15
+8 17
+9 15
+12 15
+13 15
+14 15
+15 16
+15 17
+15 18
+#recursive steps: 1
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w051.dimacs
+1 2
+4 5
+5 6
+5 7
+5 8
+5 10
+5 13
+5 14
+5 15
+5 16
+#recursive steps: 1
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w053.dimacs
+1 3
+1 13
+3 4
+3 6
+3 7
+3 8
+3 9
+3 12
+3 15
+6 13
+9 13
+10 12
+12 13
+#recursive steps: 1
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w055.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w057.dimacs
+timeout: the monitored command dumped core
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w059.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w061.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w063.dimacs
+4 7
+4 29
+10 17
+10 21
+10 22
+10 41
+12 13
+13 17
+13 19
+13 21
+13 22
+13 30
+13 39
+13 42
+26 41
+#recursive steps: 1
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w065.dimacs
+1 3
+1 28
+2 11
+2 32
+3 27
+3 30
+3 32
+4 36
+5 29
+5 44
+6 26
+6 39
+7 13
+7 15
+7 31
+8 36
+13 17
+13 27
+13 32
+13 42
+15 30
+16 26
+19 31
+20 23
+20 24
+20 25
+20 27
+20 30
+20 32
+29 36
+31 39
+35 36
+36 37
+36 43
+36 44
+38 44
+#recursive steps: 1260
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w067.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w069.dimacs
+1 37
+2 37
+3 37
+4 37
+6 37
+8 37
+9 37
+10 37
+12 37
+13 37
+15 37
+16 37
+18 37
+19 37
+20 37
+21 37
+23 37
+24 37
+25 37
+26 37
+27 37
+28 37
+29 37
+30 37
+31 37
+32 37
+33 37
+34 37
+35 37
+36 37
+37 39
+37 40
+37 41
+37 42
+37 43
+37 44
+#recursive steps: 1
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w071.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w073.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w075.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w077.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w079.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w081.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a001.dimacs
+1 4
+2 9
+5 6
+7 10
+#recursive steps: 1
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a003.dimacs
+1 9
+4 7
+6 7
+7 8
+#recursive steps: 1
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a005.dimacs
+1 5
+1 7
+1 8
+3 5
+5 7
+5 10
+6 8
+8 10
+9 10
+#recursive steps: 39
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a007.dimacs
+#recursive steps: 1
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a009.dimacs
+5 7
+8 9
+#recursive steps: 1
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a011.dimacs
+3 12
+13 15
+14 15
+18 20
+#recursive steps: 1
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a013.dimacs
+2 6
+3 4
+3 5
+3 9
+6 9
+11 12
+11 18
+12 18
+13 15
+15 18
+16 17
+#recursive steps: 41
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a015.dimacs
+1 6
+3 7
+3 12
+3 14
+3 15
+3 16
+3 17
+6 15
+14 19
+#recursive steps: 1
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a017.dimacs
+1 4
+1 8
+2 12
+3 13
+6 15
+7 13
+8 10
+8 12
+8 15
+8 20
+10 12
+11 13
+14 16
+14 17
+#recursive steps: 351
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a019.dimacs
+1 13
+1 17
+7 17
+9 17
+16 17
+#recursive steps: 8
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a021.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a023.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a025.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a027.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a029.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a031.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a033.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a035.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a037.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a039.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r001.dimacs
+1 7
+1 8
+1 10
+3 5
+4 8
+6 9
+8 9
+8 10
+#recursive steps: 86
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r003.dimacs
+1 8
+1 9
+2 4
+4 7
+8 9
+8 10
+#recursive steps: 5
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r005.dimacs
+1 8
+1 9
+2 3
+2 9
+3 5
+3 6
+5 8
+5 10
+6 10
+8 10
+#recursive steps: 1
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r007.dimacs
+1 4
+1 7
+2 5
+2 9
+3 7
+3 9
+4 10
+6 8
+6 9
+7 8
+7 9
+#recursive steps: 51
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r009.dimacs
+1 7
+1 8
+1 10
+3 5
+4 8
+6 9
+8 9
+8 10
+#recursive steps: 86
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r011.dimacs
+1 8
+1 9
+2 4
+4 7
+8 9
+8 10
+#recursive steps: 5
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r013.dimacs
+1 8
+1 9
+2 3
+2 9
+3 5
+3 6
+5 8
+5 10
+6 10
+8 10
+#recursive steps: 1
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r015.dimacs
+1 4
+1 7
+2 5
+2 9
+3 7
+3 9
+4 10
+6 8
+6 9
+7 8
+7 9
+#recursive steps: 51
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r017.dimacs
+1 7
+1 8
+1 10
+3 5
+4 8
+6 9
+8 9
+8 10
+#recursive steps: 86
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r019.dimacs
+1 8
+1 9
+2 4
+4 7
+8 9
+8 10
+#recursive steps: 5
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r021.dimacs
+1 8
+1 9
+2 3
+2 9
+3 5
+3 6
+5 8
+5 10
+6 10
+8 10
+#recursive steps: 1
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r023.dimacs
+1 4
+1 7
+2 5
+2 9
+3 7
+3 9
+4 10
+6 8
+6 9
+7 8
+7 9
+#recursive steps: 51
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r025.dimacs
+1 7
+1 10
+2 4
+2 6
+2 7
+2 9
+#recursive steps: 18
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r027.dimacs
+1 7
+1 10
+2 4
+2 6
+2 7
+2 9
+#recursive steps: 18
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r029.dimacs
+1 7
+1 10
+2 4
+2 6
+2 7
+2 9
+#recursive steps: 18
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r031.dimacs
+1 7
+1 17
+1 19
+2 16
+3 5
+3 18
+4 10
+4 14
+4 15
+5 7
+5 8
+5 9
+5 12
+5 16
+6 7
+7 11
+7 20
+8 10
+9 10
+9 16
+10 13
+11 17
+11 20
+12 13
+12 15
+12 18
+13 18
+13 20
+15 20
+16 17
+18 19
+#recursive steps: 3478
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r033.dimacs
+1 3
+1 6
+1 7
+1 10
+1 13
+2 6
+2 8
+2 9
+2 10
+2 11
+2 13
+2 17
+3 6
+4 5
+4 6
+4 8
+5 12
+5 15
+5 20
+7 12
+7 18
+8 14
+8 16
+10 20
+11 19
+13 14
+13 19
+14 18
+#recursive steps: 892
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r035.dimacs
+1 7
+1 10
+1 11
+2 7
+2 15
+2 18
+3 4
+3 9
+3 17
+3 20
+5 19
+6 7
+6 15
+7 12
+8 13
+10 13
+10 17
+10 18
+11 13
+11 15
+11 19
+12 17
+12 19
+15 16
+15 17
+#recursive steps: 599
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r037.dimacs
+1 7
+1 17
+1 19
+2 16
+3 5
+3 18
+4 10
+4 14
+4 15
+5 7
+5 8
+5 9
+5 12
+5 16
+6 7
+7 11
+7 20
+8 10
+9 10
+9 16
+10 13
+11 17
+11 20
+12 13
+12 15
+12 18
+13 18
+13 20
+15 20
+16 17
+18 19
+#recursive steps: 3478
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r039.dimacs
+1 3
+1 6
+1 7
+1 10
+1 13
+2 6
+2 8
+2 9
+2 10
+2 11
+2 13
+2 17
+3 6
+4 5
+4 6
+4 8
+5 12
+5 15
+5 20
+7 12
+7 18
+8 14
+8 16
+10 20
+11 19
+13 14
+13 19
+14 18
+#recursive steps: 892
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r041.dimacs
+1 5
+1 14
+1 19
+2 14
+2 18
+3 11
+4 5
+4 8
+4 20
+5 7
+5 15
+5 17
+5 19
+6 7
+6 10
+6 13
+6 19
+8 11
+8 17
+9 14
+9 19
+12 16
+12 17
+12 20
+15 16
+#recursive steps: 295
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r043.dimacs
+2 3
+2 6
+2 10
+2 13
+2 15
+2 18
+3 4
+3 13
+3 16
+4 6
+4 7
+5 12
+5 15
+5 18
+6 7
+6 20
+7 14
+7 18
+8 11
+8 12
+9 17
+9 18
+9 19
+11 14
+12 15
+12 16
+13 16
+13 18
+14 17
+15 17
+16 18
+16 20
+#recursive steps: 14420
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r045.dimacs
+1 3
+1 7
+1 8
+2 15
+2 16
+2 20
+3 12
+3 13
+4 12
+4 13
+4 14
+4 15
+5 10
+5 12
+6 7
+6 11
+6 17
+7 11
+9 10
+9 18
+12 13
+12 14
+12 19
+13 16
+13 17
+18 20
+#recursive steps: 2266
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r047.dimacs
+1 2
+1 3
+1 4
+1 18
+2 3
+3 14
+3 15
+4 7
+4 9
+4 17
+5 14
+5 20
+6 7
+7 8
+8 9
+8 11
+9 13
+11 12
+11 18
+11 20
+12 15
+13 17
+14 19
+14 20
+19 20
+#recursive steps: 3123
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r049.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r051.dimacs
+1 3
+1 7
+1 8
+1 9
+1 10
+1 11
+1 14
+1 18
+2 5
+2 13
+2 19
+3 7
+4 6
+4 8
+4 15
+4 18
+5 10
+5 13
+5 16
+5 18
+5 20
+6 11
+6 16
+8 15
+8 17
+10 12
+11 15
+11 18
+12 18
+#recursive steps: 12571
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r053.dimacs
+1 13
+2 11
+2 12
+2 16
+2 18
+3 5
+3 6
+3 7
+4 8
+4 10
+4 17
+5 8
+5 12
+5 19
+6 19
+7 13
+7 19
+8 14
+8 16
+8 18
+8 19
+9 13
+10 12
+10 16
+10 19
+11 20
+13 16
+13 18
+14 18
+14 19
+15 17
+16 17
+16 18
+18 20
+#recursive steps: 13467
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r055.dimacs
+1 5
+1 14
+1 19
+2 14
+2 18
+3 11
+4 5
+4 8
+4 20
+5 7
+5 15
+5 17
+5 19
+6 7
+6 10
+6 13
+6 19
+8 11
+8 17
+9 14
+9 19
+12 16
+12 17
+12 20
+15 16
+#recursive steps: 295
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r057.dimacs
+2 3
+2 6
+2 10
+2 13
+2 15
+2 18
+3 4
+3 13
+3 16
+4 6
+4 7
+5 12
+5 15
+5 18
+6 7
+6 20
+7 14
+7 18
+8 11
+8 12
+9 17
+9 18
+9 19
+11 14
+12 15
+12 16
+13 16
+13 18
+14 17
+15 17
+16 18
+16 20
+#recursive steps: 14420
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r059.dimacs
+1 3
+1 7
+1 8
+2 15
+2 16
+2 20
+3 12
+3 13
+4 12
+4 13
+4 14
+4 15
+5 10
+5 12
+6 7
+6 11
+6 17
+7 11
+9 10
+9 18
+12 13
+12 14
+12 19
+13 16
+13 17
+18 20
+#recursive steps: 2266
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r061.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r063.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r065.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r067.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r069.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r071.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r073.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r075.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r077.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w001.dimacs
+#recursive steps: 1
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w003.dimacs
+2 3
+2 4
+2 5
+2 6
+#recursive steps: 1
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w005.dimacs
+8 12
+8 14
+#recursive steps: 1
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w007.dimacs
+5 9
+9 11
+#recursive steps: 1
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w009.dimacs
+7 12
+#recursive steps: 1
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w011.dimacs
+9 13
+11 13
+13 14
+#recursive steps: 1
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w013.dimacs
+2 13
+3 8
+3 9
+3 12
+3 15
+#recursive steps: 1
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w015.dimacs
+1 6
+1 8
+3 6
+4 6
+#recursive steps: 1
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w017.dimacs
+2 12
+3 12
+4 11
+6 12
+#recursive steps: 1
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w019.dimacs
+1 11
+3 5
+5 11
+6 14
+8 11
+11 12
+11 13
+14 15
+#recursive steps: 1
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w021.dimacs
+2 8
+3 8
+4 8
+7 8
+8 11
+9 11
+#recursive steps: 19
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w023.dimacs
+1 10
+2 3
+2 8
+2 9
+2 10
+2 13
+2 14
+2 15
+8 10
+8 12
+8 15
+10 15
+#recursive steps: 172
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w025.dimacs
+1 6
+2 15
+3 6
+4 6
+4 15
+5 6
+6 8
+6 10
+6 11
+6 12
+6 13
+6 14
+7 12
+7 13
+#recursive steps: 1
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w027.dimacs
+1 5
+2 5
+2 13
+2 16
+3 4
+3 6
+3 7
+3 8
+3 10
+3 12
+4 13
+4 16
+5 11
+5 14
+6 13
+6 16
+7 13
+7 15
+7 16
+8 13
+8 16
+10 13
+10 16
+12 13
+12 16
+13 14
+14 16
+#recursive steps: 1
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w029.dimacs
+1 16
+2 5
+2 11
+2 14
+2 15
+6 15
+#recursive steps: 46
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w031.dimacs
+4 8
+8 12
+9 12
+#recursive steps: 872
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w033.dimacs
+1 12
+2 3
+2 5
+2 11
+3 4
+3 5
+3 6
+3 7
+3 9
+3 12
+3 13
+4 10
+5 6
+5 12
+6 12
+7 12
+8 12
+9 14
+11 12
+12 15
+#recursive steps: 1
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w035.dimacs
+2 8
+2 9
+2 12
+2 14
+2 16
+3 4
+3 7
+3 9
+3 14
+4 8
+4 11
+5 8
+5 12
+9 14
+#recursive steps: 831
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w037.dimacs
+1 2
+1 3
+1 4
+1 6
+1 7
+1 8
+1 9
+1 15
+2 4
+2 6
+2 8
+3 7
+4 8
+4 12
+5 11
+5 14
+6 8
+6 12
+7 8
+7 10
+7 11
+7 14
+9 14
+10 11
+10 14
+10 15
+11 14
+11 15
+14 15
+#recursive steps: 7859
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w039.dimacs
+4 7
+5 7
+7 16
+#recursive steps: 1
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w041.dimacs
+1 5
+1 6
+1 10
+1 16
+3 7
+7 14
+10 17
+15 17
+#recursive steps: 1
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w043.dimacs
+1 11
+4 11
+5 11
+6 11
+7 11
+8 11
+9 11
+10 11
+11 12
+11 13
+11 14
+#recursive steps: 1
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w045.dimacs
+1 5
+2 5
+4 5
+5 10
+5 11
+5 14
+7 15
+#recursive steps: 1
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w047.dimacs
+2 10
+4 8
+4 13
+6 8
+6 13
+8 10
+8 11
+8 14
+8 15
+10 13
+11 13
+13 14
+#recursive steps: 1
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w049.dimacs
+1 15
+5 15
+8 17
+9 15
+12 15
+13 15
+14 15
+15 16
+15 17
+15 18
+#recursive steps: 1
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w051.dimacs
+1 2
+4 5
+5 6
+5 7
+5 8
+5 10
+5 13
+5 14
+5 15
+5 16
+#recursive steps: 1
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w053.dimacs
+1 3
+1 13
+3 4
+3 6
+3 7
+3 8
+3 9
+3 12
+3 15
+6 13
+9 13
+10 12
+12 13
+#recursive steps: 1
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w055.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w057.dimacs
+3 12
+4 12
+8 12
+9 12
+11 12
+11 42
+12 17
+12 23
+12 27
+12 33
+12 41
+12 42
+14 15
+15 21
+#recursive steps: 242
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w059.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w061.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w063.dimacs
+4 7
+4 29
+10 17
+10 21
+10 22
+10 41
+12 13
+13 17
+13 19
+13 21
+13 22
+13 30
+13 39
+13 42
+26 41
+#recursive steps: 1
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w065.dimacs
+1 3
+1 28
+2 11
+2 32
+3 27
+3 30
+3 32
+4 36
+5 29
+5 44
+6 26
+6 39
+7 13
+7 15
+7 31
+8 36
+13 17
+13 27
+13 32
+13 42
+15 30
+16 26
+19 31
+20 23
+20 24
+20 25
+20 27
+20 30
+20 32
+29 36
+31 39
+35 36
+36 37
+36 43
+36 44
+38 44
+#recursive steps: 1262
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w067.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w069.dimacs
+1 37
+2 37
+3 37
+4 37
+6 37
+8 37
+9 37
+10 37
+12 37
+13 37
+15 37
+16 37
+18 37
+19 37
+20 37
+21 37
+23 37
+24 37
+25 37
+26 37
+27 37
+28 37
+29 37
+30 37
+31 37
+32 37
+33 37
+34 37
+35 37
+36 37
+37 39
+37 40
+37 41
+37 42
+37 43
+37 44
+#recursive steps: 1
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w071.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w073.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w075.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w077.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w079.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w081.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a001.dimacs
+1 4
+2 9
+5 6
+7 10
+#recursive steps: 6
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a003.dimacs
+1 9
+4 7
+6 7
+7 8
+#recursive steps: 19
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a005.dimacs
+1 5
+1 7
+1 8
+3 5
+5 7
+5 10
+6 8
+8 10
+9 10
+#recursive steps: 39
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a007.dimacs
+#recursive steps: 1
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a009.dimacs
+5 7
+8 9
+#recursive steps: 5
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a011.dimacs
+3 12
+13 15
+14 15
+18 20
+#recursive steps: 9
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a013.dimacs
+2 6
+3 4
+3 5
+3 9
+6 9
+11 12
+11 18
+12 18
+13 15
+15 18
+16 17
+#recursive steps: 243
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a015.dimacs
+1 6
+3 7
+3 12
+3 14
+3 15
+3 16
+3 17
+6 15
+14 19
+#recursive steps: 22
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a017.dimacs
+1 4
+1 8
+2 12
+3 13
+6 15
+7 13
+8 10
+8 12
+8 15
+8 20
+10 12
+11 13
+14 16
+14 17
+#recursive steps: 1391
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a019.dimacs
+1 13
+1 17
+7 17
+9 17
+16 17
+#recursive steps: 8
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a021.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a023.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a025.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a027.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a029.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a031.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a033.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a035.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a037.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a039.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r001.dimacs
+1 7
+1 8
+1 10
+3 5
+4 8
+6 9
+8 9
+8 10
+#recursive steps: 57
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r003.dimacs
+1 8
+1 9
+2 4
+4 7
+8 9
+8 10
+#recursive steps: 11
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r005.dimacs
+1 8
+1 9
+2 3
+2 9
+3 5
+3 6
+5 8
+5 10
+6 10
+8 10
+#recursive steps: 34
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r007.dimacs
+1 4
+1 7
+2 5
+2 9
+3 7
+3 9
+4 10
+6 8
+6 9
+7 8
+7 9
+#recursive steps: 46
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r009.dimacs
+1 7
+1 8
+1 10
+3 5
+4 8
+6 9
+8 9
+8 10
+#recursive steps: 57
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r011.dimacs
+1 8
+1 9
+2 4
+4 7
+8 9
+8 10
+#recursive steps: 11
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r013.dimacs
+1 8
+1 9
+2 3
+2 9
+3 5
+3 6
+5 8
+5 10
+6 10
+8 10
+#recursive steps: 34
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r015.dimacs
+1 4
+1 7
+2 5
+2 9
+3 7
+3 9
+4 10
+6 8
+6 9
+7 8
+7 9
+#recursive steps: 46
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r017.dimacs
+1 7
+1 8
+1 10
+3 5
+4 8
+6 9
+8 9
+8 10
+#recursive steps: 57
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r019.dimacs
+1 8
+1 9
+2 4
+4 7
+8 9
+8 10
+#recursive steps: 11
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r021.dimacs
+1 8
+1 9
+2 3
+2 9
+3 5
+3 6
+5 8
+5 10
+6 10
+8 10
+#recursive steps: 34
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r023.dimacs
+1 4
+1 7
+2 5
+2 9
+3 7
+3 9
+4 10
+6 8
+6 9
+7 8
+7 9
+#recursive steps: 46
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r025.dimacs
+1 7
+1 10
+2 4
+2 6
+2 7
+2 9
+#recursive steps: 29
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r027.dimacs
+1 7
+1 10
+2 4
+2 6
+2 7
+2 9
+#recursive steps: 29
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r029.dimacs
+1 7
+1 10
+2 4
+2 6
+2 7
+2 9
+#recursive steps: 29
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r031.dimacs
+1 7
+1 17
+1 19
+2 16
+3 5
+3 18
+4 10
+4 14
+4 15
+5 7
+5 8
+5 9
+5 12
+5 16
+6 7
+7 11
+7 20
+8 10
+9 10
+9 16
+10 13
+11 17
+11 20
+12 13
+12 15
+12 18
+13 18
+13 20
+15 20
+16 17
+18 19
+#recursive steps: 2794
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r033.dimacs
+1 3
+1 6
+1 7
+1 10
+1 13
+2 6
+2 8
+2 9
+2 10
+2 11
+2 13
+2 17
+3 6
+4 5
+4 6
+4 8
+5 12
+5 15
+5 20
+7 12
+7 18
+8 14
+8 16
+10 20
+11 19
+13 14
+13 19
+14 18
+#recursive steps: 270
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r035.dimacs
+1 7
+1 10
+1 11
+2 7
+2 15
+2 18
+3 4
+3 9
+3 17
+3 20
+5 19
+6 7
+6 15
+7 12
+8 13
+10 13
+10 17
+10 18
+11 13
+11 15
+11 19
+12 17
+12 19
+15 16
+15 17
+#recursive steps: 241
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r037.dimacs
+1 7
+1 17
+1 19
+2 16
+3 5
+3 18
+4 10
+4 14
+4 15
+5 7
+5 8
+5 9
+5 12
+5 16
+6 7
+7 11
+7 20
+8 10
+9 10
+9 16
+10 13
+11 17
+11 20
+12 13
+12 15
+12 18
+13 18
+13 20
+15 20
+16 17
+18 19
+#recursive steps: 2794
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r039.dimacs
+1 3
+1 6
+1 7
+1 10
+1 13
+2 6
+2 8
+2 9
+2 10
+2 11
+2 13
+2 17
+3 6
+4 5
+4 6
+4 8
+5 12
+5 15
+5 20
+7 12
+7 18
+8 14
+8 16
+10 20
+11 19
+13 14
+13 19
+14 18
+#recursive steps: 270
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r041.dimacs
+1 5
+1 14
+1 19
+2 14
+2 18
+3 11
+4 5
+4 8
+4 20
+5 7
+5 15
+5 17
+5 19
+6 7
+6 10
+6 13
+6 19
+8 11
+8 17
+9 14
+9 19
+12 16
+12 17
+12 20
+15 16
+#recursive steps: 415
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r043.dimacs
+2 3
+2 6
+2 10
+2 13
+2 15
+2 18
+3 4
+3 13
+3 16
+4 6
+4 7
+5 12
+5 15
+5 18
+6 7
+6 20
+7 14
+7 18
+8 11
+8 12
+9 17
+9 18
+9 19
+11 14
+12 15
+12 16
+13 16
+13 18
+14 17
+15 17
+16 18
+16 20
+#recursive steps: 6128
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r045.dimacs
+1 3
+1 7
+1 8
+2 15
+2 16
+2 20
+3 12
+3 13
+4 12
+4 13
+4 14
+4 15
+5 10
+5 12
+6 7
+6 11
+6 17
+7 11
+9 10
+9 18
+12 13
+12 14
+12 19
+13 16
+13 17
+18 20
+#recursive steps: 2599
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r047.dimacs
+1 2
+1 3
+1 4
+1 18
+2 3
+3 14
+3 15
+4 7
+4 9
+4 17
+5 14
+5 20
+6 7
+7 8
+8 9
+8 11
+9 13
+11 12
+11 18
+11 20
+12 15
+13 17
+14 19
+14 20
+19 20
+#recursive steps: 2308
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r049.dimacs
+1 6
+1 7
+1 11
+1 14
+1 20
+2 3
+2 5
+2 10
+2 17
+2 20
+3 5
+3 19
+4 6
+4 7
+4 11
+4 16
+5 11
+5 15
+7 14
+8 16
+8 19
+9 18
+10 14
+11 18
+11 19
+12 13
+15 18
+16 18
+#recursive steps: 196153
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r051.dimacs
+1 3
+1 7
+1 8
+1 9
+1 10
+1 11
+1 14
+1 18
+2 5
+2 13
+2 19
+3 7
+4 6
+4 8
+4 15
+4 18
+5 10
+5 13
+5 16
+5 18
+5 20
+6 11
+6 16
+8 15
+8 17
+10 12
+11 15
+11 18
+12 18
+#recursive steps: 9513
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r053.dimacs
+1 13
+2 11
+2 12
+2 16
+2 18
+3 5
+3 6
+3 7
+4 8
+4 10
+4 17
+5 8
+5 12
+5 19
+6 19
+7 13
+7 19
+8 14
+8 16
+8 18
+8 19
+9 13
+10 12
+10 16
+10 19
+11 20
+13 16
+13 18
+14 18
+14 19
+15 17
+16 17
+16 18
+18 20
+#recursive steps: 6226
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r055.dimacs
+1 5
+1 14
+1 19
+2 14
+2 18
+3 11
+4 5
+4 8
+4 20
+5 7
+5 15
+5 17
+5 19
+6 7
+6 10
+6 13
+6 19
+8 11
+8 17
+9 14
+9 19
+12 16
+12 17
+12 20
+15 16
+#recursive steps: 415
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r057.dimacs
+2 3
+2 6
+2 10
+2 13
+2 15
+2 18
+3 4
+3 13
+3 16
+4 6
+4 7
+5 12
+5 15
+5 18
+6 7
+6 20
+7 14
+7 18
+8 11
+8 12
+9 17
+9 18
+9 19
+11 14
+12 15
+12 16
+13 16
+13 18
+14 17
+15 17
+16 18
+16 20
+#recursive steps: 6128
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r059.dimacs
+1 3
+1 7
+1 8
+2 15
+2 16
+2 20
+3 12
+3 13
+4 12
+4 13
+4 14
+4 15
+5 10
+5 12
+6 7
+6 11
+6 17
+7 11
+9 10
+9 18
+12 13
+12 14
+12 19
+13 16
+13 17
+18 20
+#recursive steps: 2599
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r061.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r063.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r065.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r067.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r069.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r071.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r073.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r075.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r077.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r079.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w001.dimacs
+#recursive steps: 1
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w003.dimacs
+2 3
+2 4
+2 5
+2 6
+#recursive steps: 4
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w005.dimacs
+8 12
+8 14
+#recursive steps: 8
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w007.dimacs
+5 9
+9 11
+#recursive steps: 3
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w009.dimacs
+7 12
+#recursive steps: 4
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w011.dimacs
+9 13
+11 13
+13 14
+#recursive steps: 8
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w013.dimacs
+2 13
+3 8
+3 9
+3 12
+3 15
+#recursive steps: 10
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w015.dimacs
+1 6
+1 8
+3 6
+4 6
+#recursive steps: 6
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w017.dimacs
+2 12
+3 12
+4 12
+6 12
+#recursive steps: 8
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w019.dimacs
+1 11
+3 5
+5 11
+6 14
+8 11
+11 12
+11 13
+14 15
+#recursive steps: 10
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w021.dimacs
+2 8
+3 8
+4 8
+7 8
+8 11
+9 11
+#recursive steps: 44
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w023.dimacs
+1 10
+2 3
+2 8
+2 9
+2 10
+2 13
+2 14
+2 15
+8 10
+8 12
+8 15
+10 15
+#recursive steps: 380
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w025.dimacs
+1 6
+2 15
+3 6
+4 6
+4 15
+5 6
+6 8
+6 10
+6 11
+6 12
+6 13
+6 14
+7 12
+7 13
+#recursive steps: 40
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w027.dimacs
+1 5
+2 5
+2 13
+2 16
+3 4
+3 6
+3 7
+3 8
+3 10
+3 12
+4 13
+4 16
+5 11
+5 14
+6 13
+6 16
+7 13
+7 15
+7 16
+8 13
+8 16
+10 13
+10 16
+12 13
+12 16
+13 14
+14 16
+#recursive steps: 43
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w029.dimacs
+1 16
+2 5
+2 11
+2 14
+2 15
+6 15
+#recursive steps: 98
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w031.dimacs
+4 8
+8 12
+9 12
+#recursive steps: 1518
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w033.dimacs
+1 12
+2 3
+2 5
+2 11
+3 4
+3 5
+3 6
+3 7
+3 9
+3 12
+3 13
+4 10
+5 6
+5 12
+6 12
+7 12
+8 12
+9 14
+11 12
+12 15
+#recursive steps: 162
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w035.dimacs
+2 8
+2 9
+2 12
+2 14
+2 16
+3 4
+3 7
+3 9
+3 14
+4 8
+4 11
+5 8
+5 12
+9 14
+#recursive steps: 1128
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w037.dimacs
+1 2
+1 3
+1 4
+1 6
+1 7
+1 8
+1 9
+1 15
+2 4
+2 6
+2 8
+3 7
+4 8
+4 12
+5 11
+5 14
+6 8
+6 12
+7 8
+7 10
+7 11
+7 14
+9 14
+10 11
+10 14
+10 15
+11 14
+11 15
+14 15
+#recursive steps: 7553
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w039.dimacs
+4 7
+5 7
+7 16
+#recursive steps: 7
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w041.dimacs
+1 5
+1 6
+1 10
+1 16
+3 7
+7 14
+10 17
+15 17
+#recursive steps: 24
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w043.dimacs
+1 11
+4 11
+5 11
+6 11
+7 11
+8 11
+9 11
+10 11
+11 12
+11 13
+11 14
+#recursive steps: 12
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w045.dimacs
+1 5
+2 5
+4 5
+5 10
+5 11
+5 14
+7 15
+#recursive steps: 10
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w047.dimacs
+2 10
+4 8
+4 13
+6 8
+6 13
+8 10
+8 11
+8 14
+8 15
+10 13
+11 13
+13 14
+#recursive steps: 30
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w049.dimacs
+1 15
+5 15
+8 17
+9 15
+12 15
+13 15
+14 15
+15 16
+15 17
+15 18
+#recursive steps: 25
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w051.dimacs
+1 2
+4 5
+5 6
+5 7
+5 8
+5 10
+5 13
+5 14
+5 15
+5 16
+#recursive steps: 22
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w053.dimacs
+1 3
+1 13
+3 4
+3 6
+3 7
+3 8
+3 9
+3 12
+3 15
+6 13
+9 13
+10 12
+12 13
+#recursive steps: 51
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w055.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w057.dimacs
+3 12
+4 12
+8 12
+9 12
+11 12
+11 42
+12 17
+12 23
+12 27
+12 33
+12 41
+12 42
+14 15
+15 21
+#recursive steps: 483
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w059.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w061.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w063.dimacs
+4 7
+4 29
+10 17
+10 21
+10 22
+10 41
+12 13
+13 17
+13 19
+13 21
+13 22
+13 30
+13 39
+13 42
+26 41
+#recursive steps: 52
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w065.dimacs
+1 3
+1 28
+2 11
+2 32
+3 27
+3 30
+3 32
+4 36
+5 29
+5 44
+6 26
+6 39
+7 13
+7 15
+7 31
+8 36
+13 17
+13 27
+13 32
+13 42
+15 30
+16 26
+19 31
+20 23
+20 24
+20 25
+20 27
+20 30
+20 32
+29 36
+31 39
+35 36
+36 37
+36 43
+36 44
+38 44
+#recursive steps: 7360
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w067.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w069.dimacs
+5 37
+7 37
+11 37
+14 37
+17 37
+22 37
+37 38
+#recursive steps: 15
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w071.dimacs
+2 20
+2 24
+2 32
+2 35
+2 41
+4 16
+4 25
+5 24
+5 32
+7 24
+10 20
+10 32
+10 35
+11 24
+11 38
+13 16
+16 23
+16 25
+16 27
+18 24
+19 44
+23 25
+24 28
+24 29
+24 32
+24 33
+28 38
+30 32
+32 38
+42 44
+#recursive steps: 687
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w073.dimacs
+1 38
+5 38
+7 38
+10 38
+13 38
+14 38
+17 38
+18 38
+20 38
+24 38
+26 38
+28 38
+30 38
+31 38
+35 38
+37 38
+38 39
+38 40
+38 41
+38 43
+38 44
+38 45
+#recursive steps: 173
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w075.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w077.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w079.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w081.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w083.dimacs
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w085.dimacs
+

@@ -79,9 +79,9 @@ public:
         delete cg;
 
         // if (p3_count == 0 && changed_edges_cost == k)
-            // cout << "verfied at cost: " << changed_edges_cost << endl;
+        //     cout << "verfied at cost: " << changed_edges_cost << endl;
         // else
-            // cout << "verification failed at cost: " << k << ", with edge modified cost: " << changed_edges_cost << ", p3 count: " << p3_count << endl;
+        //     cout << "verification failed at cost: " << k << ", with edge modified cost: " << changed_edges_cost << ", p3 count: " << p3_count << endl;
     }
 };
 

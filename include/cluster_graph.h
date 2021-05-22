@@ -850,21 +850,21 @@ public:
             return budget;
 
         rec_steps++;
-        int k;
-        int previous_merge_nodes = m;
-        while (with_merging)
-        {
-            k = try_merge(budget);
-            if (k != -1)
-                budget -= k;
-            else
-                break;
-        }
+        // int k;
+        // int previous_merge_nodes = m;
+        // while (with_merging)
+        // {
+        //     k = try_merge(budget);
+        //     if (k != -1)
+        //         budget -= k;
+        //     else
+        //         break;
+        // }
 
         if (p3s_uvw_sorted.empty())
         {
-            while (m != previous_merge_nodes)
-                demerge(true);
+            // while (m != previous_merge_nodes)
+                // demerge(true);
             rec_steps--;
             return budget;
         }
@@ -884,8 +884,8 @@ public:
             budget_left = solve(budget_left);
             if (budget_left != -1)
             {
-                while (m != previous_merge_nodes)
-                    demerge(true);
+                // while (m != previous_merge_nodes)
+                    // demerge(true);
                 rec_steps--;
                 return budget_left;
             }
@@ -903,8 +903,8 @@ public:
             if (budget_left != -1)
             {
 
-                while (m != previous_merge_nodes)
-                    demerge(true);
+                // while (m != previous_merge_nodes)
+                    // demerge(true);
                 rec_steps--;
                 return budget_left;
             }
@@ -918,19 +918,30 @@ public:
             int budget_left = budget - abs(all_nodes[u_index].connected_nodes.find(
                                                                                  node_weight_pair(w_index, 0))
                                                ->weight);
+
+            pair<merge_result, int> result;
+            result = merge(u_index, w_index, budget_left);
+            if (result.first == POSSIBLE_WITH_COST)
+                budget_left -= result.second;
+
             budget_left = solve(budget_left);
+
             if (budget_left != -1)
             {
-                while (m != previous_merge_nodes)
+                // while (m != previous_merge_nodes)
+                    // demerge(true);
+                if(result.first == POSSIBLE_WITH_COST)
                     demerge(true);
                 rec_steps--;
                 return budget_left;
             }
+            if(result.first == POSSIBLE_WITH_COST)
+                demerge(false);
 
             disconnect_nodes(u_index, w_index, CONNECTION_PRESENT | 0 | 0);
         }
-        while (m != previous_merge_nodes)
-            demerge(false);
+        // while (m != previous_merge_nodes)
+            // demerge(false);
         rec_steps--;
         return -1;
     }
