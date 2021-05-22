@@ -370,9 +370,9 @@ private:
         if ((cost > 0 && !(status_ft & CONNECTION_CONNECTED)))
             int i = 1 / 0;
         if ((cost < 0 && (status_ft & CONNECTION_CONNECTED)))
-            int i = 1/0;
+            int i = 1 / 0;
 
-            all_edge_statuses[f][t] = status_ft;
+        all_edge_statuses[f][t] = status_ft;
         (status_ft & CONNECTION_CONNECTED ? all_nodes[f].connected_nodes : all_nodes[f].disconnected_nodes).insert(node_weight_pair(t, cost));
     }
 
@@ -401,8 +401,8 @@ private:
     {
         if (!get_connection_presest_status_from_to(f, t))
             int i = 1 / 0;
-        if(get_connection_changed_status_from_to(f, t))
-            int i= 1/0;
+        if (get_connection_changed_status_from_to(f, t))
+            int i = 1 / 0;
 
         bool connection_status = get_connection_connected_status_from_to(f, t);
 
@@ -572,8 +572,9 @@ private:
                 both_unchanged = !connection_changed_status_ui && !connection_changed_status_vi;
 
                 // if(!both_unchanged && atleast_one_unchanged && (connectivity_status_ui != connectivity_status_vi))
-                if(!both_unchanged)
-                        return pair<merge_result, int>(NOT_POSSIBLE_EDGES_MODIFIED, -1);
+                // if (!both_unchanged)
+                if (!both_unchanged && atleast_one_unchanged)
+                    return pair<merge_result, int>(NOT_POSSIBLE_EDGES_MODIFIED, -1);
 
                 if (connectivity_status_ui != connectivity_status_vi)
                 {
@@ -725,12 +726,18 @@ public:
         CONNECTION_CONNECTED = 0b010,
         CONNECTION_CHANGED = 0b100,
     };
+    enum explored_status : unsigned int
+    {
+        NONE = 0,
+        ALREADY_EXPLORED_BY_DELETION = 1,
+    };
 
     int n;
     int m;
     unsigned int **all_edge_statuses;
+    unsigned int **all_explored_statuses;
 
-    cluster_graph() : n(-1), all_nodes(NULL), all_nodes_reset(NULL), all_edge_statuses(NULL) {}
+    cluster_graph() : n(-1), all_nodes(NULL), all_nodes_reset(NULL), all_edge_statuses(NULL), all_explored_statuses(NULL) {}
 
     void load_graph(string file_name) // file_name is "" if asked to read from cin
     {
@@ -758,6 +765,17 @@ public:
         for (int i = 0; i < 2 * n; i++)
             for (int j = 0; j < 2 * n; j++)
                 all_edge_statuses[i][j] = 0;
+
+        if (all_explored_statuses == NULL)
+        {
+            all_explored_statuses = new unsigned int *[2 * n];
+            for (int i = 0; i < 2 * n; i++)
+                all_explored_statuses[i] = new unsigned int[2 * n];
+        }
+
+        for (int i = 0; i < 2 * n; i++)
+            for (int j = 0; j < 2 * n; j++)
+                all_explored_statuses[i][j] = 0;
 
         m = 0;
 
@@ -827,7 +845,8 @@ public:
         for (int i = 0; i < n + m; i++)
             for (int j = i + 1; j < n + m; j++)
             {
-                if (are_non_composed_nodes(i, j) && ((get_weight_between(i, j) > budget && get_connection_connected_status_from_to(i, j)) || merge_reduction_rule_2(i, j) || merge_reduction_rule_1(i, j)))
+                if (are_non_composed_nodes(i, j) && ((get_weight_between(i, j) > budget && get_connection_connected_status_from_to(i, j) && 
+                get_connection_changed_status_from_to(i, j)) || merge_reduction_rule_2(i, j) || merge_reduction_rule_1(i, j) || all_explored_statuses[i][j] == ALREADY_EXPLORED_BY_DELETION))
                 {
                     result = merge(i, j, budget);
                     if (result.first == POSSIBLE_WITH_COST)
@@ -850,21 +869,21 @@ public:
             return budget;
 
         rec_steps++;
-        // int k;
-        // int previous_merge_nodes = m;
-        // while (with_merging)
-        // {
-        //     k = try_merge(budget);
-        //     if (k != -1)
-        //         budget -= k;
-        //     else
-        //         break;
-        // }
+        int k;
+        int previous_merge_nodes = m;
+        while (with_merging)
+        {
+            k = try_merge(budget);
+            if (k != -1)
+                budget -= k;
+            else
+                break;
+        }
 
         if (p3s_uvw_sorted.empty())
         {
-            // while (m != previous_merge_nodes)
-                // demerge(true);
+            while (m != previous_merge_nodes)
+                demerge(true);
             rec_steps--;
             return budget;
         }
@@ -874,7 +893,7 @@ public:
         int v_index = iterator->v;
         int w_index = iterator->w;
 
-        if (!(all_edge_statuses[v_index][u_index] & CONNECTION_CHANGED))
+        if (!(all_edge_statuses[v_index][u_index] & CONNECTION_CHANGED) && all_explored_statuses[v_index][u_index] != ALREADY_EXPLORED_BY_DELETION)
         {
             disconnect_nodes(v_index, u_index, CONNECTION_PRESENT | 0 | CONNECTION_CHANGED);
 
@@ -884,27 +903,32 @@ public:
             budget_left = solve(budget_left);
             if (budget_left != -1)
             {
-                // while (m != previous_merge_nodes)
-                    // demerge(true);
+                while (m != previous_merge_nodes)
+                    demerge(true);
                 rec_steps--;
                 return budget_left;
             }
 
             connect_nodes(v_index, u_index, CONNECTION_PRESENT | CONNECTION_CONNECTED | 0);
         }
-        if (!(all_edge_statuses[v_index][w_index] & CONNECTION_CHANGED))
+        if (!(all_edge_statuses[v_index][w_index] & CONNECTION_CHANGED) && all_explored_statuses[v_index][w_index] != ALREADY_EXPLORED_BY_DELETION)
         {
             disconnect_nodes(v_index, w_index, CONNECTION_PRESENT | 0 | CONNECTION_CHANGED);
 
             int budget_left = budget - abs(all_nodes[v_index].disconnected_nodes.find(
                                                                                     node_weight_pair(w_index, 0))
                                                ->weight);
+
+            all_explored_statuses[v_index][u_index] = ALREADY_EXPLORED_BY_DELETION;
+            all_explored_statuses[u_index][v_index] = ALREADY_EXPLORED_BY_DELETION;
             budget_left = solve(budget_left);
+            all_explored_statuses[v_index][u_index] = NONE;
+            all_explored_statuses[u_index][v_index] = NONE;
+
             if (budget_left != -1)
             {
-
-                // while (m != previous_merge_nodes)
-                    // demerge(true);
+                while (m != previous_merge_nodes)
+                    demerge(true);
                 rec_steps--;
                 return budget_left;
             }
@@ -919,29 +943,28 @@ public:
                                                                                  node_weight_pair(w_index, 0))
                                                ->weight);
 
-            pair<merge_result, int> result;
-            result = merge(u_index, w_index, budget_left);
-            if (result.first == POSSIBLE_WITH_COST)
-                budget_left -= result.second;
-
+            all_explored_statuses[v_index][u_index] = ALREADY_EXPLORED_BY_DELETION;
+            all_explored_statuses[u_index][v_index] = ALREADY_EXPLORED_BY_DELETION;
+            all_explored_statuses[v_index][w_index] = ALREADY_EXPLORED_BY_DELETION;
+            all_explored_statuses[w_index][v_index] = ALREADY_EXPLORED_BY_DELETION;
             budget_left = solve(budget_left);
+            all_explored_statuses[v_index][w_index] = NONE;
+            all_explored_statuses[w_index][v_index] = NONE;
+            all_explored_statuses[v_index][u_index] = NONE;
+            all_explored_statuses[u_index][v_index] = NONE;
 
             if (budget_left != -1)
             {
-                // while (m != previous_merge_nodes)
-                    // demerge(true);
-                if(result.first == POSSIBLE_WITH_COST)
+                while (m != previous_merge_nodes)
                     demerge(true);
                 rec_steps--;
                 return budget_left;
             }
-            if(result.first == POSSIBLE_WITH_COST)
-                demerge(false);
 
             disconnect_nodes(u_index, w_index, CONNECTION_PRESENT | 0 | 0);
         }
-        // while (m != previous_merge_nodes)
-            // demerge(false);
+        while (m != previous_merge_nodes)
+            demerge(false);
         rec_steps--;
         return -1;
     }
@@ -1036,6 +1059,10 @@ public:
         for (int i = n; i < 2 * n; i++)
             for (int j = n; j < 2 * n; j++)
                 all_edge_statuses[i][j] = 0;
+
+        for (int i = 0; i < 2 * n; i++)
+            for (int j = 0; j < 2 * n; j++)
+                all_explored_statuses[i][j] = 0;
     }
 };
 
