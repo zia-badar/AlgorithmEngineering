@@ -573,7 +573,8 @@ private:
 
                 // if(!both_unchanged && atleast_one_unchanged && (connectivity_status_ui != connectivity_status_vi))
                 // if (!both_unchanged)
-                if (!both_unchanged && atleast_one_unchanged)
+                // if (!both_unchanged && atleast_one_unchanged)
+                if(atleast_one_unchanged && !(connectivity_status_ui == connectivity_status_vi))
                     return pair<merge_result, int>(NOT_POSSIBLE_EDGES_MODIFIED, -1);
 
                 if (connectivity_status_ui != connectivity_status_vi)
@@ -845,7 +846,7 @@ public:
         for (int i = 0; i < n + m; i++)
             for (int j = i + 1; j < n + m; j++)
             {
-                if (are_non_composed_nodes(i, j) && ((get_weight_between(i, j) > budget && get_connection_connected_status_from_to(i, j) && 
+                if (are_non_composed_nodes(i, j) && ((get_weight_between(i, j) > budget && get_connection_connected_status_from_to(i, j)) || (get_connection_connected_status_from_to(i, j) && 
                 get_connection_changed_status_from_to(i, j)) || merge_reduction_rule_2(i, j) || merge_reduction_rule_1(i, j) || all_explored_statuses[i][j] == ALREADY_EXPLORED_BY_DELETION))
                 {
                     result = merge(i, j, budget);
