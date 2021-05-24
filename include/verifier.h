@@ -61,6 +61,11 @@ public:
                 }
         }
         cout << "#recursive steps: " << cg->step_count << endl;
+        // cout << "#recursive steps: " << cg->c11 << "/" << cg->c1 << endl;
+        // cout << "#recursive steps: " << cg->c22 << "/" << cg->c2 << endl;
+        // cout << "#recursive steps: " << cg->c33 << "/" << cg->c3 << endl;
+        // cout << "#recursive steps: " << cg->c44 << "/" << cg->c4 << endl;
+
         // cout << "-------------------------------------------------\n";
 
         int p3_count = 0;

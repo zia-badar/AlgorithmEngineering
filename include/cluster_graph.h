@@ -575,8 +575,8 @@ private:
                 // if(!both_unchanged && atleast_one_unchanged && (connectivity_status_ui != connectivity_status_vi))
                 // if (!both_unchanged)
                 // if (!both_unchanged && atleast_one_unchanged)
-                if (atleast_one_unchanged && !(connectivity_status_ui == connectivity_status_vi))
-                    return pair<merge_result, int>(NOT_POSSIBLE_EDGES_MODIFIED, -1);
+                // if (atleast_one_unchanged && !(connectivity_status_ui == connectivity_status_vi))
+                    // return pair<merge_result, int>(NOT_POSSIBLE_EDGES_MODIFIED, -1);
 
                 if (connectivity_status_ui != connectivity_status_vi)
                 {
@@ -596,7 +596,7 @@ private:
                 }
             }
 
-        if (min_merge_cost_i > budget)
+        if (merge_cost > budget)
             return pair<merge_result, int>(TOO_EXPENSIVE, -1);
 
         if (checking)
@@ -844,17 +844,35 @@ public:
             all_nodes_reset[i] = all_nodes[i];
     }
 
+    int c1 = 0, c2 = 0, c3 = 0, c4 = 0;
+    int c11 = 0, c22 = 0, c33 = 0, c44 = 0;
     int try_merge(int budget)
     {
+        bool b1, b2, b3, b4;
         pair<merge_result, int> result;
         for (int i = 0; i < n + m; i++)
             for (int j = i + 1; j < n + m; j++)
             {
-                if (are_non_composed_nodes(i, j) && ((get_weight_between(i, j) > budget && get_connection_connected_status_from_to(i, j) && merge(i, j, budget, true).second == 0) || (get_connection_connected_status_from_to(i, j) && get_connection_changed_status_from_to(i, j)) || merge_reduction_rule_2(i, j) || merge_reduction_rule_1(i, j) || all_explored_statuses[i][j] == ALREADY_EXPLORED_BY_DELETION))
+                if (are_non_composed_nodes(i, j) && ((get_weight_between(i, j) > budget && get_connection_connected_status_from_to(i, j)) || (get_connection_connected_status_from_to(i, j) && get_connection_changed_status_from_to(i, j)) || merge_reduction_rule_2(i, j) || merge_reduction_rule_1(i, j) || all_explored_statuses[i][j] == ALREADY_EXPLORED_BY_DELETION))
                 {
+                    b1 = (get_weight_between(i, j) > budget && get_connection_connected_status_from_to(i, j));
+                    b2 = (get_connection_connected_status_from_to(i, j) && get_connection_changed_status_from_to(i, j));
+                    b3 = (merge_reduction_rule_2(i, j));
+                    b4 = (all_explored_statuses[i][j] == ALREADY_EXPLORED_BY_DELETION);
+                    if(b1) c1++;
+                    if(b2) c2++;
+                    if(b3) c3++;
+                    if(b4) c4++;
                     result = merge(i, j, budget);
                     if (result.first == POSSIBLE_WITH_COST)
+                    {
+                    if(b1) c11++;
+                    if(b2) c22++;
+                    if(b3) c33++;
+                    if(b4) c44++;
+ 
                         return result.second;
+                    }
                 }
             }
         return -1;
@@ -1067,6 +1085,16 @@ public:
         for (int i = 0; i < 2 * n; i++)
             for (int j = 0; j < 2 * n; j++)
                 all_explored_statuses[i][j] = 0;
+
+        c1 = 0;
+        c2 = 0;
+        c3 = 0;
+        c4 = 0;
+        c11 = 0;
+        c22 = 0;
+        c33 = 0;
+        c44 = 0;
+
     }
 };
 
