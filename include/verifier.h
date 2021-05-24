@@ -53,8 +53,10 @@ public:
                 if (cg->all_edge_statuses[i][j] & 0b100)
                 {
                     cout << i + 1 << " " << j + 1 << endl;
-                    if((cg->all_edge_statuses[i][j] & cg->CONNECTION_CONNECTED) && cg->all_nodes[i].connected_nodes.find(node_weight_pair(j, 0)) == cg->all_nodes[i].connected_nodes.end()) int i = 1/0;
-                    if(!(cg->all_edge_statuses[i][j] & cg->CONNECTION_CONNECTED) && cg->all_nodes[i].disconnected_nodes.find(node_weight_pair(j, 0)) == cg->all_nodes[i].disconnected_nodes.end()) int i = 1/0;
+                    if ((cg->all_edge_statuses[i][j] & cg->CONNECTION_CONNECTED) && cg->all_nodes[i].connected_nodes.find(node_weight_pair(j, 0)) == cg->all_nodes[i].connected_nodes.end())
+                        int i = 1 / 0;
+                    if (!(cg->all_edge_statuses[i][j] & cg->CONNECTION_CONNECTED) && cg->all_nodes[i].disconnected_nodes.find(node_weight_pair(j, 0)) == cg->all_nodes[i].disconnected_nodes.end())
+                        int i = 1 / 0;
                     changed_edges_cost += (cg->all_edge_statuses[i][j] & cg->CONNECTION_CONNECTED) ? abs(cg->all_nodes[i].connected_nodes.find(node_weight_pair(j, 0))->weight) : abs(cg->all_nodes[i].disconnected_nodes.find(node_weight_pair(j, 0))->weight);
                 }
         }
@@ -78,10 +80,13 @@ public:
 
         delete cg;
 
-        // if (p3_count == 0 && changed_edges_cost == k)
-        //     cout << "verfied at cost: " << changed_edges_cost << endl;
-        // else
-        //     cout << "verification failed at cost: " << k << ", with edge modified cost: " << changed_edges_cost << ", p3 count: " << p3_count << endl;
+        if (file_name != "")
+        {
+            if (p3_count == 0 && changed_edges_cost == k)
+                cout << "verfied at cost: " << changed_edges_cost << endl;
+            else
+                cout << "verification failed at cost: " << k << ", with edge modified cost: " << changed_edges_cost << ", p3 count: " << p3_count << endl;
+        }
     }
 };
 

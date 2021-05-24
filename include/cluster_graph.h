@@ -413,6 +413,7 @@ private:
         node_weight_pair pair = *((connection_status ? all_nodes[f].connected_nodes : all_nodes[f].disconnected_nodes).find(node_weight_pair(t, 0)));
 
         (connection_status ? all_nodes[f].connected_nodes : all_nodes[f].disconnected_nodes).erase(pair);
+        pair.weight = pair.weight * (-1);
         (connection_status ? all_nodes[f].disconnected_nodes : all_nodes[f].connected_nodes).insert(pair);
 
         all_edge_statuses[f][t] = CONNECTION_PRESENT | (connection_status ? 0 : CONNECTION_CONNECTED) | CONNECTION_CHANGED;
@@ -547,7 +548,7 @@ private:
         return pair<merge_result, int>(POSSIBLE_WITH_COST, total_cost_of_merge);
     }
 
-    pair<merge_result, int> merge(int u, int v, int budget)
+    pair<merge_result, int> merge(int u, int v, int budget, bool checking = false)
     {
         bool connection_changed_status_ui;
         bool connection_changed_status_vi;
@@ -574,7 +575,7 @@ private:
                 // if(!both_unchanged && atleast_one_unchanged && (connectivity_status_ui != connectivity_status_vi))
                 // if (!both_unchanged)
                 // if (!both_unchanged && atleast_one_unchanged)
-                if(atleast_one_unchanged && !(connectivity_status_ui == connectivity_status_vi))
+                if (atleast_one_unchanged && !(connectivity_status_ui == connectivity_status_vi))
                     return pair<merge_result, int>(NOT_POSSIBLE_EDGES_MODIFIED, -1);
 
                 if (connectivity_status_ui != connectivity_status_vi)
@@ -597,6 +598,9 @@ private:
 
         if (min_merge_cost_i > budget)
             return pair<merge_result, int>(TOO_EXPENSIVE, -1);
+
+        if (checking)
+            return pair<merge_result, int>(POSSIBLE_WITH_COST, merge_cost);
 
         if (m >= n)
             int i = 1 / 0;
@@ -846,8 +850,7 @@ public:
         for (int i = 0; i < n + m; i++)
             for (int j = i + 1; j < n + m; j++)
             {
-                if (are_non_composed_nodes(i, j) && ((get_weight_between(i, j) > budget && get_connection_connected_status_from_to(i, j)) || (get_connection_connected_status_from_to(i, j) && 
-                get_connection_changed_status_from_to(i, j)) || merge_reduction_rule_2(i, j) || merge_reduction_rule_1(i, j) || all_explored_statuses[i][j] == ALREADY_EXPLORED_BY_DELETION))
+                if (are_non_composed_nodes(i, j) && ((get_weight_between(i, j) > budget && get_connection_connected_status_from_to(i, j) && merge(i, j, budget, true).second == 0) || (get_connection_connected_status_from_to(i, j) && get_connection_changed_status_from_to(i, j)) || merge_reduction_rule_2(i, j) || merge_reduction_rule_1(i, j) || all_explored_statuses[i][j] == ALREADY_EXPLORED_BY_DELETION))
                 {
                     result = merge(i, j, budget);
                     if (result.first == POSSIBLE_WITH_COST)

@@ -151,8 +151,8 @@ int main(int argc, char **args)
 {
     string filename = "";
     // filename = "/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w037.dimacs";
-    // filename = "/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r043.dimacs";
-    filename = "/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w069.dimacs";
+    // filename = "/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r045.dimacs";
+    // filename = "/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w069.dimacs";
 
     // verifier::verify(filename);
     verifier::verify("");
