@@ -7,18 +7,22 @@
 
 class node_weight_pair
 {
-public:
-    int node_index;
-    int weight;
+ public:
+	int node_index;
+	int weight;
 
-    node_weight_pair() : node_index(-1), weight(0) {}
+	node_weight_pair() : node_index(-1), weight(0)
+	{
+	}
 
-    node_weight_pair(int _node_index, int _weight) : node_index(_node_index), weight(_weight) {}
+	node_weight_pair(int _node_index, int _weight) : node_index(_node_index), weight(_weight)
+	{
+	}
 
-    friend bool operator<(const node_weight_pair &p1, const node_weight_pair &p2)
-    {
-        return p1.node_index < p2.node_index;
-    }
+	friend bool operator<(const node_weight_pair& p1, const node_weight_pair& p2)
+	{
+		return p1.node_index < p2.node_index;
+	}
 };
 
 #endif
