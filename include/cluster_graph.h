@@ -27,6 +27,7 @@ class cluster_graph
 	p3s_bucket* p_bucket;
 
  public:
+	set<int> non_composed_nodes;
 	node* all_nodes_reset;
 
 	p3s_bucket* get_p3_bucket()
@@ -253,27 +254,20 @@ class cluster_graph
 			return connected->weight;
 		else if (disconnected != all_nodes[n1].disconnected_nodes.end())
 			return disconnected->weight;
-		return 0;
+		return 1/0;
 	}
 
-	void remove_all_p3s_possible_from(int u, bool avoid_p3s_with_merge_partner_index = false)
+	void remove_all_p3s_possible_from(int u, int merge_partner_index = -1, bool avoid_p3s_with_merge_partner_index = false)
 	{
+		if(avoid_p3s_with_merge_partner_index && merge_partner_index == -1)
+			int i=1/0;
 
-		int merge_partner_index = -1;
-		for (int i = n; i < n + m && merge_partner_index == -1; i++)
-			if (all_nodes[i].composed_node_index_1 == u || all_nodes[i].composed_node_index_2 == u)
-				merge_partner_index = all_nodes[i].composed_node_index_1 == u ? all_nodes[i].composed_node_index_2 :
-					all_nodes[i].composed_node_index_1;
-
-		node node_u = all_nodes[u];
 		set<node_weight_pair>::iterator it_i, it_j;
 		for (it_i = all_nodes[u].connected_nodes.begin(); it_i != all_nodes[u].connected_nodes.end(); it_i++)
 		{
-			node node_i = all_nodes[it_i->node_index];
 			for (it_j = all_nodes[it_i->node_index].connected_nodes.begin();
 				 it_j != all_nodes[it_i->node_index].connected_nodes.end(); it_j++)
 			{
-				node node_j = all_nodes[it_j->node_index];
 				if (it_j->node_index != u && (all_nodes[it_j->node_index].composed_node_index_1 != u
 					&& all_nodes[it_j->node_index].composed_node_index_2 != u)
 					&& !get_connection_connected_status_from_to(u, it_j->node_index))
@@ -281,9 +275,6 @@ class cluster_graph
 						remove_p3(u, it_i->node_index, it_j->node_index);
 			}
 		}
-
-		// if (merge_partner_index == -1)
-		// int i = 1 / 0;
 
 		for (it_i = all_nodes[u].connected_nodes.begin(); it_i != all_nodes[u].connected_nodes.end(); it_i++)
 		{
@@ -299,13 +290,15 @@ class cluster_graph
 		}
 	}
 
-	void add_all_p3s_possible_from(int u, bool avoid_p3s_with_merge_partner_index = false)
+	void add_all_p3s_possible_from(int u, int merge_partner_index = -1, bool avoid_p3s_with_merge_partner_index = false)
 	{
-		int merge_partner_index = -1;
-		for (int i = n; i < n + m && merge_partner_index == -1; i++)
-			if (all_nodes[i].composed_node_index_1 == u || all_nodes[i].composed_node_index_2 == u)
-				merge_partner_index = all_nodes[i].composed_node_index_1 == u ? all_nodes[i].composed_node_index_2 :
-					all_nodes[i].composed_node_index_1;
+		if(avoid_p3s_with_merge_partner_index && merge_partner_index == -1)
+			int i=1/0;
+//		int merge_partner_index = -1;
+//		for (int i = n; i < n + m && merge_partner_index == -1; i++)
+//			if (all_nodes[i].composed_node_index_1 == u || all_nodes[i].composed_node_index_2 == u)
+//				merge_partner_index = all_nodes[i].composed_node_index_1 == u ? all_nodes[i].composed_node_index_2 :
+//					all_nodes[i].composed_node_index_1;
 
 		set<node_weight_pair>::iterator it_i, it_j;
 		for (it_i = all_nodes[u].connected_nodes.begin(); it_i != all_nodes[u].connected_nodes.end(); it_i++)
@@ -512,7 +505,7 @@ class cluster_graph
 		all_nodes[_m].composed_node_index_1 = u;
 		all_nodes[_m].composed_node_index_2 = v;
 		remove_all_p3s_possible_from(u);
-		remove_all_p3s_possible_from(v, true);
+		remove_all_p3s_possible_from(v, u, true);
 		remove_connection_from_to(v, u);
 
 		int cost_m;
@@ -597,8 +590,9 @@ class cluster_graph
 		int merge_cost = 0;
 		int min_merge_cost_i;
 		bool both_unchanged;
-		for (int i = 0; i < n + m; i++)
-			if (i != u && i != v && are_non_composed_nodes(u, i) && are_non_composed_nodes(v, i))
+		for (auto i : non_composed_nodes)
+//			if (i != u && i != v && are_non_composed_nodes(u, i) && are_non_composed_nodes(v, i))
+			if(i != u && i != v)
 			{
 				connection_changed_status_ui = get_connection_changed_status_from_to(u, i);
 				connection_changed_status_vi = get_connection_changed_status_from_to(v, i);
@@ -642,19 +636,21 @@ class cluster_graph
 		if (m >= n)
 			int i = 1 / 0;
 		int _m = n + m;
-		m++;
 
 		all_nodes[_m].composed_node_index_1 = u;
 		all_nodes[_m].composed_node_index_2 = v;
 		remove_all_p3s_possible_from(u);
-		remove_all_p3s_possible_from(v, true);
+		remove_all_p3s_possible_from(v, u, true);
 		remove_connection_from_to(v, u);
+
+		non_composed_nodes.erase(u);
+		non_composed_nodes.erase(v);
 
 		bool same_connectivity;
 		unsigned int status_mi;
 		int cost_mi;
-		for (int i = 0; i < n + m - 1; i++)
-			if (i != u && i != v && are_non_composed_nodes(u, i) && are_non_composed_nodes(v, i))
+		for (auto i : non_composed_nodes)
+//			if (i != u && i != v && are_non_composed_nodes(u, i) && are_non_composed_nodes(v, i))
 			{
 				connection_changed_status_ui = get_connection_changed_status_from_to(u, i);
 				connection_changed_status_vi = get_connection_changed_status_from_to(v, i);
@@ -714,7 +710,9 @@ class cluster_graph
 				add_connection_between(_m, i, cost_mi, status_mi);
 			}
 
+		non_composed_nodes.insert(_m);
 		add_all_p3s_possible_from(_m);
+		m++;
 
 		return pair<merge_result, int>(POSSIBLE_WITH_COST, merge_cost);
 	}
@@ -733,8 +731,9 @@ class cluster_graph
 		remove_all_p3s_possible_from(_m);
 		add_connection_from_to(v, u, get_weight_from_to(u, v), get_status_from_to(u, v));
 
-		for (int i = 0; i < n + m; i++)
-			if (are_non_composed_nodes(_m, i))
+		for (auto i : non_composed_nodes)
+//			if (are_non_composed_nodes(_m, i))
+			if (i != _m)
 			{
 				status_mi = get_status_from_to(_m, i);
 				status_ui = get_status_from_to(u, i);
@@ -757,8 +756,11 @@ class cluster_graph
 			}
 
 		add_all_p3s_possible_from(u);
-		add_all_p3s_possible_from(v, true);
+		add_all_p3s_possible_from(v, u, true);
 
+		non_composed_nodes.erase(_m);
+		non_composed_nodes.insert(u);
+		non_composed_nodes.insert(v);
 		all_nodes[_m].composed_node_index_1 = -1;
 		all_nodes[_m].composed_node_index_2 = -1;
 		m--;
@@ -809,6 +811,8 @@ class cluster_graph
 		for (int i = 0; i < 2 * n; i++)
 			for (int j = 0; j < 2 * n; j++)
 				all_edge_statuses[i][j] = 0;
+
+		for (int i = 0; i < n; i++) non_composed_nodes.insert(i);
 
 		if (p_bucket != NULL) delete p_bucket;
 		p_bucket = new p3s_bucket();
@@ -880,6 +884,9 @@ class cluster_graph
 		p_bucket->reset();
 		for (int i = 0; i < 2 * n; i++)
 			all_nodes[i] = all_nodes_reset[i];
+
+		non_composed_nodes.clear();
+		for (int i = 0; i < n; i++) non_composed_nodes.insert(i);
 
 		for (int i = 0; i < n; i++)
 			for (int j = 0; j < n; j++)

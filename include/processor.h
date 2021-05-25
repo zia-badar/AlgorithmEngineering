@@ -16,43 +16,31 @@ class processor
 	int step_count = 0;
 	int c1 = 0, c2 = 0, c3 = 0, c4 = 0;
 	int c11 = 0, c22 = 0, c33 = 0, c44 = 0;
-	int try_merge(int budget, cluster_graph* cg)
+	pair<cluster_graph::merge_result, int> try_merge(int budget, cluster_graph* cg)
 	{
 		bool b1, b2, b3, b4;
 		pair<cluster_graph::merge_result, int> result;
-		for (int i = 0; i < cg->n + cg->m; i++)
-			for (int j = i + 1; j < cg->n + cg->m; j++)
-			{
-				if (cg->are_non_composed_nodes(i, j)
-					&& ((cg->get_weight_between(i, j) > budget && cg->get_connection_connected_status_from_to(i, j))
+		for (auto i : cg->non_composed_nodes)
+			for (auto j : cg->non_composed_nodes)
+				if (i != j)
+				{
+					if (((cg->get_weight_between(i, j) > budget && cg->get_connection_connected_status_from_to(i, j))
 						|| (cg->get_connection_connected_status_from_to(i, j)
 							&& cg->get_connection_changed_status_from_to(i, j)) || merge_reduction_rule_2(i, j, cg)
 						|| merge_reduction_rule_1(i, j, cg)
 						|| all_explored_statuses[i][j] == ALREADY_EXPLORED_BY_DELETION))
-				{
-//					b1 = (get_weight_between(i, j) > budget && get_connection_connected_status_from_to(i, j));
-//					b2 = (get_connection_connected_status_from_to(i, j) && get_connection_changed_status_from_to(i, j));
-//					b3 = (merge_reduction_rule_2(i, j));
-//					b4 = (all_explored_statuses[i][j] == ALREADY_EXPLORED_BY_DELETION);
-//					if (b1) c1++;
-//					if (b2) c2++;
-//					if (b3) c3++;
-//					if (b4) c4++;
-					result = cg->merge(i, j, budget);
-					if (result.first == cluster_graph::merge_result::POSSIBLE_WITH_COST)
 					{
-//						if (b1) c11++;
-//						if (b2) c22++;
-//						if (b3) c33++;
-//						if (b4) c44++;
-
-						return result.second;
+						result = cg->merge(i, j, budget);
+					if (result.first == cluster_graph::merge_result::POSSIBLE_WITH_COST || result.first == cluster_graph::merge_result::NOT_POSSIBLE_EDGES_MODIFIED)		// not sure about second condition, it donot fails, but dont want to take risk
+//						if (result.first == cluster_graph::merge_result::POSSIBLE_WITH_COST ||																				// it will work because otherwise solution will not not exist because it was already explored
+//							(result.first == cluster_graph::merge_result::NOT_POSSIBLE_EDGES_MODIFIED																		// it is recusive
+//								&& !(all_explored_statuses[i][j] == ALREADY_EXPLORED_BY_DELETION)))
+							return result;
 					}
 				}
-			}
-		return -1;
+		return pair<cluster_graph::merge_result, int>(cluster_graph::merge_result::TOO_EXPENSIVE, -1);
 	}
-	p3s_bucket *p_bucket;
+	p3s_bucket* p_bucket;
 
 	bool with_merging = false;
 	// O(3^k*n*log(n)), k is budget, n is no. of nodes.
@@ -62,22 +50,31 @@ class processor
 		if (budget < 0)
 			return -1;
 
-		if(p_bucket->is_empty())
+		if (p_bucket->is_empty())
 			return budget;
 
 //		rec_steps++;
-		int k;
+//		int k;
+		pair<cluster_graph::merge_result, int> m_res;
 		int previous_merge_nodes = cg->m;
 		while (with_merging)
 		{
-			k = try_merge(budget, cg);
-			if (k != -1)
-				budget -= k;
-			else
+//			k = try_merge(budget, cg);
+			m_res = try_merge(budget, cg);
+//			if (k != -1)
+			if (m_res.first == cluster_graph::POSSIBLE_WITH_COST)
+				budget -= m_res.second;
+			else if (m_res.first == cluster_graph::NOT_POSSIBLE_EDGES_MODIFIED)
+			{
+				while (cg->m != previous_merge_nodes)
+					cg->demerge(false);
+				return -1;
+			}
+			else if (m_res.first == cluster_graph::TOO_EXPENSIVE)
 				break;
 		}
 
-		if(p_bucket->is_empty())
+		if (p_bucket->is_empty())
 		{
 			while (cg->m != previous_merge_nodes)
 				cg->demerge(true);
@@ -206,7 +203,6 @@ class processor
 
 	bool merge_reduction_rule_1(int u, int v, cluster_graph* cg)
 	{
-		return false;
 		if (!cg->are_non_composed_nodes(u, v))
 			int i = 1 / 0;
 
