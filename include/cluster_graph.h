@@ -22,11 +22,9 @@ class cluster_graph
 {
 	friend class verifier;
 
- public:
-	int rec_steps = 0;
-
- private:
 	node* all_nodes;
+
+ public:
 	set<p3> p3s_uvw_sorted;
 	set<p3> p3s_weight_sorted;
 	node* all_nodes_reset;
@@ -49,55 +47,69 @@ class cluster_graph
 		return false;
 	}
 
-	string get_append()
+	set<node_weight_pair> get_connected_nodes_of(int u)
 	{
-		string append = "\t\t\t";
-		string ret = "";
-		for (int i = 0; i < rec_steps - 1; i++)
-			ret += append;
-		return ret;
+		if(u < 0 || !(u  < n+m))
+			int i = 1/0;
+		return all_nodes[u].connected_nodes;
 	}
 
-	void print_graph(string message)
+	set<node_weight_pair> get_disconnected_nodes_of(int u)
 	{
-		return;
-		cout << "----------------------------------------------------------------------------------\n";
-		cout << get_append() << "after: " << message << "\n";
-		cout << get_append() << "connections connected\n";
-		cout << get_append() << "  ";
-		for (int i = 0; i < n + m; i++)
-			cout << i << " ";
-		cout << endl;
-		for (int i = 0; i < n + m; i++)
-		{
-			cout << get_append() << i << " ";
-			for (int j = 0; j < n + m; j++)
-				cout << (get_connection_presest_status_from_to(i, j) ?
-					(get_connection_connected_status_from_to(i, j) ? "C" : "D") : "N") << " ";
-			cout << endl;
-		};
-
-		cout << get_append() << "connection changes\n";
-		cout << get_append() << "  ";
-		for (int i = 0; i < n + m; i++)
-			cout << i << " ";
-		cout << endl;
-		for (int i = 0; i < n + m; i++)
-		{
-			cout << get_append() << i << " ";
-			for (int j = 0; j < n + m; j++)
-				cout << (get_connection_presest_status_from_to(i, j) ?
-					(get_connection_changed_status_from_to(i, j) ? "C" : "S") : "N") << " ";
-			cout << endl;
-		};
-
-		cout << get_append() << "p3s\n";
-		cout << get_append();
-		for (set<p3>::iterator i = p3s_uvw_sorted.begin(); i != p3s_uvw_sorted.end(); i++)
-			cout << *i << ", ";
-		cout << endl;
-		cout << "----------------------------------------------------------------------------------\n";
+		if(u < 0 || !(u  < n+m))
+			int i = 1/0;
+		return all_nodes[u].disconnected_nodes;
 	}
+
+//	string get_append()
+//	{
+//		string append = "\t\t\t";
+//		string ret = "";
+//		for (int i = 0; i < rec_steps - 1; i++)
+//			ret += append;
+//		return ret;
+//	}
+
+//	void print_graph(string message)
+//	{
+//		return;
+//		cout << "----------------------------------------------------------------------------------\n";
+//		cout << get_append() << "after: " << message << "\n";
+//		cout << get_append() << "connections connected\n";
+//		cout << get_append() << "  ";
+//		for (int i = 0; i < n + m; i++)
+//			cout << i << " ";
+//		cout << endl;
+//		for (int i = 0; i < n + m; i++)
+//		{
+//			cout << get_append() << i << " ";
+//			for (int j = 0; j < n + m; j++)
+//				cout << (get_connection_presest_status_from_to(i, j) ?
+//					(get_connection_connected_status_from_to(i, j) ? "C" : "D") : "N") << " ";
+//			cout << endl;
+//		};
+//
+//		cout << get_append() << "connection changes\n";
+//		cout << get_append() << "  ";
+//		for (int i = 0; i < n + m; i++)
+//			cout << i << " ";
+//		cout << endl;
+//		for (int i = 0; i < n + m; i++)
+//		{
+//			cout << get_append() << i << " ";
+//			for (int j = 0; j < n + m; j++)
+//				cout << (get_connection_presest_status_from_to(i, j) ?
+//					(get_connection_changed_status_from_to(i, j) ? "C" : "S") : "N") << " ";
+//			cout << endl;
+//		};
+//
+//		cout << get_append() << "p3s\n";
+//		cout << get_append();
+//		for (set<p3>::iterator i = p3s_uvw_sorted.begin(); i != p3s_uvw_sorted.end(); i++)
+//			cout << *i << ", ";
+//		cout << endl;
+//		cout << "----------------------------------------------------------------------------------\n";
+//	}
 
 	void disconnect_nodes(int u_index, int v_index, unsigned int after_status)
 	{
@@ -149,7 +161,7 @@ class cluster_graph
 		}
 		all_edge_statuses[u_index][v_index] = after_status;
 		all_edge_statuses[v_index][u_index] = after_status;
-		print_graph("disconnecting " + to_string(u_index) + " " + to_string(v_index));
+//		print_graph("disconnecting " + to_string(u_index) + " " + to_string(v_index));
 	}
 
 	void connect_nodes(int u_index, int v_index, unsigned int after_status)
@@ -205,7 +217,7 @@ class cluster_graph
 		}
 		all_edge_statuses[u_index][v_index] = after_status;
 		all_edge_statuses[v_index][u_index] = after_status;
-		print_graph("connecting " + to_string(u_index) + " " + to_string(v_index));
+//		print_graph("connecting " + to_string(u_index) + " " + to_string(v_index));
 	}
 
 	void add_p3(int u, int v, int w)
@@ -454,6 +466,7 @@ class cluster_graph
 		NOT_POSSIBLE_EDGES_MODIFIED,
 		POSSIBLE_WITH_COST
 	};
+
 	pair<merge_result, int> merge_(int u, int v, int budget)
 	{
 		int cost_ui, cost_vi;
@@ -568,7 +581,7 @@ class cluster_graph
 			}
 
 		add_all_p3s_possible_from(_m);
-		print_graph("merging " + to_string(u) + " " + to_string(v));
+//		print_graph("merging " + to_string(u) + " " + to_string(v));
 		return pair<merge_result, int>(POSSIBLE_WITH_COST, total_cost_of_merge);
 	}
 
@@ -750,10 +763,9 @@ class cluster_graph
 		all_nodes[_m].composed_node_index_2 = -1;
 		m--;
 
-		print_graph("demerging " + to_string(u) + " " + to_string(v));
+//		print_graph("demerging " + to_string(u) + " " + to_string(v));
 	}
 
- public:
 	enum edge_status
 		: unsigned int // first bit is connection_present, second bit is connection type(connected/disconnected), third bit is connection state(changed/unchanged)
 	{
@@ -761,19 +773,14 @@ class cluster_graph
 		CONNECTION_CONNECTED = 0b010,
 		CONNECTION_CHANGED = 0b100,
 	};
-	enum explored_status : unsigned int
-	{
-		NONE = 0,
-		ALREADY_EXPLORED_BY_DELETION = 1,
-	};
+
 
 	int n;
 	int m;
 	unsigned int** all_edge_statuses;
-	unsigned int** all_explored_statuses;
 
 	cluster_graph()
-		: n(-1), all_nodes(NULL), all_nodes_reset(NULL), all_edge_statuses(NULL), all_explored_statuses(NULL)
+		: n(-1), all_nodes(NULL), all_nodes_reset(NULL), all_edge_statuses(NULL)
 	{
 	}
 
@@ -804,16 +811,7 @@ class cluster_graph
 			for (int j = 0; j < 2 * n; j++)
 				all_edge_statuses[i][j] = 0;
 
-		if (all_explored_statuses == NULL)
-		{
-			all_explored_statuses = new unsigned int* [2 * n];
-			for (int i = 0; i < 2 * n; i++)
-				all_explored_statuses[i] = new unsigned int[2 * n];
-		}
 
-		for (int i = 0; i < 2 * n; i++)
-			for (int j = 0; j < 2 * n; j++)
-				all_explored_statuses[i][j] = 0;
 
 		m = 0;
 
@@ -877,236 +875,8 @@ class cluster_graph
 			all_nodes_reset[i] = all_nodes[i];
 	}
 
-	int c1 = 0, c2 = 0, c3 = 0, c4 = 0;
-	int c11 = 0, c22 = 0, c33 = 0, c44 = 0;
-	int try_merge(int budget)
-	{
-		bool b1, b2, b3, b4;
-		pair<merge_result, int> result;
-		for (int i = 0; i < n + m; i++)
-			for (int j = i + 1; j < n + m; j++)
-			{
-				if (are_non_composed_nodes(i, j)
-					&& ((get_weight_between(i, j) > budget && get_connection_connected_status_from_to(i, j))
-						|| (get_connection_connected_status_from_to(i, j)
-							&& get_connection_changed_status_from_to(i, j)) || merge_reduction_rule_2(i, j)
-						|| merge_reduction_rule_1(i, j) || all_explored_statuses[i][j] == ALREADY_EXPLORED_BY_DELETION))
-				{
-					b1 = (get_weight_between(i, j) > budget && get_connection_connected_status_from_to(i, j));
-					b2 = (get_connection_connected_status_from_to(i, j) && get_connection_changed_status_from_to(i, j));
-					b3 = (merge_reduction_rule_2(i, j));
-					b4 = (all_explored_statuses[i][j] == ALREADY_EXPLORED_BY_DELETION);
-					if (b1) c1++;
-					if (b2) c2++;
-					if (b3) c3++;
-					if (b4) c4++;
-					result = merge(i, j, budget);
-					if (result.first == POSSIBLE_WITH_COST)
-					{
-						if (b1) c11++;
-						if (b2) c22++;
-						if (b3) c33++;
-						if (b4) c44++;
-
-						return result.second;
-					}
-				}
-			}
-		return -1;
-	}
-
-	int step_count;
-	bool with_merging = false;
-	// O(3^k*n*log(n)), k is budget, n is no. of nodes.
-	int solve(int budget)
-	{
-		step_count++;
-		if (budget < 0)
-			return -1;
-
-		if (p3s_uvw_sorted.empty())
-			return budget;
-
-		rec_steps++;
-		int k;
-		int previous_merge_nodes = m;
-		while (with_merging)
-		{
-			k = try_merge(budget);
-			if (k != -1)
-				budget -= k;
-			else
-				break;
-		}
-
-		if (p3s_uvw_sorted.empty())
-		{
-			while (m != previous_merge_nodes)
-				demerge(true);
-			rec_steps--;
-			return budget;
-		}
-
-		set<p3>::iterator iterator = p3s_weight_sorted.begin();
-		int u_index = iterator->u;
-		int v_index = iterator->v;
-		int w_index = iterator->w;
-
-		if (!(all_edge_statuses[v_index][u_index] & CONNECTION_CHANGED)
-			&& all_explored_statuses[v_index][u_index] != ALREADY_EXPLORED_BY_DELETION)
-		{
-			disconnect_nodes(v_index, u_index, CONNECTION_PRESENT | 0 | CONNECTION_CHANGED);
-
-			int budget_left = budget - abs(all_nodes[v_index].disconnected_nodes.find(
-					node_weight_pair(u_index, 0))
-				->weight);
-			budget_left = solve(budget_left);
-			if (budget_left != -1)
-			{
-				while (m != previous_merge_nodes)
-					demerge(true);
-				rec_steps--;
-				return budget_left;
-			}
-
-			connect_nodes(v_index, u_index, CONNECTION_PRESENT | CONNECTION_CONNECTED | 0);
-		}
-		if (!(all_edge_statuses[v_index][w_index] & CONNECTION_CHANGED)
-			&& all_explored_statuses[v_index][w_index] != ALREADY_EXPLORED_BY_DELETION)
-		{
-			disconnect_nodes(v_index, w_index, CONNECTION_PRESENT | 0 | CONNECTION_CHANGED);
-
-			int budget_left = budget - abs(all_nodes[v_index].disconnected_nodes.find(
-					node_weight_pair(w_index, 0))
-				->weight);
-
-			all_explored_statuses[v_index][u_index] = ALREADY_EXPLORED_BY_DELETION;
-			all_explored_statuses[u_index][v_index] = ALREADY_EXPLORED_BY_DELETION;
-			budget_left = solve(budget_left);
-			all_explored_statuses[v_index][u_index] = NONE;
-			all_explored_statuses[u_index][v_index] = NONE;
-
-			if (budget_left != -1)
-			{
-				while (m != previous_merge_nodes)
-					demerge(true);
-				rec_steps--;
-				return budget_left;
-			}
-
-			connect_nodes(v_index, w_index, CONNECTION_PRESENT | CONNECTION_CONNECTED | 0);
-		}
-		if (!(all_edge_statuses[u_index][w_index] & CONNECTION_CHANGED) && data_reduction_rules(u_index, w_index))
-		{
-			connect_nodes(u_index, w_index, CONNECTION_PRESENT | CONNECTION_CONNECTED | CONNECTION_CHANGED);
-
-			int budget_left = budget - abs(all_nodes[u_index].connected_nodes.find(
-					node_weight_pair(w_index, 0))
-				->weight);
-
-			all_explored_statuses[v_index][u_index] = ALREADY_EXPLORED_BY_DELETION;
-			all_explored_statuses[u_index][v_index] = ALREADY_EXPLORED_BY_DELETION;
-			all_explored_statuses[v_index][w_index] = ALREADY_EXPLORED_BY_DELETION;
-			all_explored_statuses[w_index][v_index] = ALREADY_EXPLORED_BY_DELETION;
-			budget_left = solve(budget_left);
-			all_explored_statuses[v_index][w_index] = NONE;
-			all_explored_statuses[w_index][v_index] = NONE;
-			all_explored_statuses[v_index][u_index] = NONE;
-			all_explored_statuses[u_index][v_index] = NONE;
-
-			if (budget_left != -1)
-			{
-				while (m != previous_merge_nodes)
-					demerge(true);
-				rec_steps--;
-				return budget_left;
-			}
-
-			disconnect_nodes(u_index, w_index, CONNECTION_PRESENT | 0 | 0);
-		}
-		while (m != previous_merge_nodes)
-			demerge(false);
-		rec_steps--;
-		return -1;
-	}
-
-	bool data_reduction_rules(int u, int v)
-	{
-		// return true;
-		if (!are_non_composed_nodes(u, v))
-			int i = 1 / 0;
-
-		if (!get_connection_connected_status_from_to(u, v))
-		{
-			int sum = 0;
-			for (auto i = all_nodes[u].connected_nodes.begin(); i != all_nodes[u].connected_nodes.end(); i++)
-				if (i->node_index != v)
-					sum += (*i).weight;
-
-			if (sum <= abs(get_weight_between(u, v)))
-				return false;
-
-			sum = 0;
-			for (auto i = all_nodes[v].connected_nodes.begin(); i != all_nodes[v].connected_nodes.end(); i++)
-				if (i->node_index != u)
-					sum += (*i).weight;
-
-			if (sum <= abs(get_weight_between(u, v)))
-				return false;
-		}
-
-		return true;
-	}
-
-	bool merge_reduction_rule_1(int u, int v)
-	{
-		return false;
-		if (!are_non_composed_nodes(u, v))
-			int i = 1 / 0;
-
-		int sum = 0;
-		if (get_connection_connected_status_from_to(u, v))
-		{
-			for (auto i = all_nodes[u].connected_nodes.begin(); i != all_nodes[u].connected_nodes.end(); i++)
-				if (i->node_index != v)
-					sum += i->weight;
-			for (auto i = all_nodes[u].disconnected_nodes.begin(); i != all_nodes[u].disconnected_nodes.end(); i++)
-				if (i->node_index != v)
-					sum += abs(i->weight);
-
-			if (sum <= get_weight_between(u, v))
-				return true;
-		}
-
-		return false;
-	}
-
-	bool merge_reduction_rule_2(int u, int v)
-	{
-		if (!are_non_composed_nodes(u, v))
-			int i = 1 / 0;
-
-		int sum = 0;
-		if (get_connection_connected_status_from_to(u, v))
-		{
-			for (auto i = all_nodes[u].connected_nodes.begin(); i != all_nodes[u].connected_nodes.end(); i++)
-				if (i->node_index != v)
-					sum += (*i).weight;
-
-			for (auto i = all_nodes[v].connected_nodes.begin(); i != all_nodes[v].connected_nodes.end(); i++)
-				if (i->node_index != u)
-					sum += (*i).weight;
-
-			if (sum <= get_weight_between(u, v))
-				return true;
-		}
-
-		return false;
-	}
-
 	void reset_graph()
 	{
-		rec_steps = 0;
 		m = 0;
 		p3s_uvw_sorted = p3s_uvw_sorted_reset;
 		p3s_weight_sorted = p3s_weight_sorted_reset;
@@ -1119,23 +889,22 @@ class cluster_graph
 					| (all_nodes[i].connected_nodes.find(node_weight_pair(j, 0)) != all_nodes[i].connected_nodes.end() ?
 						CONNECTION_CONNECTED : 0) | 0;
 
-		for (int i = n; i < 2 * n; i++)
-			for (int j = n; j < 2 * n; j++)
-				all_edge_statuses[i][j] = 0;
+//		for (int i = n; i < 2 * n; i++)
+//			for (int j = n; j < 2 * n; j++)
+//				all_edge_statuses[i][j] = 0;
+//
+//		for (int i = 0; i < 2 * n; i++)
+//			for (int j = 0; j < 2 * n; j++)
+//				all_explored_statuses[i][j] = 0;
 
-		for (int i = 0; i < 2 * n; i++)
-			for (int j = 0; j < 2 * n; j++)
-				all_explored_statuses[i][j] = 0;
-
-		c1 = 0;
-		c2 = 0;
-		c3 = 0;
-		c4 = 0;
-		c11 = 0;
-		c22 = 0;
-		c33 = 0;
-		c44 = 0;
-
+//		c1 = 0;
+//		c2 = 0;
+//		c3 = 0;
+//		c4 = 0;
+//		c11 = 0;
+//		c22 = 0;
+//		c33 = 0;
+//		c44 = 0;
 	}
 };
 

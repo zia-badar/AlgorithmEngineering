@@ -7,27 +7,28 @@
 #include <string>
 #include "include/cluster_graph.h"
 #include "include/verifier.h"
+#include "include/processor.h"
 
 using namespace std;
 
-cluster_graph cg;
+//cluster_graph cg;
 
 // O(3^log(k)*n*log(n) + log(k)*n^(2))  --  log(k) is cost of binary search, 3^log(k)*n*log(n) total cost of cg.solve, log(k)*n^2 is total cost of resetting cluster graph
-int binary_search_for_optimal_k(int l, int r)
-{ // r is always considered to be the solution, just not always the optimal
-	if (l == r)
-		return r;
-
-	int m = (l + r) / 2;
-	int ret = cg.solve(m);
-	if (ret == -1)
-		return binary_search_for_optimal_k(m + 1, r);
-	else
-	{
-		cg.reset_graph(); // resetting graph to starting position after finding solution
-		return binary_search_for_optimal_k(l, m);
-	}
-}
+//int binary_search_for_optimal_k(int l, int r)
+//{ // r is always considered to be the solution, just not always the optimal
+//	if (l == r)
+//		return r;
+//
+//	int m = (l + r) / 2;
+//	int ret = cg.solve(m);
+//	if (ret == -1)
+//		return binary_search_for_optimal_k(m + 1, r);
+//	else
+//	{
+//		cg.reset_graph(); // resetting graph to starting position after finding solution
+//		return binary_search_for_optimal_k(l, m);
+//	}
+//}
 
 void create_random_input_file(int n, int r)
 {
@@ -156,11 +157,12 @@ int main(int argc, char** args)
 {
 	string filename = "";
 	// filename = "/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w037.dimacs";
-	// filename = "/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r043.dimacs";
+	 filename = "/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r043.dimacs";
 	// ename = "/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w057.dimacs";
 
-	// verifier::verify(filename);
-	verifier::verify("");
+	processor _procs;
+//	_procs.verify(filename);
+	_procs.verify("");
 
 	return 0;
 }

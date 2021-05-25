@@ -6,5 +6,6 @@ CMakeFiles/main.dir/main.cpp.o: \
  ../include/node.h \
  ../include/node_weight_pair.h \
  ../include/p3.h \
+ ../include/processor.h \
  ../include/verifier.h \
  ../main.cpp
