@@ -52,6 +52,7 @@ class processor
 			}
 		return -1;
 	}
+	p3s_bucket *p_bucket;
 
 	bool with_merging = false;
 	// O(3^k*n*log(n)), k is budget, n is no. of nodes.
@@ -61,7 +62,7 @@ class processor
 		if (budget < 0)
 			return -1;
 
-		if (cg->p3s_uvw_sorted.empty())
+		if(p_bucket->is_empty())
 			return budget;
 
 //		rec_steps++;
@@ -76,7 +77,7 @@ class processor
 				break;
 		}
 
-		if (cg->p3s_uvw_sorted.empty())
+		if(p_bucket->is_empty())
 		{
 			while (cg->m != previous_merge_nodes)
 				cg->demerge(true);
@@ -84,10 +85,10 @@ class processor
 			return budget;
 		}
 
-		set<p3>::iterator iterator = cg->p3s_weight_sorted.begin();
-		int u_index = iterator->u;
-		int v_index = iterator->v;
-		int w_index = iterator->w;
+		p3 _p3 = p_bucket->retrieve_max_weight_p3();
+		int u_index = _p3.u;
+		int v_index = _p3.v;
+		int w_index = _p3.w;
 
 		if (!(cg->all_edge_statuses[v_index][u_index] & cluster_graph::CONNECTION_CHANGED)
 			&& all_explored_statuses[v_index][u_index] != ALREADY_EXPLORED_BY_DELETION)
@@ -275,6 +276,7 @@ class processor
 		cluster_graph* cg;
 		cg = new cluster_graph();
 		cg->load_graph(file_name);
+		p_bucket = cg->get_p3_bucket();
 		with_merging = true;
 
 		if (all_explored_statuses == NULL)

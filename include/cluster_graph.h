@@ -14,6 +14,7 @@
 
 #include "node.h"
 #include "p3.h"
+#include "p3s_bucket.h"
 
 using namespace std;
 
@@ -23,13 +24,15 @@ class cluster_graph
 	friend class verifier;
 
 	node* all_nodes;
+	p3s_bucket* p_bucket;
 
  public:
-	set<p3> p3s_uvw_sorted;
-	set<p3> p3s_weight_sorted;
 	node* all_nodes_reset;
-	set<p3> p3s_uvw_sorted_reset;
-	set<p3> p3s_weight_sorted_reset;
+
+	p3s_bucket* get_p3_bucket()
+	{
+		return p_bucket;
+	}
 
 	bool are_nodes_connected(int node_index_1, int node_index_2)
 	{
@@ -49,15 +52,15 @@ class cluster_graph
 
 	set<node_weight_pair> get_connected_nodes_of(int u)
 	{
-		if(u < 0 || !(u  < n+m))
-			int i = 1/0;
+		if (u < 0 || !(u < n + m))
+			int i = 1 / 0;
 		return all_nodes[u].connected_nodes;
 	}
 
 	set<node_weight_pair> get_disconnected_nodes_of(int u)
 	{
-		if(u < 0 || !(u  < n+m))
-			int i = 1/0;
+		if (u < 0 || !(u < n + m))
+			int i = 1 / 0;
 		return all_nodes[u].disconnected_nodes;
 	}
 
@@ -222,26 +225,23 @@ class cluster_graph
 
 	void add_p3(int u, int v, int w)
 	{
-		if (p3s_uvw_sorted.find(p3(u, v, w, 0, p3::UVW_SEARCHABLE)) != p3s_uvw_sorted.end())
+		if (p_bucket->search_by_uvw(u, v, w))
 			int i = 1 / 0;
+
 		float weight =
 			(get_weight_between_nodes(u, v) + get_weight_between_nodes(v, w) +
 				abs(get_weight_between_nodes(u, w))) /
 				3.0;
-		while (p3s_weight_sorted.find(p3(u, v, w, weight, p3::WEIGHT_SEARCHABLE)) != p3s_weight_sorted.end())
-			weight += 0.1;
 
-		p3s_uvw_sorted.insert(p3(u, v, w, weight, p3::UVW_SEARCHABLE));
-		p3s_weight_sorted.insert(p3(u, v, w, weight, p3::WEIGHT_SEARCHABLE));
+		p_bucket->add_p3(u, v, w, weight);
 	}
 
 	void remove_p3(int u, int v, int w)
 	{
-		if (p3s_uvw_sorted.find(p3(u, v, w, 0, p3::UVW_SEARCHABLE)) == p3s_uvw_sorted.end())
+		if (!p_bucket->search_by_uvw(u, v, w))
 			int i = 1 / 0;
-		float weight = p3s_uvw_sorted.find(p3(u, v, w, 0, p3::UVW_SEARCHABLE))->weight;
-		p3s_uvw_sorted.erase(p3(u, v, w, weight, p3::UVW_SEARCHABLE));
-		p3s_weight_sorted.erase(p3(u, v, w, weight, p3::WEIGHT_SEARCHABLE));
+
+		p_bucket->remove_p3_by_uvw(u, v, w);
 	}
 
 	// log(n)
@@ -774,13 +774,12 @@ class cluster_graph
 		CONNECTION_CHANGED = 0b100,
 	};
 
-
 	int n;
 	int m;
 	unsigned int** all_edge_statuses;
 
 	cluster_graph()
-		: n(-1), all_nodes(NULL), all_nodes_reset(NULL), all_edge_statuses(NULL)
+		: n(-1), all_nodes(NULL), p_bucket(NULL), all_edge_statuses(NULL), all_nodes_reset(NULL)
 	{
 	}
 
@@ -811,7 +810,8 @@ class cluster_graph
 			for (int j = 0; j < 2 * n; j++)
 				all_edge_statuses[i][j] = 0;
 
-
+		if (p_bucket != NULL) delete p_bucket;
+		p_bucket = new p3s_bucket();
 
 		m = 0;
 
@@ -869,8 +869,7 @@ class cluster_graph
 			delete[] all_nodes_reset; // deleting old backup
 		all_nodes_reset = new node[2 * n];
 
-		p3s_uvw_sorted_reset = p3s_uvw_sorted;
-		p3s_weight_sorted_reset = p3s_weight_sorted;
+		p_bucket->save_bucket_state_for_reset();
 		for (int i = 0; i < 2 * n; i++)
 			all_nodes_reset[i] = all_nodes[i];
 	}
@@ -878,8 +877,7 @@ class cluster_graph
 	void reset_graph()
 	{
 		m = 0;
-		p3s_uvw_sorted = p3s_uvw_sorted_reset;
-		p3s_weight_sorted = p3s_weight_sorted_reset;
+		p_bucket->reset();
 		for (int i = 0; i < 2 * n; i++)
 			all_nodes[i] = all_nodes_reset[i];
 
