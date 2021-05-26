@@ -78,7 +78,7 @@ class processor
 		}
 
 //		for (auto i : cg->non_composed_nodes)
-//			cut_rule_1(i, cg, budget);
+//		cut_rule_1(*cg->non_composed_nodes.begin(), cg, budget);
 
 		if (p_bucket->is_empty())
 		{
@@ -248,36 +248,48 @@ class processor
 
 	pair<cluster_graph::merge_result, int> cut_rule_1(int u, cluster_graph* cg, int budget)
 	{
+		if (cg->non_composed_nodes.find(u) == cg->non_composed_nodes.end())
+			int i = 1 / 0;
+
 		set<node_weight_pair> const* connected_nodes_u = cg->get_connected_nodes_of(u);
 		set<node_weight_pair>::iterator it_i, it_j;
 		int cost_of_making_clique = 0;
 		bool possible = true;
 		for (it_i = connected_nodes_u->begin(); it_i != connected_nodes_u->end() && possible; it_i++)
-		{
-			it_j = it_i;
-			it_j++;
-			for (; it_j != connected_nodes_u->end() && possible; it_j++)
-				if (!cg->get_connection_connected_status_from_to(it_i->node_index, it_j->node_index))
-				{
-					cost_of_making_clique += -cg->get_weight_from_to(it_i->node_index, it_j->node_index);
-					if (cg->get_connection_changed_status_from_to(it_i->node_index, it_j->node_index))
-						possible = false;
-				}
-		}
-
+			if (cg->are_non_composed_nodes(u, it_i->node_index))
+			{
+				it_j = it_i;
+				it_j++;
+				for (; it_j != connected_nodes_u->end() && possible; it_j++)
+					if (cg->are_non_composed_nodes(it_i->node_index, it_j->node_index)
+						&& !cg->get_connection_connected_status_from_to(it_i->node_index, it_j->node_index))
+					{
+						if (cg->get_weight_between(it_i->node_index, it_j->node_index) > 0)
+							int i = 1 / 0;
+						cost_of_making_clique += abs(cg->get_weight_from_to(it_i->node_index, it_j->node_index));
+						if (cg->get_connection_changed_status_from_to(it_i->node_index, it_j->node_index))
+							possible = false;
+					}
+			}
+			else int i = 1 / 0;
 		int cost_of_cutting_graph = 0;
 		set<node_weight_pair> const* connected_nodes_i;
 		for (it_i = connected_nodes_u->begin(); it_i != connected_nodes_u->end() && possible; it_i++)
-		{
-			connected_nodes_i = cg->get_connected_nodes_of(it_i->node_index);
-			for (it_j = connected_nodes_i->begin(); it_j != connected_nodes_i->end() && possible; it_j++)
-				if (it_j->node_index != u && !cg->get_connection_connected_status_from_to(u, it_j->node_index))
-				{
-					cost_of_cutting_graph += cg->get_weight_between(it_i->node_index, it_j->node_index);
-					if (cg->get_connection_changed_status_from_to(it_i->node_index, it_j->node_index))
-						possible = false;
-				}
-		}
+			if (cg->are_non_composed_nodes(u, it_i->node_index))
+			{
+				connected_nodes_i = cg->get_connected_nodes_of(it_i->node_index);
+				for (it_j = connected_nodes_i->begin(); it_j != connected_nodes_i->end() && possible; it_j++)
+					if (cg->are_non_composed_nodes(it_i->node_index, it_j->node_index) && it_j->node_index != u
+						&& !cg->get_connection_connected_status_from_to(u, it_j->node_index))
+					{
+						if (cg->get_weight_between(it_i->node_index, it_j->node_index) < 0)
+							int i = 1 / 0;
+						cost_of_cutting_graph += cg->get_weight_between(it_i->node_index, it_j->node_index);
+						if (cg->get_connection_changed_status_from_to(it_i->node_index, it_j->node_index))
+							possible = false;
+					}
+			}
+			else int i = 1 / 0;
 		if (!possible)
 			return pair<cluster_graph::merge_result, int>(cluster_graph::NOT_POSSIBLE_EDGES_MODIFIED, -1);
 
@@ -285,32 +297,66 @@ class processor
 		if (total_cost > budget)
 			return pair<cluster_graph::merge_result, int>(cluster_graph::TOO_EXPENSIVE, -1);
 
-		connected_nodes_u = cg->get_connected_nodes_of(u);
+		set<node_weight_pair> connected_nodes_u_copy =
+			cg->get_connected_nodes_copy_of(u);                // this is required so that we loop on old connection and add only those connections, otherwise we will be looping on something which is getting changed
 		stack<pair<char, pair<int, int>>> changes_stack;
-		for (it_i = connected_nodes_u->begin(); it_i != connected_nodes_u->end() && possible; it_i++)
+		for (it_i = connected_nodes_u_copy.begin(); it_i != connected_nodes_u_copy.end(); it_i++)
+			if (cg->are_non_composed_nodes(u, it_i->node_index))
+			{
+				it_j = it_i;
+				it_j++;
+				for (; it_j != connected_nodes_u_copy.end(); it_j++)
+					if (cg->are_non_composed_nodes(it_i->node_index, it_j->node_index)
+						&& !cg->get_connection_connected_status_from_to(it_i->node_index, it_j->node_index))
+					{
+						changes_stack
+							.push(pair<char, pair<int, int>>('c', pair<int, int>(it_i->node_index, it_j->node_index)));
+						cg->connect_nodes(it_i->node_index, it_j->node_index);
+					}
+			}
+			else int i = 1 / 0;
+		set<node_weight_pair> connected_nodes_i_copy;
+		for (it_i = connected_nodes_u_copy.begin(); it_i != connected_nodes_u_copy.end(); it_i++)
+			if (cg->are_non_composed_nodes(u, it_i->node_index))
+			{
+				connected_nodes_i_copy = cg->get_connected_nodes_copy_of(it_i->node_index);
+				for (it_j = connected_nodes_i_copy.begin(); it_j != connected_nodes_i_copy.end(); it_j++)
+					if (cg->are_non_composed_nodes(it_i->node_index, it_j->node_index) && it_j->node_index != u
+						&& !cg->get_connection_connected_status_from_to(u, it_j->node_index))
+					{
+						changes_stack
+							.push(pair<char, pair<int, int>>('d', pair<int, int>(it_i->node_index, it_j->node_index)));
+						cg->disconnect_nodes(it_i->node_index, it_j->node_index);
+					}
+			}
+			else int i = 1 / 0;
+		if(cg->get_connected_nodes_of(0)->begin()->node_index == 0)
+			int i=1/0;
+
+		int i = cg->get_connected_nodes_of(u)->begin()->node_index;
+		if (cg->are_non_composed_nodes(u, i))
 		{
-			it_j = it_i;
-			it_j++;
-			for (; it_j != connected_nodes_u->end() && possible; it_j++)
-				if (!cg->get_connection_connected_status_from_to(it_i->node_index, it_j->node_index))
-				{
-					changes_stack
-						.push(pair<char, pair<int, int>>('c', pair<int, int>(it_i->node_index, it_j->node_index)));
-					cg->connect_nodes(it_i->node_index, it_j->node_index);
-				}
+			pair<cluster_graph::merge_result, int> m_res =
+				cg->merge(u, i, 0);
+			if (m_res.first != cluster_graph::POSSIBLE_WITH_COST)
+				int i = 1 / 0;
+			cg->demerge(false);
 		}
-		connected_nodes_u = cg->get_connected_nodes_of(u);
-		for (it_i = connected_nodes_u->begin(); it_i != connected_nodes_u->end() && possible; it_i++)
-		{
-			connected_nodes_i = cg->get_connected_nodes_of(it_i->node_index);
-			for (it_j = connected_nodes_i->begin(); it_j != connected_nodes_i->end() && possible; it_j++)
-				if (it_j->node_index != u && !cg->get_connection_connected_status_from_to(u, it_j->node_index))
-				{
-					changes_stack
-						.push(pair<char, pair<int, int>>('d', pair<int, int>(it_i->node_index, it_j->node_index)));
-					cg->disconnect_nodes(it_i->node_index, it_j->node_index);
-				}
-		}
+
+		int previous_merge_nodes = cg->m;
+		int last_merge_index = -1;
+
+		for (auto i : *connected_nodes_u)
+			if (last_merge_index == -1)
+			{
+				pair<cluster_graph::merge_result, int> m_res = cg->merge(u, it_i->node_index, 0);
+				if (m_res.first != cluster_graph::POSSIBLE_WITH_COST)
+					int i = 1 / 0;
+				break;
+			}
+
+		while (cg->m != previous_merge_nodes)
+			cg->demerge(false);
 
 		pair<char, pair<int, int>> entry;
 		while (!changes_stack.empty())

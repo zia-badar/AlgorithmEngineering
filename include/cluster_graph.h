@@ -58,6 +58,13 @@ class cluster_graph
 		return &all_nodes[u].connected_nodes;
 	}
 
+	set<node_weight_pair> const get_connected_nodes_copy_of(int u)
+	{
+		if (u < 0 || !(u < n + m))
+			int i = 1 / 0;
+		return all_nodes[u].connected_nodes;
+	}
+
 	set<node_weight_pair> const* get_disconnected_nodes_of(int u)
 	{
 		if (u < 0 || !(u < n + m))
@@ -123,6 +130,8 @@ class cluster_graph
 		if(revert)
 		if(!(get_connection_changed_status_from_to(u_index, v_index) && get_connection_connected_status_from_to(u_index, v_index)))
 			int i=1/0;
+		if(u_index == v_index)
+			int i=1/0;
 
 		node* u_node = &all_nodes[u_index], * v_node = &all_nodes[v_index];
 		set<node_weight_pair>::iterator v_node_weight_pair_iterator = u_node->connected_nodes.find(
@@ -182,6 +191,8 @@ class cluster_graph
 		if(!revert)
 			if(!(!get_connection_changed_status_from_to(u_index, v_index) && !get_connection_connected_status_from_to(u_index, v_index)))
 				int i = 1/0;
+		if(u_index == v_index)
+			int i=1/0;
 
 		node* u_node = &all_nodes[u_index], * v_node = &all_nodes[v_index];
 		set<node_weight_pair>::iterator v_node_weight_pair_iterator = u_node->disconnected_nodes.find(
@@ -353,6 +364,8 @@ class cluster_graph
 
 	bool are_non_composed_nodes(int f, int t) // checking if on same merge level
 	{
+		if(f == t)
+			int i=1/0;
 		return get_connection_presest_status_from_to(f, t) && get_connection_presest_status_from_to(t, f);
 	}
 
@@ -404,6 +417,8 @@ class cluster_graph
 			int i = 1 / 0;
 		if ((cost < 0 && (status_ft & CONNECTION_CONNECTED)))
 			int i = 1 / 0;
+		if(f == t)
+			int i=1/0;
 
 		all_edge_statuses[f][t] = status_ft;
 		(status_ft & CONNECTION_CONNECTED ? all_nodes[f].connected_nodes : all_nodes[f].disconnected_nodes)
