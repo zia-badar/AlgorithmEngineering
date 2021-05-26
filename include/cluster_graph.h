@@ -51,18 +51,18 @@ class cluster_graph
 		return false;
 	}
 
-	set<node_weight_pair> get_connected_nodes_of(int u)
+	set<node_weight_pair> const* get_connected_nodes_of(int u)
 	{
 		if (u < 0 || !(u < n + m))
 			int i = 1 / 0;
-		return all_nodes[u].connected_nodes;
+		return &all_nodes[u].connected_nodes;
 	}
 
-	set<node_weight_pair> get_disconnected_nodes_of(int u)
+	set<node_weight_pair> const* get_disconnected_nodes_of(int u)
 	{
 		if (u < 0 || !(u < n + m))
 			int i = 1 / 0;
-		return all_nodes[u].disconnected_nodes;
+		return &all_nodes[u].disconnected_nodes;
 	}
 
 //	string get_append()
@@ -115,8 +115,15 @@ class cluster_graph
 //		cout << "----------------------------------------------------------------------------------\n";
 //	}
 
-	void disconnect_nodes(int u_index, int v_index, unsigned int after_status)
+	void disconnect_nodes(int u_index, int v_index, bool revert = false)
 	{
+		if(!revert)
+		if(!(!get_connection_changed_status_from_to(u_index, v_index) && get_connection_connected_status_from_to(u_index, v_index)))
+			int i=1/0;
+		if(revert)
+		if(!(get_connection_changed_status_from_to(u_index, v_index) && get_connection_connected_status_from_to(u_index, v_index)))
+			int i=1/0;
+
 		node* u_node = &all_nodes[u_index], * v_node = &all_nodes[v_index];
 		set<node_weight_pair>::iterator v_node_weight_pair_iterator = u_node->connected_nodes.find(
 			node_weight_pair(v_index, 0));
@@ -163,13 +170,19 @@ class cluster_graph
 				iterator2++;
 			}
 		}
-		all_edge_statuses[u_index][v_index] = after_status;
-		all_edge_statuses[v_index][u_index] = after_status;
-//		print_graph("disconnecting " + to_string(u_index) + " " + to_string(v_index));
+		all_edge_statuses[u_index][v_index] = CONNECTION_PRESENT | 0 | (revert ? 0 : CONNECTION_CHANGED);
+		all_edge_statuses[v_index][u_index] = CONNECTION_PRESENT | 0 | (revert ? 0 : CONNECTION_CHANGED);
 	}
 
-	void connect_nodes(int u_index, int v_index, unsigned int after_status)
+	void connect_nodes(int u_index, int v_index, bool revert = false)
 	{
+		if(revert)
+			if(!(get_connection_changed_status_from_to(u_index, v_index) && !get_connection_connected_status_from_to(u_index, v_index)))
+				int i = 1/0;
+		if(!revert)
+			if(!(!get_connection_changed_status_from_to(u_index, v_index) && !get_connection_connected_status_from_to(u_index, v_index)))
+				int i = 1/0;
+
 		node* u_node = &all_nodes[u_index], * v_node = &all_nodes[v_index];
 		set<node_weight_pair>::iterator v_node_weight_pair_iterator = u_node->disconnected_nodes.find(
 			node_weight_pair(v_index, 0));
@@ -219,9 +232,8 @@ class cluster_graph
 				iterator2++;
 			}
 		}
-		all_edge_statuses[u_index][v_index] = after_status;
-		all_edge_statuses[v_index][u_index] = after_status;
-//		print_graph("connecting " + to_string(u_index) + " " + to_string(v_index));
+		all_edge_statuses[u_index][v_index] = CONNECTION_PRESENT | CONNECTION_CONNECTED | (revert ? 0 : CONNECTION_CHANGED);
+		all_edge_statuses[v_index][u_index] = CONNECTION_PRESENT | CONNECTION_CONNECTED | (revert ? 0 : CONNECTION_CHANGED);
 	}
 
 	void add_p3(int u, int v, int w)

@@ -156,8 +156,8 @@ vector<vector<string>> generate_permutations_of_demerge()
 int main(int argc, char** args)
 {
 	string filename = "";
-	// filename = "/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w037.dimacs";
-//	 filename = "/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r067.dimacs";
+//	 filename = "/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w037.dimacs";
+	 filename = "/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r001.dimacs";
 	// ename = "/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w057.dimacs";
 
 	processor _procs;

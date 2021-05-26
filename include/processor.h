@@ -1,6 +1,8 @@
 #ifndef PROCESSOR_H
 #define PROCESSOR_H
 
+#include <stack>
+
 #include "cluster_graph.h"
 
 class processor
@@ -31,7 +33,8 @@ class processor
 						|| all_explored_statuses[i][j] == ALREADY_EXPLORED_BY_DELETION))
 					{
 						result = cg->merge(i, j, budget);
-					if (result.first == cluster_graph::merge_result::POSSIBLE_WITH_COST || result.first == cluster_graph::merge_result::NOT_POSSIBLE_EDGES_MODIFIED)		// not sure about second condition, it donot fails, but dont want to take risk
+						if (result.first == cluster_graph::merge_result::POSSIBLE_WITH_COST || result.first
+							== cluster_graph::merge_result::NOT_POSSIBLE_EDGES_MODIFIED)        // not sure about second condition, it donot fails, but dont want to take risk
 //						if (result.first == cluster_graph::merge_result::POSSIBLE_WITH_COST ||																				// it will work because otherwise solution will not not exist because it was already explored
 //							(result.first == cluster_graph::merge_result::NOT_POSSIBLE_EDGES_MODIFIED																		// it is recusive
 //								&& !(all_explored_statuses[i][j] == ALREADY_EXPLORED_BY_DELETION)))
@@ -74,6 +77,9 @@ class processor
 				break;
 		}
 
+//		for (auto i : cg->non_composed_nodes)
+//			cut_rule_1(i, cg, budget);
+
 		if (p_bucket->is_empty())
 		{
 			while (cg->m != previous_merge_nodes)
@@ -90,9 +96,7 @@ class processor
 		if (!(cg->all_edge_statuses[v_index][u_index] & cluster_graph::CONNECTION_CHANGED)
 			&& all_explored_statuses[v_index][u_index] != ALREADY_EXPLORED_BY_DELETION)
 		{
-			cg->disconnect_nodes(v_index,
-				u_index,
-				cluster_graph::CONNECTION_PRESENT | 0 | cluster_graph::CONNECTION_CHANGED);
+			cg->disconnect_nodes(v_index, u_index);
 
 			int budget_left = budget - abs(cg->get_weight_between(v_index, u_index));
 			budget_left = solve(budget_left, cg);
@@ -104,16 +108,12 @@ class processor
 				return budget_left;
 			}
 
-			cg->connect_nodes(v_index,
-				u_index,
-				cluster_graph::CONNECTION_PRESENT | cluster_graph::CONNECTION_CONNECTED | 0);
+			cg->connect_nodes(v_index, u_index, true);
 		}
 		if (!(cg->all_edge_statuses[v_index][w_index] & cluster_graph::CONNECTION_CHANGED)
 			&& all_explored_statuses[v_index][w_index] != ALREADY_EXPLORED_BY_DELETION)
 		{
-			cg->disconnect_nodes(v_index,
-				w_index,
-				cluster_graph::CONNECTION_PRESENT | 0 | cluster_graph::CONNECTION_CHANGED);
+			cg->disconnect_nodes(v_index, w_index);
 
 			int budget_left = budget - abs(cg->get_weight_between(v_index, w_index));
 
@@ -131,17 +131,12 @@ class processor
 				return budget_left;
 			}
 
-			cg->connect_nodes(v_index,
-				w_index,
-				cluster_graph::CONNECTION_PRESENT | cluster_graph::CONNECTION_CONNECTED | 0);
+			cg->connect_nodes(v_index, w_index, true);
 		}
 		if (!(cg->all_edge_statuses[u_index][w_index] & cluster_graph::CONNECTION_CHANGED)
 			&& data_reduction_rules(u_index, w_index, cg))
 		{
-			cg->connect_nodes(u_index,
-				w_index,
-				cluster_graph::CONNECTION_PRESENT | cluster_graph::CONNECTION_CONNECTED
-					| cluster_graph::CONNECTION_CHANGED);
+			cg->connect_nodes(u_index, w_index);
 
 			int budget_left = budget - abs(cg->get_weight_between(u_index, w_index));
 
@@ -163,7 +158,7 @@ class processor
 				return budget_left;
 			}
 
-			cg->disconnect_nodes(u_index, w_index, cluster_graph::CONNECTION_PRESENT | 0 | 0);
+			cg->disconnect_nodes(u_index, w_index, true);
 		}
 		while (cg->m != previous_merge_nodes)
 			cg->demerge(false);
@@ -180,8 +175,8 @@ class processor
 		if (!cg->get_connection_connected_status_from_to(u, v))
 		{
 			int sum = 0;
-			set<node_weight_pair> nodes = cg->get_connected_nodes_of(u);
-			for (auto i = nodes.begin(); i != nodes.end(); i++)
+			set<node_weight_pair> const* nodes = cg->get_connected_nodes_of(u);
+			for (auto i = nodes->begin(); i != nodes->end(); i++)
 				if (i->node_index != v)
 					sum += (*i).weight;
 
@@ -190,7 +185,7 @@ class processor
 
 			sum = 0;
 			nodes = cg->get_connected_nodes_of(v);
-			for (auto i = nodes.begin(); i != nodes.end(); i++)
+			for (auto i = nodes->begin(); i != nodes->end(); i++)
 				if (i->node_index != u)
 					sum += (*i).weight;
 
@@ -209,12 +204,12 @@ class processor
 		int sum = 0;
 		if (cg->get_connection_connected_status_from_to(u, v))
 		{
-			set<node_weight_pair> nodes = cg->get_connected_nodes_of(u);
-			for (auto i = nodes.begin(); i != nodes.end(); i++)
+			set<node_weight_pair> const* nodes = cg->get_connected_nodes_of(u);
+			for (auto i = nodes->begin(); i != nodes->end(); i++)
 				if (i->node_index != v)
 					sum += i->weight;
 			nodes = cg->get_disconnected_nodes_of(u);
-			for (auto i = nodes.begin(); i != nodes.end();
+			for (auto i = nodes->begin(); i != nodes->end();
 				 i++)
 				if (i->node_index != v)
 					sum += abs(i->weight);
@@ -234,13 +229,13 @@ class processor
 		int sum = 0;
 		if (cg->get_connection_connected_status_from_to(u, v))
 		{
-			set<node_weight_pair> nodes = cg->get_connected_nodes_of(u);
-			for (auto i = nodes.begin(); i != nodes.end(); i++)
+			set<node_weight_pair> const* nodes = cg->get_connected_nodes_of(u);
+			for (auto i = nodes->begin(); i != nodes->end(); i++)
 				if (i->node_index != v)
 					sum += (*i).weight;
 
 			nodes = cg->get_connected_nodes_of(v);
-			for (auto i = nodes.begin(); i != nodes.end(); i++)
+			for (auto i = nodes->begin(); i != nodes->end(); i++)
 				if (i->node_index != u)
 					sum += (*i).weight;
 
@@ -249,6 +244,84 @@ class processor
 		}
 
 		return false;
+	}
+
+	pair<cluster_graph::merge_result, int> cut_rule_1(int u, cluster_graph* cg, int budget)
+	{
+		set<node_weight_pair> const* connected_nodes_u = cg->get_connected_nodes_of(u);
+		set<node_weight_pair>::iterator it_i, it_j;
+		int cost_of_making_clique = 0;
+		bool possible = true;
+		for (it_i = connected_nodes_u->begin(); it_i != connected_nodes_u->end() && possible; it_i++)
+		{
+			it_j = it_i;
+			it_j++;
+			for (; it_j != connected_nodes_u->end() && possible; it_j++)
+				if (!cg->get_connection_connected_status_from_to(it_i->node_index, it_j->node_index))
+				{
+					cost_of_making_clique += -cg->get_weight_from_to(it_i->node_index, it_j->node_index);
+					if (cg->get_connection_changed_status_from_to(it_i->node_index, it_j->node_index))
+						possible = false;
+				}
+		}
+
+		int cost_of_cutting_graph = 0;
+		set<node_weight_pair> const* connected_nodes_i;
+		for (it_i = connected_nodes_u->begin(); it_i != connected_nodes_u->end() && possible; it_i++)
+		{
+			connected_nodes_i = cg->get_connected_nodes_of(it_i->node_index);
+			for (it_j = connected_nodes_i->begin(); it_j != connected_nodes_i->end() && possible; it_j++)
+				if (it_j->node_index != u && !cg->get_connection_connected_status_from_to(u, it_j->node_index))
+				{
+					cost_of_cutting_graph += cg->get_weight_between(it_i->node_index, it_j->node_index);
+					if (cg->get_connection_changed_status_from_to(it_i->node_index, it_j->node_index))
+						possible = false;
+				}
+		}
+		if (!possible)
+			return pair<cluster_graph::merge_result, int>(cluster_graph::NOT_POSSIBLE_EDGES_MODIFIED, -1);
+
+		int total_cost = cost_of_making_clique + cost_of_cutting_graph;
+		if (total_cost > budget)
+			return pair<cluster_graph::merge_result, int>(cluster_graph::TOO_EXPENSIVE, -1);
+
+		connected_nodes_u = cg->get_connected_nodes_of(u);
+		stack<pair<char, pair<int, int>>> changes_stack;
+		for (it_i = connected_nodes_u->begin(); it_i != connected_nodes_u->end() && possible; it_i++)
+		{
+			it_j = it_i;
+			it_j++;
+			for (; it_j != connected_nodes_u->end() && possible; it_j++)
+				if (!cg->get_connection_connected_status_from_to(it_i->node_index, it_j->node_index))
+				{
+					changes_stack
+						.push(pair<char, pair<int, int>>('c', pair<int, int>(it_i->node_index, it_j->node_index)));
+					cg->connect_nodes(it_i->node_index, it_j->node_index);
+				}
+		}
+		connected_nodes_u = cg->get_connected_nodes_of(u);
+		for (it_i = connected_nodes_u->begin(); it_i != connected_nodes_u->end() && possible; it_i++)
+		{
+			connected_nodes_i = cg->get_connected_nodes_of(it_i->node_index);
+			for (it_j = connected_nodes_i->begin(); it_j != connected_nodes_i->end() && possible; it_j++)
+				if (it_j->node_index != u && !cg->get_connection_connected_status_from_to(u, it_j->node_index))
+				{
+					changes_stack
+						.push(pair<char, pair<int, int>>('d', pair<int, int>(it_i->node_index, it_j->node_index)));
+					cg->disconnect_nodes(it_i->node_index, it_j->node_index);
+				}
+		}
+
+		pair<char, pair<int, int>> entry;
+		while (!changes_stack.empty())
+		{
+			entry = changes_stack.top();
+			changes_stack.pop();
+			if (entry.first == 'c')
+				cg->disconnect_nodes(entry.second.first, entry.second.second, true);
+			else if (entry.first == 'd')
+				cg->connect_nodes(entry.second.first, entry.second.second, true);
+		}
 	}
 
 	int binary_search_for_optimal_k(int l, int r, cluster_graph* cg)
@@ -302,16 +375,16 @@ class processor
 				{
 					cout << i + 1 << " " << j + 1 << endl;
 					if ((cg->all_edge_statuses[i][j] & cg->CONNECTION_CONNECTED)
-						&& cg->get_connected_nodes_of(i).find(node_weight_pair(j, 0))
-							== cg->get_connected_nodes_of(i).end())
+						&& cg->get_connected_nodes_of(i)->find(node_weight_pair(j, 0))
+							== cg->get_connected_nodes_of(i)->end())
 						int i = 1 / 0;
 					if (!(cg->all_edge_statuses[i][j] & cg->CONNECTION_CONNECTED)
-						&& cg->get_disconnected_nodes_of(i).find(node_weight_pair(j, 0))
-							== cg->get_disconnected_nodes_of(i).end())
+						&& cg->get_disconnected_nodes_of(i)->find(node_weight_pair(j, 0))
+							== cg->get_disconnected_nodes_of(i)->end())
 						int i = 1 / 0;
 					changed_edges_cost += (cg->all_edge_statuses[i][j] & cg->CONNECTION_CONNECTED) ?
-						abs(cg->get_connected_nodes_of(i).find(node_weight_pair(j, 0))->weight) :
-						abs(cg->get_disconnected_nodes_of(i).find(node_weight_pair(j, 0))->weight);
+						abs(cg->get_connected_nodes_of(i)->find(node_weight_pair(j, 0))->weight) :
+						abs(cg->get_disconnected_nodes_of(i)->find(node_weight_pair(j, 0))->weight);
 				}
 		}
 		cout << "#recursive steps: " << step_count << endl;
