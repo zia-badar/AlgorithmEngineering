@@ -382,22 +382,38 @@ class processor
 
 	int lower_bound(cluster_graph* cg)
 	{
-		bool edge_already_taken[2 * cg->n];
+		bool vertex_already_taken[2 * cg->n];
 
 		for (int i = 0; i < 2 * cg->n; i++)
-			edge_already_taken[i] = false;
+			vertex_already_taken[i] = false;
 
 		unsigned int vertex_disjoint_lower_bound = 0;
 		unsigned int min_cost;
 		for (auto p3 : *p_bucket->get_all_p3s_weight_sorted())
-			if (!edge_already_taken[p3.u] && !edge_already_taken[p3.v] && !edge_already_taken[p3.w])
+			if (!vertex_already_taken[p3.u] && !vertex_already_taken[p3.v] && !vertex_already_taken[p3.w])
 			{
 				min_cost = min(cg->get_weight_from_to(p3.v, p3.u),
 					min(cg->get_weight_from_to(p3.v, p3.w), -cg->get_weight_from_to(p3.u, p3.w)));
 				vertex_disjoint_lower_bound += min_cost;
-				edge_already_taken[p3.u] = true;
-				edge_already_taken[p3.v] = true;
-				edge_already_taken[p3.w] = true;
+				vertex_already_taken[p3.u] = true;
+				vertex_already_taken[p3.v] = true;
+				vertex_already_taken[p3.w] = true;
+			}
+
+		bool edge_already_taken[2 * cg->n][2 * cg->n];
+
+		for (int i = 0; i < 2 * cg->n; i++)
+			for (int j = 0; j < 2 * cg->n; j++)
+				edge_already_taken[i][j] = false;
+
+		set<p3> edge_disjoint_p3s;
+		for (auto p3 : *p_bucket->get_all_p3s_weight_sorted())
+			if (!edge_already_taken[p3.v][p3.u] && !edge_already_taken[p3.v][p3.w] && !edge_already_taken[p3.u][p3.w])
+			{
+				edge_disjoint_p3s.insert(p3);
+				edge_already_taken[p3.v][p3.u] = true;
+				edge_already_taken[p3.v][p3.w] = true;
+				edge_already_taken[p3.u][p3.w] = true;
 			}
 
 		unsigned int edge_p3s_count[2 * cg->n][2 * cg->n];
@@ -406,7 +422,7 @@ class processor
 			for (int j = 0; j < 2 * cg->n; j++)
 				edge_p3s_count[i][j] = 0;
 
-		for (auto p3 : *p_bucket->get_all_p3s_weight_sorted())
+		for (auto p3 : edge_disjoint_p3s)
 		{
 			edge_p3s_count[p3.v][p3.u]++;
 			edge_p3s_count[p3.v][p3.w]++;
@@ -416,19 +432,16 @@ class processor
 		float relative_edge_cost[2 * cg->n][2 * cg->n];
 		for (int i = 0; i < 2 * cg->n; i++)
 			for (int j = 0; j < 2 * cg->n; j++)
-			{
-				relative_edge_cost[i][j] =
-					edge_p3s_count[i][j] == 0 ? 0 : (abs(cg->get_weight_between(i, j)) / edge_p3s_count[i][j]);
-			}
+				if (edge_already_taken[i][j])
+					relative_edge_cost[i][j] = (abs(cg->get_weight_between(i, j)) / edge_p3s_count[i][j]);
 
 		float min_relative_cost = FLT_MAX;
 		for (int i = 0; i < 2 * cg->n; i++)
 			for (int j = 0; j < 2 * cg->n; j++)
-				if (edge_p3s_count[i][j] != 0)
-				{
+				if (edge_already_taken[i][j])
 					min_relative_cost = min(min_relative_cost, relative_edge_cost[i][j]);
-				}
-		int p3s_count = p_bucket->get_p3s_count();
+
+		int p3s_count = edge_disjoint_p3s.size();
 		float edge_disjoint_lower_bound = min_relative_cost != FLT_MAX ? (p3s_count * min_relative_cost) : 0;
 
 //		return vertex_disjoint_lower_bound > edge_disjoint_lower_bound ? vertex_disjoint_lower_bound :
