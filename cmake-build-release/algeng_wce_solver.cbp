@@ -94,6 +94,9 @@
 		<Unit filename="/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/include/p3.h">
 			<Option target="main"/>
 		</Unit>
+		<Unit filename="/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/include/p3s_bucket.h">
+			<Option target="main"/>
+		</Unit>
 		<Unit filename="/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/include/verifier.h">
 			<Option target="main"/>
 		</Unit>

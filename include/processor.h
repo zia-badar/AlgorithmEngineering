@@ -4,6 +4,7 @@
 #include <stack>
 
 #include "cluster_graph.h"
+#include <float.h>
 
 class processor
 {
@@ -56,6 +57,9 @@ class processor
 		if (p_bucket->is_empty())
 			return budget;
 
+		if (budget < lower_bound(cg))
+			return -1;
+
 //		rec_steps++;
 //		int k;
 		pair<cluster_graph::merge_result, int> m_res;
@@ -84,8 +88,14 @@ class processor
 		{
 			while (cg->m != previous_merge_nodes)
 				cg->demerge(true);
-//			rec_steps--;
 			return budget;
+		}
+
+		if (budget < lower_bound(cg))
+		{
+			while (cg->m != previous_merge_nodes)
+				cg->demerge(false);
+			return -1;
 		}
 
 		p3 _p3 = p_bucket->retrieve_max_weight_p3();
@@ -330,8 +340,8 @@ class processor
 					}
 			}
 			else int i = 1 / 0;
-		if(cg->get_connected_nodes_of(0)->begin()->node_index == 0)
-			int i=1/0;
+		if (cg->get_connected_nodes_of(0)->begin()->node_index == 0)
+			int i = 1 / 0;
 
 		int i = cg->get_connected_nodes_of(u)->begin()->node_index;
 		if (cg->are_non_composed_nodes(u, i))
@@ -368,6 +378,62 @@ class processor
 			else if (entry.first == 'd')
 				cg->connect_nodes(entry.second.first, entry.second.second, true);
 		}
+	}
+
+	int lower_bound(cluster_graph* cg)
+	{
+		bool edge_already_taken[2 * cg->n];
+
+		for (int i = 0; i < 2 * cg->n; i++)
+			edge_already_taken[i] = false;
+
+		unsigned int vertex_disjoint_lower_bound = 0;
+		unsigned int min_cost;
+		for (auto p3 : *p_bucket->get_all_p3s_weight_sorted())
+			if (!edge_already_taken[p3.u] && !edge_already_taken[p3.v] && !edge_already_taken[p3.w])
+			{
+				min_cost = min(cg->get_weight_from_to(p3.v, p3.u),
+					min(cg->get_weight_from_to(p3.v, p3.w), -cg->get_weight_from_to(p3.u, p3.w)));
+				vertex_disjoint_lower_bound += min_cost;
+				edge_already_taken[p3.u] = true;
+				edge_already_taken[p3.v] = true;
+				edge_already_taken[p3.w] = true;
+			}
+
+		unsigned int edge_p3s_count[2 * cg->n][2 * cg->n];
+
+		for (int i = 0; i < 2 * cg->n; i++)
+			for (int j = 0; j < 2 * cg->n; j++)
+				edge_p3s_count[i][j] = 0;
+
+		for (auto p3 : *p_bucket->get_all_p3s_weight_sorted())
+		{
+			edge_p3s_count[p3.v][p3.u]++;
+			edge_p3s_count[p3.v][p3.w]++;
+			edge_p3s_count[p3.u][p3.w]++;
+		}
+
+		float relative_edge_cost[2 * cg->n][2 * cg->n];
+		for (int i = 0; i < 2 * cg->n; i++)
+			for (int j = 0; j < 2 * cg->n; j++)
+			{
+				relative_edge_cost[i][j] =
+					edge_p3s_count[i][j] == 0 ? 0 : (abs(cg->get_weight_between(i, j)) / edge_p3s_count[i][j]);
+			}
+
+		float min_relative_cost = FLT_MAX;
+		for (int i = 0; i < 2 * cg->n; i++)
+			for (int j = 0; j < 2 * cg->n; j++)
+				if (edge_p3s_count[i][j] != 0)
+				{
+					min_relative_cost = min(min_relative_cost, relative_edge_cost[i][j]);
+				}
+		int p3s_count = p_bucket->get_p3s_count();
+		float edge_disjoint_lower_bound = min_relative_cost != FLT_MAX ? (p3s_count * min_relative_cost) : 0;
+
+//		return vertex_disjoint_lower_bound > edge_disjoint_lower_bound ? vertex_disjoint_lower_bound :
+//			edge_disjoint_lower_bound;
+		return vertex_disjoint_lower_bound;
 	}
 
 	int binary_search_for_optimal_k(int l, int r, cluster_graph* cg)

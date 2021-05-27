@@ -124,14 +124,16 @@ class cluster_graph
 
 	void disconnect_nodes(int u_index, int v_index, bool revert = false)
 	{
-		if(!revert)
-		if(!(!get_connection_changed_status_from_to(u_index, v_index) && get_connection_connected_status_from_to(u_index, v_index)))
-			int i=1/0;
-		if(revert)
-		if(!(get_connection_changed_status_from_to(u_index, v_index) && get_connection_connected_status_from_to(u_index, v_index)))
-			int i=1/0;
-		if(u_index == v_index)
-			int i=1/0;
+		if (!revert)
+			if (!(!get_connection_changed_status_from_to(u_index, v_index)
+				&& get_connection_connected_status_from_to(u_index, v_index)))
+				int i = 1 / 0;
+		if (revert)
+			if (!(get_connection_changed_status_from_to(u_index, v_index)
+				&& get_connection_connected_status_from_to(u_index, v_index)))
+				int i = 1 / 0;
+		if (u_index == v_index)
+			int i = 1 / 0;
 
 		node* u_node = &all_nodes[u_index], * v_node = &all_nodes[v_index];
 		set<node_weight_pair>::iterator v_node_weight_pair_iterator = u_node->connected_nodes.find(
@@ -185,14 +187,16 @@ class cluster_graph
 
 	void connect_nodes(int u_index, int v_index, bool revert = false)
 	{
-		if(revert)
-			if(!(get_connection_changed_status_from_to(u_index, v_index) && !get_connection_connected_status_from_to(u_index, v_index)))
-				int i = 1/0;
-		if(!revert)
-			if(!(!get_connection_changed_status_from_to(u_index, v_index) && !get_connection_connected_status_from_to(u_index, v_index)))
-				int i = 1/0;
-		if(u_index == v_index)
-			int i=1/0;
+		if (revert)
+			if (!(get_connection_changed_status_from_to(u_index, v_index)
+				&& !get_connection_connected_status_from_to(u_index, v_index)))
+				int i = 1 / 0;
+		if (!revert)
+			if (!(!get_connection_changed_status_from_to(u_index, v_index)
+				&& !get_connection_connected_status_from_to(u_index, v_index)))
+				int i = 1 / 0;
+		if (u_index == v_index)
+			int i = 1 / 0;
 
 		node* u_node = &all_nodes[u_index], * v_node = &all_nodes[v_index];
 		set<node_weight_pair>::iterator v_node_weight_pair_iterator = u_node->disconnected_nodes.find(
@@ -243,8 +247,10 @@ class cluster_graph
 				iterator2++;
 			}
 		}
-		all_edge_statuses[u_index][v_index] = CONNECTION_PRESENT | CONNECTION_CONNECTED | (revert ? 0 : CONNECTION_CHANGED);
-		all_edge_statuses[v_index][u_index] = CONNECTION_PRESENT | CONNECTION_CONNECTED | (revert ? 0 : CONNECTION_CHANGED);
+		all_edge_statuses[u_index][v_index] =
+			CONNECTION_PRESENT | CONNECTION_CONNECTED | (revert ? 0 : CONNECTION_CHANGED);
+		all_edge_statuses[v_index][u_index] =
+			CONNECTION_PRESENT | CONNECTION_CONNECTED | (revert ? 0 : CONNECTION_CHANGED);
 	}
 
 	void add_p3(int u, int v, int w)
@@ -252,12 +258,12 @@ class cluster_graph
 		if (p_bucket->search_by_uvw(u, v, w))
 			int i = 1 / 0;
 
-		float weight =
-			(get_weight_between_nodes(u, v) + get_weight_between_nodes(v, w) +
-				abs(get_weight_between_nodes(u, w))) /
-				3.0;
-
-		p_bucket->add_p3(u, v, w, weight);
+		p_bucket->add_p3(u,
+			v,
+			w,
+			get_weight_between_nodes(u, v),
+			get_weight_between_nodes(v, w),
+			get_weight_between_nodes(u, w));
 	}
 
 	void remove_p3(int u, int v, int w)
@@ -277,13 +283,15 @@ class cluster_graph
 			return connected->weight;
 		else if (disconnected != all_nodes[n1].disconnected_nodes.end())
 			return disconnected->weight;
-		return 1/0;
+		return 1 / 0;
 	}
 
-	void remove_all_p3s_possible_from(int u, int merge_partner_index = -1, bool avoid_p3s_with_merge_partner_index = false)
+	void remove_all_p3s_possible_from(int u,
+		int merge_partner_index = -1,
+		bool avoid_p3s_with_merge_partner_index = false)
 	{
-		if(avoid_p3s_with_merge_partner_index && merge_partner_index == -1)
-			int i=1/0;
+		if (avoid_p3s_with_merge_partner_index && merge_partner_index == -1)
+			int i = 1 / 0;
 
 		set<node_weight_pair>::iterator it_i, it_j;
 		for (it_i = all_nodes[u].connected_nodes.begin(); it_i != all_nodes[u].connected_nodes.end(); it_i++)
@@ -315,8 +323,8 @@ class cluster_graph
 
 	void add_all_p3s_possible_from(int u, int merge_partner_index = -1, bool avoid_p3s_with_merge_partner_index = false)
 	{
-		if(avoid_p3s_with_merge_partner_index && merge_partner_index == -1)
-			int i=1/0;
+		if (avoid_p3s_with_merge_partner_index && merge_partner_index == -1)
+			int i = 1 / 0;
 //		int merge_partner_index = -1;
 //		for (int i = n; i < n + m && merge_partner_index == -1; i++)
 //			if (all_nodes[i].composed_node_index_1 == u || all_nodes[i].composed_node_index_2 == u)
@@ -364,8 +372,8 @@ class cluster_graph
 
 	bool are_non_composed_nodes(int f, int t) // checking if on same merge level
 	{
-		if(f == t)
-			int i=1/0;
+		if (f == t)
+			int i = 1 / 0;
 		return get_connection_presest_status_from_to(f, t) && get_connection_presest_status_from_to(t, f);
 	}
 
@@ -417,8 +425,8 @@ class cluster_graph
 			int i = 1 / 0;
 		if ((cost < 0 && (status_ft & CONNECTION_CONNECTED)))
 			int i = 1 / 0;
-		if(f == t)
-			int i=1/0;
+		if (f == t)
+			int i = 1 / 0;
 
 		all_edge_statuses[f][t] = status_ft;
 		(status_ft & CONNECTION_CONNECTED ? all_nodes[f].connected_nodes : all_nodes[f].disconnected_nodes)
@@ -619,7 +627,7 @@ class cluster_graph
 		bool both_unchanged;
 		for (auto i : non_composed_nodes)
 //			if (i != u && i != v && are_non_composed_nodes(u, i) && are_non_composed_nodes(v, i))
-			if(i != u && i != v)
+			if (i != u && i != v)
 			{
 				connection_changed_status_ui = get_connection_changed_status_from_to(u, i);
 				connection_changed_status_vi = get_connection_changed_status_from_to(v, i);
@@ -678,64 +686,64 @@ class cluster_graph
 		int cost_mi;
 		for (auto i : non_composed_nodes)
 //			if (i != u && i != v && are_non_composed_nodes(u, i) && are_non_composed_nodes(v, i))
-			{
-				connection_changed_status_ui = get_connection_changed_status_from_to(u, i);
-				connection_changed_status_vi = get_connection_changed_status_from_to(v, i);
-				connectivity_status_ui = get_connection_connected_status_from_to(u, i);
-				connectivity_status_vi = get_connection_connected_status_from_to(v, i);
-				both_unchanged = !connection_changed_status_ui && !connection_changed_status_vi;
-				atleast_one_unchanged = !connection_changed_status_ui || !connection_changed_status_vi;
-				same_connectivity = connectivity_status_ui == connectivity_status_vi;
-				cost_ui = get_weight_between(u, i);
-				cost_vi = get_weight_between(v, i);
+		{
+			connection_changed_status_ui = get_connection_changed_status_from_to(u, i);
+			connection_changed_status_vi = get_connection_changed_status_from_to(v, i);
+			connectivity_status_ui = get_connection_connected_status_from_to(u, i);
+			connectivity_status_vi = get_connection_connected_status_from_to(v, i);
+			both_unchanged = !connection_changed_status_ui && !connection_changed_status_vi;
+			atleast_one_unchanged = !connection_changed_status_ui || !connection_changed_status_vi;
+			same_connectivity = connectivity_status_ui == connectivity_status_vi;
+			cost_ui = get_weight_between(u, i);
+			cost_vi = get_weight_between(v, i);
 
-				if (both_unchanged)
+			if (both_unchanged)
+			{
+				if (same_connectivity)
 				{
-					if (same_connectivity)
-					{
-						cost_mi = cost_ui + cost_vi;
-						status_mi = CONNECTION_PRESENT | (connectivity_status_ui ? CONNECTION_CONNECTED : 0) | 0;
-					}
-					else
-					{
-						cost_mi = cost_ui + cost_vi;
-						status_mi = CONNECTION_PRESENT |
-							((abs(cost_ui) > abs(cost_vi) ? connectivity_status_ui : connectivity_status_vi) ?
-								CONNECTION_CONNECTED : 0) | 0;
-					}
-				}
-				else if (atleast_one_unchanged)
-				{
-					if (same_connectivity)
-					{
-						cost_mi = cost_ui + cost_vi;
-						status_mi = CONNECTION_PRESENT | (connectivity_status_ui ? CONNECTION_CONNECTED : 0)
-							| CONNECTION_CHANGED;
-					}
-					else
-					{
-						cost_mi = connection_changed_status_ui ? cost_ui : cost_vi;
-						status_mi = CONNECTION_PRESENT
-							| ((connection_changed_status_ui ? connectivity_status_ui : connectivity_status_vi) ?
-								CONNECTION_CONNECTED : 0) | CONNECTION_CHANGED;
-					}
+					cost_mi = cost_ui + cost_vi;
+					status_mi = CONNECTION_PRESENT | (connectivity_status_ui ? CONNECTION_CONNECTED : 0) | 0;
 				}
 				else
 				{
-					if (same_connectivity)
-					{
-						cost_mi = cost_ui + cost_vi;
-						status_mi = CONNECTION_PRESENT | (connectivity_status_ui ? CONNECTION_CONNECTED : 0)
-							| CONNECTION_CHANGED;
-					}
-					else
-						int i = 1 / 0;
+					cost_mi = cost_ui + cost_vi;
+					status_mi = CONNECTION_PRESENT |
+						((abs(cost_ui) > abs(cost_vi) ? connectivity_status_ui : connectivity_status_vi) ?
+							CONNECTION_CONNECTED : 0) | 0;
 				}
-
-				remove_connection_from_to(i, u);
-				remove_connection_from_to(i, v);
-				add_connection_between(_m, i, cost_mi, status_mi);
 			}
+			else if (atleast_one_unchanged)
+			{
+				if (same_connectivity)
+				{
+					cost_mi = cost_ui + cost_vi;
+					status_mi = CONNECTION_PRESENT | (connectivity_status_ui ? CONNECTION_CONNECTED : 0)
+						| CONNECTION_CHANGED;
+				}
+				else
+				{
+					cost_mi = connection_changed_status_ui ? cost_ui : cost_vi;
+					status_mi = CONNECTION_PRESENT
+						| ((connection_changed_status_ui ? connectivity_status_ui : connectivity_status_vi) ?
+							CONNECTION_CONNECTED : 0) | CONNECTION_CHANGED;
+				}
+			}
+			else
+			{
+				if (same_connectivity)
+				{
+					cost_mi = cost_ui + cost_vi;
+					status_mi = CONNECTION_PRESENT | (connectivity_status_ui ? CONNECTION_CONNECTED : 0)
+						| CONNECTION_CHANGED;
+				}
+				else
+					int i = 1 / 0;
+			}
+
+			remove_connection_from_to(i, u);
+			remove_connection_from_to(i, v);
+			add_connection_between(_m, i, cost_mi, status_mi);
+		}
 
 		non_composed_nodes.insert(_m);
 		add_all_p3s_possible_from(_m);
