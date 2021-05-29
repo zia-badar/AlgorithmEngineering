@@ -48,7 +48,7 @@ class p3
 		if (p3_1.search_t == UVW_SEARCHABLE && p3_2.search_t == UVW_SEARCHABLE)
 			return p3_1.to_hash() < p3_2.to_hash();
 		else if (p3_1.search_t == WEIGHT_SEARCHABLE && p3_2.search_t == WEIGHT_SEARCHABLE)
-			return p3_1.weight > p3_2.weight;
+			return (p3_1.weight == p3_2.weight) ? (p3_1.to_hash() < p3_2.to_hash()) : (p3_1.weight > p3_2.weight);
 		exit(-1);       // should never reach this line
 	}
 

@@ -55,7 +55,7 @@ class cluster_graph
 	{
 		if (u < 0 || !(u < n + m))
 			int i = 1 / 0;
-		return &all_nodes[u].connected_nodes;
+		return &(all_nodes[u].connected_nodes);
 	}
 
 	set<node_weight_pair> const get_connected_nodes_copy_of(int u)
@@ -134,21 +134,20 @@ class cluster_graph
 				int i = 1 / 0;
 		if (u_index == v_index)
 			int i = 1 / 0;
+		if(non_composed_nodes.find(u_index) == non_composed_nodes.end() || non_composed_nodes.find(v_index) == non_composed_nodes.end())
+			int i = 1/0;
 
-		node* u_node = &all_nodes[u_index], * v_node = &all_nodes[v_index];
-		set<node_weight_pair>::iterator v_node_weight_pair_iterator = u_node->connected_nodes.find(
-			node_weight_pair(v_index, 0));
-		set<node_weight_pair>::iterator u_node_weight_pair_iterator = v_node->connected_nodes.find(
-			node_weight_pair(u_index, 0));
-		node_weight_pair v_node_weight_pair = *v_node_weight_pair_iterator;
-		node_weight_pair u_node_weight_pair = *u_node_weight_pair_iterator;
-		u_node->connected_nodes.erase(v_node_weight_pair_iterator);
-		v_node->connected_nodes.erase(u_node_weight_pair_iterator);
-		u_node_weight_pair.weight *= -1;
-		v_node_weight_pair.weight *= -1;
-		u_node->disconnected_nodes.insert(v_node_weight_pair);
-		v_node->disconnected_nodes.insert(u_node_weight_pair);
+		node_weight_pair u_nwp = *all_nodes[v_index].connected_nodes.find(node_weight_pair(u_index, 0));
+		node_weight_pair v_nwp = *all_nodes[u_index].connected_nodes.find(node_weight_pair(v_index, 0));
+		all_nodes[u_index].connected_nodes.erase(v_nwp);
+		all_nodes[v_index].connected_nodes.erase(u_nwp);
+		u_nwp.weight *= -1;
+		v_nwp.weight *= -1;
+		all_nodes[u_index].disconnected_nodes.insert(v_nwp);
+		all_nodes[v_index].disconnected_nodes.insert(u_nwp);
 
+		node *u_node = &all_nodes[u_index];
+		node *v_node = &all_nodes[v_index];
 		set<node_weight_pair>::iterator iterator1 = u_node->connected_nodes.begin();
 		set<node_weight_pair>::iterator iterator2 = v_node->connected_nodes.begin();
 
@@ -197,20 +196,19 @@ class cluster_graph
 				int i = 1 / 0;
 		if (u_index == v_index)
 			int i = 1 / 0;
+		if(non_composed_nodes.find(u_index) == non_composed_nodes.end() || non_composed_nodes.find(v_index) == non_composed_nodes.end())
+			int i = 1/0;
 
-		node* u_node = &all_nodes[u_index], * v_node = &all_nodes[v_index];
-		set<node_weight_pair>::iterator v_node_weight_pair_iterator = u_node->disconnected_nodes.find(
-			node_weight_pair(v_index, 0));
-		set<node_weight_pair>::iterator u_node_weight_pair_iterator = v_node->disconnected_nodes.find(
-			node_weight_pair(u_index, 0));
-		node_weight_pair v_node_weight_pair = *v_node_weight_pair_iterator;
-		node_weight_pair u_node_weight_pair = *u_node_weight_pair_iterator;
-		u_node->disconnected_nodes.erase(v_node_weight_pair_iterator);
-		v_node->disconnected_nodes.erase(u_node_weight_pair_iterator);
-		u_node_weight_pair.weight *= -1;
-		v_node_weight_pair.weight *= -1;
-		u_node->connected_nodes.insert(v_node_weight_pair);
-		v_node->connected_nodes.insert(u_node_weight_pair);
+		node_weight_pair u_nwp = *all_nodes[v_index].disconnected_nodes.find(node_weight_pair(u_index, 0));
+		node_weight_pair v_nwp = *all_nodes[u_index].disconnected_nodes.find(node_weight_pair(v_index, 0));
+		all_nodes[u_index].disconnected_nodes.erase(v_nwp);
+		all_nodes[v_index].disconnected_nodes.erase(u_nwp);
+		u_nwp.weight *= -1;
+		v_nwp.weight *= -1;
+		all_nodes[u_index].connected_nodes.insert(v_nwp);
+		all_nodes[v_index].connected_nodes.insert(u_nwp);
+		node *u_node = &all_nodes[u_index];
+		node *v_node = &all_nodes[v_index];
 
 		set<node_weight_pair>::iterator iterator1 = u_node->connected_nodes.begin();
 		set<node_weight_pair>::iterator iterator2 = v_node->connected_nodes.begin();

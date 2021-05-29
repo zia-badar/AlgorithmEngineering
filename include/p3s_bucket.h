@@ -17,9 +17,6 @@ class p3s_bucket
 
 		float average_weight = (weight_vu + weight_vw + abs(weight_uw)) / 3.0;
 
-		while (search_by_weight(u, v, w, average_weight))
-			average_weight += 0.1;
-
 		p3s_uvw_sorted.insert(p3(u, v, w, average_weight, p3::UVW_SEARCHABLE));
 		p3s_average_weight_sorted.insert(p3(u, v, w, average_weight, p3::WEIGHT_SEARCHABLE));
 	}
