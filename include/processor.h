@@ -81,17 +81,56 @@ class processor
 				break;
 		}
 
-//		for (auto i : cg->non_composed_nodes)
-		if (cg->non_composed_nodes.size() > 0)
+//		if (step_count % 100 == 0)
 		{
-			m_res = cut_rule_1(*cg->non_composed_nodes.begin(), cg, budget);
-			if (m_res.first == cluster_graph::POSSIBLE_WITH_COST)
+//			int max_connection_non_composed_node_index = -1;
+//			int max_connection_count = INT32_MIN;
+//			set<node_weight_pair> const* nodes;
+//			for (auto i : cg->non_composed_nodes)
+//			{
+//				nodes = cg->get_connected_nodes_of(i);
+//				if (nodes->size() > max_connection_count)
+//				{
+//					max_connection_count = nodes->size();
+//					max_connection_non_composed_node_index = i;
+//				}
+//			}
+
+			int max_cost_reduced_non_composed_node_index = -1;
+			int max_cost_reduced = INT32_MIN;
+			for (auto i : cg->non_composed_nodes)
 			{
-				while (cg->m != previous_merge_nodes)
-					cg->demerge(true);
-				return m_res.second;
+				m_res = cut_rule_1(i, cg, budget, true);
+				if (m_res.first == cluster_graph::POSSIBLE_WITH_COST)
+				{
+					if (max_cost_reduced < m_res.second)
+					{
+						max_cost_reduced_non_composed_node_index = i;
+						max_cost_reduced = m_res.second;
+					}
+				}
+			}
+
+			if (max_cost_reduced_non_composed_node_index != -1)
+			{
+				m_res = cut_rule_1(max_cost_reduced_non_composed_node_index, cg, budget);
+				if (m_res.first == cluster_graph::POSSIBLE_WITH_COST)
+				{
+					while (cg->m != previous_merge_nodes)
+						cg->demerge(true);
+					return m_res.second;
+				}
+//				else if(m_res.first == cluster_graph::NOT_POSSIBLE_EDGES_MODIFIED && m_res.second == -2)
+//				{
+//					while (cg->m != previous_merge_nodes)
+//						cg->demerge(false);
+//					return -1;
+//				}
 			}
 		}
+
+
+//		for (auto i : cg->non_composed_nodes)
 
 		if (p_bucket->is_empty())
 		{
@@ -265,7 +304,10 @@ class processor
 		return false;
 	}
 
-	pair<cluster_graph::merge_result, int> cut_rule_1(int u, cluster_graph* cg, int budget)
+	pair<cluster_graph::merge_result, int> cut_rule_1(int u,
+		cluster_graph* cg,
+		int budget,
+		bool checking_for_cost = false)
 	{
 		if (cg->non_composed_nodes.find(u) == cg->non_composed_nodes.end())
 			int i = 1 / 0;
@@ -273,10 +315,12 @@ class processor
 		set<node_weight_pair> const* connected_nodes_u = cg->get_connected_nodes_of(u);
 		set<node_weight_pair>::iterator it_i, it_j;
 		int cost_of_making_clique = 0;
+		int total_connected_cost_u = 0;
 		bool possible = true;
 		for (it_i = connected_nodes_u->begin(); it_i != connected_nodes_u->end() && possible; it_i++)
 			if (cg->are_non_composed_nodes(u, it_i->node_index))
 			{
+				total_connected_cost_u += cg->get_weight_between(u, it_i->node_index);
 				it_j = it_i;
 				it_j++;
 				for (; it_j != connected_nodes_u->end() && possible; it_j++)
@@ -315,8 +359,11 @@ class processor
 		int total_cost = cost_of_making_clique + cost_of_cutting_graph;
 		if (total_cost > budget)
 			return pair<cluster_graph::merge_result, int>(cluster_graph::TOO_EXPENSIVE, -1);
-		if(total_cost < 0)
-			int i = 1/0;
+		if (checking_for_cost)
+			return pair<cluster_graph::merge_result, int>(cluster_graph::POSSIBLE_WITH_COST, total_cost);
+
+		if (total_cost < 0)
+			int i = 1 / 0;
 
 		set<node_weight_pair> connected_nodes_u_copy =
 			cg->get_connected_nodes_copy_of(u);                // this is required so that we loop on old connection and add only those connections, otherwise we will be looping on something which is getting changed
@@ -362,26 +409,29 @@ class processor
 			if (last_merge_index == -1)
 			{
 				m_res = cg->merge(u, i.node_index, 0);
-				if (m_res.first != cluster_graph::POSSIBLE_WITH_COST)
+				if (m_res.first != cluster_graph::POSSIBLE_WITH_COST || m_res.second != 0)
 					int i = 1 / 0;
 				last_merge_index = cg->n + cg->m - 1;
 			}
 			else
 			{
 				m_res = cg->merge(i.node_index, last_merge_index, 0);
-				if (m_res.first != cluster_graph::POSSIBLE_WITH_COST)
+				if (m_res.first != cluster_graph::POSSIBLE_WITH_COST || m_res.second != 0)
 					int i = 1 / 0;
 				last_merge_index++;
 			}
 
-//		int budget_left = budget - total_cost;
-//		budget_left = solve(budget_left, cg);
-//		if (budget_left != -1)
-//		{
-//			while (cg->m != previous_merge_nodes)
-//				cg->demerge(true);
-//			return pair<cluster_graph::merge_result, int>(cluster_graph::POSSIBLE_WITH_COST, budget_left);
-//		}
+		if (!connected_nodes_u->empty())
+		{
+			int budget_left = budget - total_cost;
+			budget_left = solve(budget_left, cg);
+			if (budget_left != -1)
+			{
+				while (cg->m != previous_merge_nodes)
+					cg->demerge(true);
+				return pair<cluster_graph::merge_result, int>(cluster_graph::POSSIBLE_WITH_COST, budget_left);
+			}
+		}
 
 		while (cg->m != previous_merge_nodes)
 			cg->demerge(false);
@@ -397,7 +447,7 @@ class processor
 				cg->connect_nodes(entry.second.first, entry.second.second, true);
 		}
 
-		return pair<cluster_graph::merge_result, int>(cluster_graph::NOT_POSSIBLE_EDGES_MODIFIED, -1);
+		return pair<cluster_graph::merge_result, int>(cluster_graph::NOT_POSSIBLE_EDGES_MODIFIED, total_connected_cost_u > total_cost ? -2 : -1);
 	}
 
 	int lower_bound(cluster_graph* cg)
