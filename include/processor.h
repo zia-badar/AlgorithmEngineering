@@ -111,7 +111,7 @@ class processor
 				}
 			}
 
-			if (max_cost_reduced_non_composed_node_index != -1)
+			if (max_cost_reduced_non_composed_node_index != -1 && max_cost_reduced > 0.9*budget)
 			{
 				m_res = cut_rule_1(max_cost_reduced_non_composed_node_index, cg, budget);
 				if (m_res.first == cluster_graph::POSSIBLE_WITH_COST)
