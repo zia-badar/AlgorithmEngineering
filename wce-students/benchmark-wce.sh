@@ -2,7 +2,7 @@
 
 
 if [ -z "$1" ]; then
-	PROGRAMM_NAME="../cmake-build-debug/main"  		# insert your program here ...
+	PROGRAMM_NAME="../_build/main"  		# insert your program here ...
 else
 	PROGRAMM_NAME=$1													# ... or give the program as parameter to the script
 fi

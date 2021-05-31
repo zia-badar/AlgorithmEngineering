@@ -24321,3 +24321,236 @@ timeout: the monitored command dumped core
 
 /home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w101.dimacs
 
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a001.dimacs
+1 4
+2 9
+5 6
+7 10
+#recursive steps: 13
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a003.dimacs
+1 9
+4 7
+6 7
+7 8
+#recursive steps: 50
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a005.dimacs
+1 5
+1 7
+1 8
+3 5
+5 7
+5 10
+6 8
+8 10
+9 10
+#recursive steps: 132
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a007.dimacs
+#recursive steps: 2
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a009.dimacs
+5 7
+8 9
+#recursive steps: 19
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a011.dimacs
+3 12
+13 15
+14 15
+18 20
+#recursive steps: 11
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a013.dimacs
+2 6
+3 4
+3 5
+3 9
+6 9
+11 12
+11 18
+12 18
+13 15
+15 18
+16 17
+#recursive steps: 89
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a001.dimacs
+1 4
+2 9
+5 6
+7 10
+#recursive steps: 13
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a003.dimacs
+1 9
+4 7
+6 7
+7 8
+#recursive steps: 50
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a005.dimacs
+1 5
+1 7
+1 8
+3 5
+5 7
+5 10
+6 8
+8 10
+9 10
+#recursive steps: 132
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a007.dimacs
+#recursive steps: 2
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a009.dimacs
+5 7
+8 9
+#recursive steps: 19
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a011.dimacs
+3 12
+13 15
+14 15
+18 20
+#recursive steps: 11
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a013.dimacs
+2 6
+3 4
+3 5
+3 9
+6 9
+11 12
+11 18
+12 18
+13 15
+15 18
+16 17
+#recursive steps: 89
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a015.dimacs
+1 6
+3 7
+3 12
+3 14
+3 15
+3 16
+3 17
+6 15
+14 19
+#recursive steps: 25
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a017.dimacs
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a001.dimacs
+timeout: failed to run command ‘../_build/main’: No such file or directory
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a003.dimacs
+timeout: failed to run command ‘../_build/main’: No such file or directory
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a005.dimacs
+timeout: failed to run command ‘../_build/main’: No such file or directory
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a007.dimacs
+timeout: failed to run command ‘../_build/main’: No such file or directory
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a009.dimacs
+timeout: failed to run command ‘../_build/main’: No such file or directory
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a011.dimacs
+timeout: failed to run command ‘../_build/main’: No such file or directory
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a013.dimacs
+timeout: failed to run command ‘../_build/main’: No such file or directory
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a015.dimacs
+timeout: failed to run command ‘../_build/main’: No such file or directory
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a017.dimacs
+timeout: failed to run command ‘../_build/main’: No such file or directory
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a019.dimacs
+timeout: failed to run command ‘../_build/main’: No such file or directory
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r001.dimacs
+timeout: failed to run command ‘../_build/main’: No such file or directory
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r003.dimacs
+timeout: failed to run command ‘../_build/main’: No such file or directory
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r005.dimacs
+timeout: failed to run command ‘../_build/main’: No such file or directory
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r007.dimacs
+timeout: failed to run command ‘../_build/main’: No such file or directory
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r009.dimacs
+timeout: failed to run command ‘../_build/main’: No such file or directory
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r011.dimacs
+timeout: failed to run command ‘../_build/main’: No such file or directory
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r013.dimacs
+timeout: failed to run command ‘../_build/main’: No such file or directory
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r015.dimacs
+timeout: failed to run command ‘../_build/main’: No such file or directory
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r017.dimacs
+timeout: failed to run command ‘../_build/main’: No such file or directory
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r019.dimacs
+timeout: failed to run command ‘../_build/main’: No such file or directory
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w001.dimacs
+timeout: failed to run command ‘../_build/main’: No such file or directory
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w003.dimacs
+timeout: failed to run command ‘../_build/main’: No such file or directory
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w005.dimacs
+timeout: failed to run command ‘../_build/main’: No such file or directory
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w007.dimacs
+timeout: failed to run command ‘../_build/main’: No such file or directory
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w009.dimacs
+timeout: failed to run command ‘../_build/main’: No such file or directory
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w011.dimacs
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a001.dimacs
+1 4
+2 9
+5 6
+7 10
+#recursive steps: 13
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a003.dimacs
+1 9
+4 7
+6 7
+7 8
+#recursive steps: 50
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a005.dimacs
+1 5
+1 7
+1 8
+3 5
+5 7
+5 10
+6 8
+8 10
+9 10
+#recursive steps: 132
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a007.dimacs
+#recursive steps: 2
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a009.dimacs
+5 7
+8 9
+#recursive steps: 19
+
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a011.dimacs
