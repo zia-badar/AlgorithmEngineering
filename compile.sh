@@ -1,6 +1,6 @@
 #!/bin/bash
 
 mkdir _build
-cmake -B _build
+cmake .
 cd _build
 make
