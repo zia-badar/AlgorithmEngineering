@@ -1,3 +1,0 @@
-/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/cmake-build-release/CMakeFiles/rebuild_cache.dir
-/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/cmake-build-release/CMakeFiles/edit_cache.dir
-/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/cmake-build-release/CMakeFiles/main.dir
