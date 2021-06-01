@@ -1,0 +1,15 @@
+_build/
+wce-students/1-random/
+wce-students/2-real-world/
+wce-students/3-actionseq/
+wce-students/log.txt
+wce-students/results*
+wce-students/prog_out.txt
+wce-students/time.txt
+cmake-build-debug/
+cmake-build-release/
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+main
