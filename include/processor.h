@@ -2,6 +2,8 @@
 #define PROCESSOR_H
 
 #include <stack>
+#include <map>
+#include <cmath>
 
 #include "cluster_graph.h"
 #include <float.h>
@@ -111,7 +113,7 @@ class processor
 				}
 			}
 
-			if (max_cost_reduced_non_composed_node_index != -1 && max_cost_reduced > 0.9*budget)
+			if (max_cost_reduced_non_composed_node_index != -1 && max_cost_reduced > budget)
 			{
 				m_res = cut_rule_1(max_cost_reduced_non_composed_node_index, cg, budget);
 				if (m_res.first == cluster_graph::POSSIBLE_WITH_COST)
@@ -128,9 +130,6 @@ class processor
 //				}
 			}
 		}
-
-
-//		for (auto i : cg->non_composed_nodes)
 
 		if (p_bucket->is_empty())
 		{
@@ -150,6 +149,16 @@ class processor
 		int u_index = _p3.u;
 		int v_index = _p3.v;
 		int w_index = _p3.w;
+
+		int u = _p3.u;
+		int v = _p3.v;
+		int w = _p3.w;
+
+		if (cg->get_weight_between(v, u) < cg->get_weight_between(v, w))
+		{
+			u_index = w;
+			w_index = u;
+		}
 
 		if (!(cg->all_edge_statuses[v_index][u_index] & cluster_graph::CONNECTION_CHANGED)
 			&& all_explored_statuses[v_index][u_index] != ALREADY_EXPLORED_BY_DELETION)
@@ -320,19 +329,26 @@ class processor
 		for (it_i = connected_nodes_u->begin(); it_i != connected_nodes_u->end() && possible; it_i++)
 			if (cg->are_non_composed_nodes(u, it_i->node_index))
 			{
+				if (cg->get_weight_between(u, it_i->node_index) == 0)
+					possible = false;
 				total_connected_cost_u += cg->get_weight_between(u, it_i->node_index);
 				it_j = it_i;
 				it_j++;
 				for (; it_j != connected_nodes_u->end() && possible; it_j++)
-					if (cg->are_non_composed_nodes(it_i->node_index, it_j->node_index)
-						&& !cg->get_connection_connected_status_from_to(it_i->node_index, it_j->node_index))
+					if (cg->are_non_composed_nodes(it_i->node_index, it_j->node_index))
 					{
-						if (cg->get_weight_between(it_i->node_index, it_j->node_index) > 0)
-							int i = 1 / 0;
-						cost_of_making_clique += abs(cg->get_weight_from_to(it_i->node_index, it_j->node_index));
-						if (cg->get_connection_changed_status_from_to(it_i->node_index, it_j->node_index))
+						if (!cg->get_connection_connected_status_from_to(it_i->node_index, it_j->node_index))
+						{
+							if (cg->get_weight_between(it_i->node_index, it_j->node_index) > 0)
+								int i = 1 / 0;
+							cost_of_making_clique += abs(cg->get_weight_from_to(it_i->node_index, it_j->node_index));
+							if (cg->get_connection_changed_status_from_to(it_i->node_index, it_j->node_index))
+								possible = false;
+						}
+						if (cg->get_weight_between(it_i->node_index, it_j->node_index) == 0)
 							possible = false;
 					}
+					else int i = 1 / 0;
 			}
 			else int i = 1 / 0;
 		int cost_of_cutting_graph = 0;
@@ -340,6 +356,8 @@ class processor
 		for (it_i = connected_nodes_u->begin(); it_i != connected_nodes_u->end() && possible; it_i++)
 			if (cg->are_non_composed_nodes(u, it_i->node_index))
 			{
+				if (cg->get_weight_between(u, it_i->node_index) == 0)
+					possible = false;
 				connected_nodes_i = cg->get_connected_nodes_of(it_i->node_index);
 				for (it_j = connected_nodes_i->begin(); it_j != connected_nodes_i->end() && possible; it_j++)
 					if (cg->are_non_composed_nodes(it_i->node_index, it_j->node_index) && it_j->node_index != u
@@ -348,11 +366,12 @@ class processor
 						if (cg->get_weight_between(it_i->node_index, it_j->node_index) < 0)
 							int i = 1 / 0;
 						cost_of_cutting_graph += cg->get_weight_between(it_i->node_index, it_j->node_index);
-						if (cg->get_connection_changed_status_from_to(it_i->node_index, it_j->node_index))
-							possible = false;
 					}
 			}
 			else int i = 1 / 0;
+
+		possible &= ((2 * cost_of_making_clique + cost_of_cutting_graph) < total_connected_cost_u);
+
 		if (!possible)
 			return pair<cluster_graph::merge_result, int>(cluster_graph::NOT_POSSIBLE_EDGES_MODIFIED, -1);
 
@@ -447,29 +466,65 @@ class processor
 				cg->connect_nodes(entry.second.first, entry.second.second, true);
 		}
 
-		return pair<cluster_graph::merge_result, int>(cluster_graph::NOT_POSSIBLE_EDGES_MODIFIED, total_connected_cost_u > total_cost ? -2 : -1);
+		return pair<cluster_graph::merge_result, int>(cluster_graph::NOT_POSSIBLE_EDGES_MODIFIED,
+			total_connected_cost_u > total_cost ? -2 : -1);
 	}
 
-	int lower_bound(cluster_graph* cg)
+	unsigned int lower_bound(cluster_graph* cg)
 	{
-		bool vertex_already_taken[2 * cg->n];
+		const set<p3> *p3s = p_bucket->get_all_p3s_weight_sorted();
+//		set<p3> non_zero_edge_p3s;
+//		set<p3> zero_edge_p3s;
+//		for(auto p3 : *p3s)
+//			if(cg->get_weight_between(p3.v, p3.u) == 0 || cg->get_weight_between(p3.v, p3.w) == 0 || cg->get_weight_between(p3.u, p3.w) == 0)
+//				zero_edge_p3s.insert(p3);
+//			else
+//				non_zero_edge_p3s.insert(p3);
+//
+//		unsigned int lb_1_non_zero = lower_bound_1(cg, &non_zero_edge_p3s);
+//		unsigned int lb_1_zero = lower_bound_2(cg, &zero_edge_p3s);
+//		unsigned int lb_1 = (lb_1_non_zero > lb_1_zero ? lb_1_non_zero : lb_1_zero);
+		unsigned int lb_1 = lower_bound_1(cg, p3s);
+		unsigned int lb_2 = lower_bound_2(cg, p3s);
 
+		return lb_2 > lb_1 ? lb_2 : lb_1;
+	}
+
+	unsigned int lower_bound_1(cluster_graph* cg, const set<p3>* p3s)
+	{
+		unsigned int edge_p3s_count[2 * cg->n][2 * cg->n];
 		for (int i = 0; i < 2 * cg->n; i++)
-			vertex_already_taken[i] = false;
+			for (int j = 0; j < 2 * cg->n; j++)
+				edge_p3s_count[i][j] = 0;
 
-		unsigned int vertex_disjoint_lower_bound = 0;
-		unsigned int min_cost;
-		for (auto p3 : *p_bucket->get_all_p3s_weight_sorted())
-			if (!vertex_already_taken[p3.u] && !vertex_already_taken[p3.v] && !vertex_already_taken[p3.w])
-			{
-				min_cost = min(cg->get_weight_from_to(p3.v, p3.u),
-					min(cg->get_weight_from_to(p3.v, p3.w), -cg->get_weight_from_to(p3.u, p3.w)));
-				vertex_disjoint_lower_bound += min_cost;
-				vertex_already_taken[p3.u] = true;
-				vertex_already_taken[p3.v] = true;
-				vertex_already_taken[p3.w] = true;
-			}
+		for (auto p3 : *p3s)
+		{
+			edge_p3s_count[p3.v][p3.u]++;
+			edge_p3s_count[p3.u][p3.v]++;
+			edge_p3s_count[p3.v][p3.w]++;
+			edge_p3s_count[p3.w][p3.v]++;
+			edge_p3s_count[p3.u][p3.w]++;
+			edge_p3s_count[p3.w][p3.u]++;
+		}
 
+		float relative_edge_cost[2 * cg->n][2 * cg->n];
+		for (int i = 0; i < 2 * cg->n; i++)
+			for (int j = 0; j < 2 * cg->n; j++)
+				if (edge_p3s_count[i][j])
+					relative_edge_cost[i][j] = (abs(cg->get_weight_between(i, j)) / edge_p3s_count[i][j]);
+
+		float min_relative_cost = FLT_MAX;
+		for (int i = 0; i < 2 * cg->n; i++)
+			for (int j = 0; j < 2 * cg->n; j++)
+				if (edge_p3s_count[i][j])
+					min_relative_cost = min(min_relative_cost, relative_edge_cost[i][j]);
+
+		int p3s_count = p3s->size();
+		unsigned int lower_bound_1 = (min_relative_cost != FLT_MAX ? ceil(p3s_count * min_relative_cost) : 0);
+	}
+
+	unsigned int lower_bound_2(cluster_graph* cg, const set<p3>* p3s)
+	{
 		bool edge_already_taken[2 * cg->n][2 * cg->n];
 
 		for (int i = 0; i < 2 * cg->n; i++)
@@ -477,46 +532,29 @@ class processor
 				edge_already_taken[i][j] = false;
 
 		set<p3> edge_disjoint_p3s;
-		for (auto p3 : *p_bucket->get_all_p3s_weight_sorted())
+		for (auto p3 : *p3s)
 			if (!edge_already_taken[p3.v][p3.u] && !edge_already_taken[p3.v][p3.w] && !edge_already_taken[p3.u][p3.w])
 			{
 				edge_disjoint_p3s.insert(p3);
 				edge_already_taken[p3.v][p3.u] = true;
+				edge_already_taken[p3.u][p3.v] = true;
 				edge_already_taken[p3.v][p3.w] = true;
+				edge_already_taken[p3.w][p3.v] = true;
 				edge_already_taken[p3.u][p3.w] = true;
+				edge_already_taken[p3.w][p3.u] = true;
 			}
 
-		unsigned int edge_p3s_count[2 * cg->n][2 * cg->n];
-
-		for (int i = 0; i < 2 * cg->n; i++)
-			for (int j = 0; j < 2 * cg->n; j++)
-				edge_p3s_count[i][j] = 0;
-
+		unsigned int edge_disjoint_lower_bound_2 = 0;
 		for (auto p3 : edge_disjoint_p3s)
 		{
-			edge_p3s_count[p3.v][p3.u]++;
-			edge_p3s_count[p3.v][p3.w]++;
-			edge_p3s_count[p3.u][p3.w]++;
+			int min_c = min(cg->get_weight_from_to(p3.v, p3.u),
+				min(cg->get_weight_from_to(p3.v, p3.w), -cg->get_weight_from_to(p3.u, p3.w)));
+			if (min_c < 0)
+				int i = 1 / 0;
+			edge_disjoint_lower_bound_2 += min_c;
 		}
 
-		float relative_edge_cost[2 * cg->n][2 * cg->n];
-		for (int i = 0; i < 2 * cg->n; i++)
-			for (int j = 0; j < 2 * cg->n; j++)
-				if (edge_already_taken[i][j])
-					relative_edge_cost[i][j] = (abs(cg->get_weight_between(i, j)) / edge_p3s_count[i][j]);
-
-		float min_relative_cost = FLT_MAX;
-		for (int i = 0; i < 2 * cg->n; i++)
-			for (int j = 0; j < 2 * cg->n; j++)
-				if (edge_already_taken[i][j])
-					min_relative_cost = min(min_relative_cost, relative_edge_cost[i][j]);
-
-		int p3s_count = edge_disjoint_p3s.size();
-		float edge_disjoint_lower_bound = min_relative_cost != FLT_MAX ? (p3s_count * min_relative_cost) : 0;
-
-//		return vertex_disjoint_lower_bound > edge_disjoint_lower_bound ? vertex_disjoint_lower_bound :
-//			edge_disjoint_lower_bound;
-		return vertex_disjoint_lower_bound;
+		return edge_disjoint_lower_bound_2;
 	}
 
 	int binary_search_for_optimal_k(int l, int r, cluster_graph* cg)
