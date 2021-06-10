@@ -55,19 +55,32 @@ class processor
 	}
 	p3s_bucket* p_bucket;
 
+	int depth = -1;
+	int max_depth = -1;
 	bool with_merging = false;
+	bool non_optimal = false;
 	// O(3^k*n*log(n)), k is budget, n is no. of nodes.
 	int solve(int budget, cluster_graph* cg)
 	{
+		depth++;
 		step_count++;
 		if (budget < 0)
+		{
+			depth--;
 			return -1;
+		}
 
 		if (p_bucket->is_empty())
+		{
+			depth--;
 			return budget;
+		}
 
-		if (budget < lower_bound(cg))
+		if (!non_optimal && budget < lower_bound(cg))
+		{
+			depth--;
 			return -1;
+		}
 
 //		rec_steps++;
 //		int k;
@@ -84,13 +97,17 @@ class processor
 			{
 				while (cg->m != previous_merge_nodes)
 					cg->demerge(false);
+				depth--;
 				return -1;
 			}
 			else if (m_res.first == cluster_graph::TOO_EXPENSIVE)
 				break;
 		}
 
-//		if (step_count % 100 == 0)
+		max_depth = max_depth < depth ? depth : max_depth;
+		int c = cg->n * 0.5;
+		if(depth % (c == 0 ? 1 : c) == 0 && false)
+//		if (step_count % 200 == 0)
 //		if (cg->non_composed_nodes.size() < cg->n/2)
 		{
 //			int max_connection_non_composed_node_index = -1;
@@ -114,29 +131,31 @@ class processor
 				if (m_res.first == cluster_graph::POSSIBLE_WITH_COST)
 				{
 //					cout << "aafdsafdsa" << endl;
-					if (max_cost_reduced < m_res.second)
+					if (max_cost_reduced < cg->get_connected_nodes_of(i)->size())
 					{
 						max_cost_reduced_non_composed_node_index = i;
-						max_cost_reduced = m_res.second;
+						max_cost_reduced = cg->get_connected_nodes_of(i)->size();
 					}
 				}
 			}
 
-			if (max_cost_reduced_non_composed_node_index != -1 && max_cost_reduced < budget)
+			if (max_cost_reduced_non_composed_node_index != -1)
 			{
 				m_res = cut_rule_1(max_cost_reduced_non_composed_node_index, cg, budget);
 				if (m_res.first == cluster_graph::POSSIBLE_WITH_COST)
 				{
 					while (cg->m != previous_merge_nodes)
 						cg->demerge(true);
+					depth--;
 					return m_res.second;
 				}
-//				else if(m_res.first == cluster_graph::NOT_POSSIBLE_EDGES_MODIFIED && m_res.second == -2)
-//				{
-//					while (cg->m != previous_merge_nodes)
-//						cg->demerge(false);
-//					return -1;
-//				}
+				else if(non_optimal && m_res.first == cluster_graph::NOT_POSSIBLE_EDGES_MODIFIED && m_res.second == -2)
+				{
+					while (cg->m != previous_merge_nodes)
+						cg->demerge(false);
+					depth--;
+					return -1;
+				}
 			}
 		}
 
@@ -144,13 +163,15 @@ class processor
 		{
 			while (cg->m != previous_merge_nodes)
 				cg->demerge(true);
+			depth--;
 			return budget;
 		}
 
-		if (budget < lower_bound(cg))
+		if (!non_optimal && budget < lower_bound(cg))
 		{
 			while (cg->m != previous_merge_nodes)
 				cg->demerge(false);
+			depth--;
 			return -1;
 		}
 
@@ -181,6 +202,7 @@ class processor
 				while (cg->m != previous_merge_nodes)
 					cg->demerge(true);
 //				rec_steps--;
+				depth--;
 				return budget_left;
 			}
 
@@ -204,6 +226,7 @@ class processor
 				while (cg->m != previous_merge_nodes)
 					cg->demerge(true);
 //				rec_steps--;
+				depth--;
 				return budget_left;
 			}
 
@@ -231,6 +254,7 @@ class processor
 				while (cg->m != previous_merge_nodes)
 					cg->demerge(true);
 //				rec_steps--;
+				depth--;
 				return budget_left;
 			}
 
@@ -239,6 +263,7 @@ class processor
 		while (cg->m != previous_merge_nodes)
 			cg->demerge(false);
 //		rec_steps--;
+		depth--;
 		return -1;
 	}
 
@@ -736,11 +761,15 @@ class processor
 				all_explored_statuses[i][j] = 0;
 
 		int k = INT32_MAX;
+		non_optimal = false;
+		if(!non_optimal)
+		{
 		for (k = 1; solve(k, cg) == -1; k *= 2); // if no solution is found, graph remains in original state
 		cg->reset_graph();
 
 		k = binary_search_for_optimal_k(k / 2 + 1, k, cg);
 		step_count = 0;
+		}
 		solve(k, cg);
 		// cout <<    "-------------------------------------------------\n";
 		int changed_edges_cost = 0;
