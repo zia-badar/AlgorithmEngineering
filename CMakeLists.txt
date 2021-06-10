@@ -4,14 +4,15 @@ project(algeng_wce_solver)
 
 set(CMAKE_MODULE_PATH               "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 find_package(Cplex)
-
-
+FIND_PACKAGE( Boost 1.40 COMPONENTS program_options REQUIRED )
 
 add_executable(main include/cluster_graph.h main.cpp include/node.h include/p3.h include/node_weight_pair.h include/verifier.h include/p3s_bucket.h)
 
-
-
 include_directories(SYSTEM ${CPLEX_INCLUDE_DIRS})
+INCLUDE_DIRECTORIES( ${Boost_INCLUDE_DIR} )
+
 add_executable(cplex_example ilp_main.cpp)
+
 target_link_libraries(  cplex_example PRIVATE ${CPLEX_LIBRARIES})
 target_link_libraries(  cplex_example PRIVATE dl)
+TARGET_LINK_LIBRARIES( main LINK_PUBLIC ${Boost_LIBRARIES} )

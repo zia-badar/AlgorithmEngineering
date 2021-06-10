@@ -5,6 +5,13 @@
 #include <map>
 #include <cmath>
 
+#include <boost/graph/adjacency_list.hpp>
+#include <boost/graph/graph_traits.hpp>
+#include <boost/graph/one_bit_color_map.hpp>
+#include <boost/graph/stoer_wagner_min_cut.hpp>
+#include <boost/property_map/property_map.hpp>
+#include <boost/typeof/typeof.hpp>
+
 #include "cluster_graph.h"
 #include <float.h>
 
@@ -84,6 +91,7 @@ class processor
 		}
 
 //		if (step_count % 100 == 0)
+//		if (cg->non_composed_nodes.size() < cg->n/2)
 		{
 //			int max_connection_non_composed_node_index = -1;
 //			int max_connection_count = INT32_MIN;
@@ -105,6 +113,7 @@ class processor
 				m_res = cut_rule_1(i, cg, budget, true);
 				if (m_res.first == cluster_graph::POSSIBLE_WITH_COST)
 				{
+//					cout << "aafdsafdsa" << endl;
 					if (max_cost_reduced < m_res.second)
 					{
 						max_cost_reduced_non_composed_node_index = i;
@@ -113,7 +122,7 @@ class processor
 				}
 			}
 
-			if (max_cost_reduced_non_composed_node_index != -1 && max_cost_reduced > budget)
+			if (max_cost_reduced_non_composed_node_index != -1 && max_cost_reduced < budget)
 			{
 				m_res = cut_rule_1(max_cost_reduced_non_composed_node_index, cg, budget);
 				if (m_res.first == cluster_graph::POSSIBLE_WITH_COST)
@@ -313,6 +322,139 @@ class processor
 		return false;
 	}
 
+	struct edge_t
+	{
+		unsigned long first;
+		unsigned long second;
+	};
+
+	int minimum_cut_cost(int u, cluster_graph *cg)
+	{
+		typedef boost::adjacency_list<boost::vecS, boost::vecS, boost::undirectedS,
+									  boost::no_property, boost::property<boost::edge_weight_t, int> > undirected_graph;
+		typedef boost::property_map<undirected_graph, boost::edge_weight_t>::type weight_map_type;
+		typedef boost::property_traits<weight_map_type>::value_type weight_type;
+
+		// define the 16 edges of the graph. {3, 4} means an undirected edge between vertices 3 and 4.
+//		edge_t edges[] = {{3, 4}, {3, 6}, {3, 5}, {0, 4}, {0, 1}, {0, 6}, {0, 7},
+//			{0, 5}, {0, 2}, {4, 1}, {1, 6}, {1, 5}, {6, 7}, {7, 5}, {5, 2}, {3, 4}};
+		set<node_weight_pair> const* u_connected = cg->get_connected_nodes_of(u);
+		int n = u_connected->size() + 1;
+		if (n < 2) return -1;
+		int total_edges = ((n - 1) * n) / 2;
+		edge_t edges[total_edges];
+
+		map<int, int> graph_to_boost_node_index;
+		map<int, int> boost_to_graph_node_index;
+
+		int node_count = 0;
+		graph_to_boost_node_index[u] = node_count;
+		boost_to_graph_node_index[node_count] = u;
+		node_count++;
+		for (auto i : *u_connected)
+		{
+			graph_to_boost_node_index[i.node_index] = node_count;
+			boost_to_graph_node_index[node_count] = i.node_index;
+			node_count++;
+		}
+
+		if (node_count != n)
+			int i = 1 / 0;
+
+		// for each of the 16 edges, define the associated edge weight. ws[i] is the weight for the edge
+		// that is described by edges[i].
+//		weight_type ws[] = {0, 3, 1, 3, 1, 2, 6, 1, 8, 1, 1, 80, 2, 1, 1, 4};
+		weight_type ws[total_edges];
+
+		set<node_weight_pair>::iterator it_i, it_j;
+		unsigned int idx_1, idx_2;
+		int edge_count = 0;
+		for (it_i = u_connected->begin(); it_i != u_connected->end(); it_i++)
+			if (cg->are_non_composed_nodes(u, it_i->node_index))
+			{
+				idx_1 = graph_to_boost_node_index.find(u)->second;
+				idx_2 = graph_to_boost_node_index.find(it_i->node_index)->second;
+				edges[edge_count].first = idx_1;
+				edges[edge_count].second = idx_2;
+				ws[edge_count] = cg->get_connection_connected_status_from_to(u, it_i->node_index) ?
+					cg->get_weight_between(u, it_i->node_index) : 0;
+				edge_count++;
+
+				it_j = it_i;
+				it_j++;
+				for (; it_j != u_connected->end(); it_j++)
+					if (cg->are_non_composed_nodes(it_i->node_index, it_j->node_index))
+					{
+						idx_1 = graph_to_boost_node_index.find(it_i->node_index)->second;
+						idx_2 = graph_to_boost_node_index.find(it_j->node_index)->second;
+						edges[edge_count].first = idx_1;
+						edges[edge_count].second = idx_2;
+						ws[edge_count] =
+							cg->get_connection_connected_status_from_to(it_i->node_index, it_j->node_index) ?
+								cg->get_weight_between(it_i->node_index, it_j->node_index) : 0;
+						edge_count++;
+					}
+					else
+						int i = 1 / 0;
+			}
+			else int i = 1 / 0;
+
+		if (edge_count != total_edges)
+			int i = 1 / 0;
+
+		// construct the graph object. 8 is the number of vertices, which are numbered from 0
+		// through 7, and 16 is the number of edges.
+//		undirected_graph g(edges, edges + 16, ws, 8, 16);
+		undirected_graph g(edges, edges + total_edges, ws, n, total_edges);
+
+//		cout << num_vertices(g) << endl;
+		// define a property map, `parities`, that will store a boolean value for each vertex.
+		// Vertices that have the same parity after `stoer_wagner_min_cut` runs are on the same side of the min-cut.
+		BOOST_AUTO(parities, boost::make_one_bit_color_map(num_vertices(g), get(boost::vertex_index, g)));
+
+		// run the Stoer-Wagner algorithm to obtain the min-cut weight. `parities` is also filled in.
+		int w = boost::stoer_wagner_min_cut(g, get(boost::edge_weight, g), boost::parity_map(parities));
+
+//		return w;
+
+//		cout << "The min-cut weight of G is " << w << ".\n" << endl;
+//		assert(w == 7);
+
+//		cout << "One set of vertices consists of:" << endl;
+//		size_t i;
+//		for (i = 0; i < num_vertices(g); ++i) {
+//			if (get(parities, i))
+//				cout << i << endl;
+//		}
+//		cout << endl;
+//
+//		cout << "The other set of vertices consists of:" << endl;
+//		for (i = 0; i < num_vertices(g); ++i) {
+//			if (!get(parities, i))
+//				cout << i << endl;
+//		}
+//		cout << endl;
+
+		set<int> vertex_set_1, vertex_set_2;;
+		for (int i = 0; i < num_vertices(g); ++i)
+			if (get(parities, i))
+				vertex_set_1.insert(boost_to_graph_node_index.find(i)->second);
+			else
+				vertex_set_2.insert(boost_to_graph_node_index.find(i)->second);
+
+		for(auto i : vertex_set_1)
+			for(auto j : vertex_set_2)
+			{
+				if(i != u && cg->get_connected_nodes_of(u)->find(node_weight_pair(i, 0)) == cg->get_connected_nodes_of(u)->end())
+					int k=1/0;
+				if(j != u && cg->get_connected_nodes_of(u)->find(node_weight_pair(j, 0)) == cg->get_connected_nodes_of(u)->end())
+					int k=1/0;
+				if(!(!cg->get_connection_changed_status_from_to(i, j) || !cg->get_connection_connected_status_from_to(i, j)))
+					return -1;
+				}
+		return w;
+	}
+
 	pair<cluster_graph::merge_result, int> cut_rule_1(int u,
 		cluster_graph* cg,
 		int budget,
@@ -329,8 +471,8 @@ class processor
 		for (it_i = connected_nodes_u->begin(); it_i != connected_nodes_u->end() && possible; it_i++)
 			if (cg->are_non_composed_nodes(u, it_i->node_index))
 			{
-				if (cg->get_weight_between(u, it_i->node_index) == 0)
-					possible = false;
+//				if (cg->get_weight_between(u, it_i->node_index) == 0)
+//					possible = false;
 				total_connected_cost_u += cg->get_weight_between(u, it_i->node_index);
 				it_j = it_i;
 				it_j++;
@@ -345,8 +487,8 @@ class processor
 							if (cg->get_connection_changed_status_from_to(it_i->node_index, it_j->node_index))
 								possible = false;
 						}
-						if (cg->get_weight_between(it_i->node_index, it_j->node_index) == 0)
-							possible = false;
+//						if (cg->get_weight_between(it_i->node_index, it_j->node_index) == 0)
+//							possible = false;
 					}
 					else int i = 1 / 0;
 			}
@@ -356,8 +498,8 @@ class processor
 		for (it_i = connected_nodes_u->begin(); it_i != connected_nodes_u->end() && possible; it_i++)
 			if (cg->are_non_composed_nodes(u, it_i->node_index))
 			{
-				if (cg->get_weight_between(u, it_i->node_index) == 0)
-					possible = false;
+//				if (cg->get_weight_between(u, it_i->node_index) == 0)
+//					possible = false;
 				connected_nodes_i = cg->get_connected_nodes_of(it_i->node_index);
 				for (it_j = connected_nodes_i->begin(); it_j != connected_nodes_i->end() && possible; it_j++)
 					if (cg->are_non_composed_nodes(it_i->node_index, it_j->node_index) && it_j->node_index != u
@@ -370,7 +512,8 @@ class processor
 			}
 			else int i = 1 / 0;
 
-		possible &= ((2 * cost_of_making_clique + cost_of_cutting_graph) < total_connected_cost_u);
+//		possible &= ((2 * cost_of_making_clique + cost_of_cutting_graph) < total_connected_cost_u);
+		possible &= (cost_of_making_clique + cost_of_cutting_graph <= minimum_cut_cost(u, cg));
 
 		if (!possible)
 			return pair<cluster_graph::merge_result, int>(cluster_graph::NOT_POSSIBLE_EDGES_MODIFIED, -1);
@@ -467,7 +610,7 @@ class processor
 		}
 
 		return pair<cluster_graph::merge_result, int>(cluster_graph::NOT_POSSIBLE_EDGES_MODIFIED,
-			total_connected_cost_u > total_cost ? -2 : -1);
+			-2);
 	}
 
 	unsigned int lower_bound(cluster_graph* cg)
@@ -597,7 +740,7 @@ class processor
 		cg->reset_graph();
 
 		k = binary_search_for_optimal_k(k / 2 + 1, k, cg);
-//		step_count = 0;
+		step_count = 0;
 		solve(k, cg);
 		// cout <<    "-------------------------------------------------\n";
 		int changed_edges_cost = 0;
