@@ -592,7 +592,7 @@ class processor
 			for (int j = 0; j < 2 * cg->n; j++)
 				all_explored_statuses[i][j] = 0;
 
-		int k;
+		int k = INT32_MAX;
 		for (k = 1; solve(k, cg) == -1; k *= 2); // if no solution is found, graph remains in original state
 		cg->reset_graph();
 

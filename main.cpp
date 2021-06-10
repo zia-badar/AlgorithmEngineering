@@ -158,7 +158,7 @@ int main(int argc, char** args)
 //	 filename = "/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w037.dimacs";
 //	filename = "/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r001.dimacs";
 //	filename = "/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a003.dimacs";
-	// ename = "/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w057.dimacs";
+	filename = "/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w163.dimacs";
 
 	processor _procs;
 //	_procs.verify(filename);

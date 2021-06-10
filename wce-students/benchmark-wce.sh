@@ -2,7 +2,7 @@
 
 
 if [ -z "$1" ]; then
-	PROGRAMM_NAME="../cmake-build-debug/main"  		# insert your program here ...
+	PROGRAMM_NAME="../cmake-build-debug/main"									  		# insert your program here ...
 else
 	PROGRAMM_NAME=$1													# ... or give the program as parameter to the script
 fi
@@ -19,13 +19,7 @@ CSV="results-$today.csv"
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 run_ce_solver()
 {
-# 	PROGRAMM_NAME="$1"
-# 	LOG=$2
-# 	CSV=$3
-# 	maxSec=$4
-# 	maxSecPerInstance=$5
-# 	maxNotSolved=$6
-	
+
 	
 	FILES=$(ls $1*.dimacs)
 
@@ -45,9 +39,8 @@ run_ce_solver()
 			echo $f >> $LOG
 			
 			# start everything in a new process group such that we can kill everything if necessary
-# 			(setsid /usr/bin/time -f "%e" -a -o time.txt timeout -k $maxSecPerInstance -s 9 $maxSecPerInstance $PROGRAMM_NAME< $f 1> prog_out.txt 2>&1) & PID=$!
-# 			(setsid /usr/bin/time -f "%e" -a -o time.txt timeout -k $maxSecPerInstanceHard -s 2 $maxSecPerInstance $PROGRAMM_NAME< $f 1> prog_out.txt 2>&1) & PID=$!
-			(setsid /usr/bin/time -f "%e" -a -o time.txt timeout -k 10 -s 2 $maxSecPerInstance $PROGRAMM_NAME< $f 1> prog_out.txt 2>&1) & PID=$!
+# 			(setsid /usr/bin/time -f "%e" -a -o time.txt timeout -k 10 -s 2 $maxSecPerInstance $PROGRAMM_NAME< $f 1> prog_out.txt 2>&1) & PID=$!
+			(setsid /usr/bin/time -f "%e" -a -o time.txt timeout --preserve-status -k 5 -s 2 $maxSecPerInstance $PROGRAMM_NAME< $f 1> prog_out.txt 2>&1) & PID=$!
 
 			# kill processes when exiting this script
 			trap "{ kill $PID 2>/dev/null; kill -TERM -- -$(pgrep -P $PID)>/dev/null;}" TERM
