@@ -4,6 +4,7 @@
 #include <stack>
 #include <map>
 #include <cmath>
+#include <float.h>
 
 #include <boost/graph/adjacency_list.hpp>
 #include <boost/graph/graph_traits.hpp>
@@ -13,7 +14,7 @@
 #include <boost/typeof/typeof.hpp>
 
 #include "cluster_graph.h"
-#include <float.h>
+#include "cplex.h"
 
 class processor
 {
@@ -58,7 +59,6 @@ class processor
 	int depth = -1;
 	int max_depth = -1;
 	bool with_merging = false;
-	bool non_optimal = false;
 	// O(3^k*n*log(n)), k is budget, n is no. of nodes.
 	int solve(int budget, cluster_graph* cg)
 	{
@@ -76,7 +76,7 @@ class processor
 			return budget;
 		}
 
-		if (!non_optimal && budget < lower_bound(cg))
+		if (solver_optimal && budget < lower_bound(cg))
 		{
 			depth--;
 			return -1;
@@ -103,6 +103,15 @@ class processor
 			else if (m_res.first == cluster_graph::TOO_EXPENSIVE)
 				break;
 		}
+
+		if (p_bucket->is_empty())
+		{
+			while (cg->m != previous_merge_nodes)
+				cg->demerge(true);
+			depth--;
+			return budget;
+		}
+
 
 		max_depth = max_depth < depth ? depth : max_depth;
 		int c = cg->n * 0.5;
@@ -149,7 +158,7 @@ class processor
 					depth--;
 					return m_res.second;
 				}
-				else if(non_optimal && m_res.first == cluster_graph::NOT_POSSIBLE_EDGES_MODIFIED && m_res.second == -2)
+				else if(!solver_optimal && m_res.first == cluster_graph::NOT_POSSIBLE_EDGES_MODIFIED && m_res.second == -2)
 				{
 					while (cg->m != previous_merge_nodes)
 						cg->demerge(false);
@@ -167,12 +176,36 @@ class processor
 			return budget;
 		}
 
-		if (!non_optimal && budget < lower_bound(cg))
+		if (solver_optimal && budget < lower_bound(cg))
 		{
 			while (cg->m != previous_merge_nodes)
 				cg->demerge(false);
 			depth--;
 			return -1;
+		}
+
+//		if(use_cplex && depth > 0.4*cg->n)
+			if(solver_with_cplex && depth > 0.5*cg->n)
+		{
+			pair<int, set<pair<int, int>>> solution = cplex_solve(cg);
+			if (solution.first != -1 && solution.first <= budget)
+			{
+				for (auto e : solution.second)
+					cg->flip_connection_between(e.first, e.second);
+
+				while (cg->m != previous_merge_nodes)
+					cg->demerge(true);
+
+				depth--;
+				return budget - solution.first;
+			}
+			else
+			{
+				while (cg->m != previous_merge_nodes)
+					cg->demerge(false);
+				depth--;
+				return -1;
+			}
 		}
 
 		p3 _p3 = p_bucket->retrieve_max_weight_p3();
@@ -741,13 +774,17 @@ class processor
 		}
 	}
 
-	void verify(string file_name, bool with_mergin = true) // file_name is "" if asked to read from cin
+	bool use_cplex_without_reduction_rules = false;
+	bool use_cplex_with_reduction_rules = false;
+	bool solver_optimal = false;
+	bool solver_non_optimal = false;
+	bool solver_with_cplex = false;
+
+	void verify(string file_name, cluster_graph *cg, mutex *_mutex, bool with_mergin = true) // file_name is "" if asked to read from cin
 	{
-		cluster_graph* cg;
-		cg = new cluster_graph();
+		_mutex->lock();
 		cg->load_graph(file_name);
-		p_bucket = cg->get_p3_bucket();
-		with_merging = true;
+		_mutex->unlock();
 
 		if (all_explored_statuses == NULL)
 		{
@@ -760,18 +797,115 @@ class processor
 			for (int j = 0; j < 2 * cg->n; j++)
 				all_explored_statuses[i][j] = 0;
 
-		int k = INT32_MAX;
-		non_optimal = false;
-		if(!non_optimal)
-		{
-		for (k = 1; solve(k, cg) == -1; k *= 2); // if no solution is found, graph remains in original state
-		cg->reset_graph();
 
-		k = binary_search_for_optimal_k(k / 2 + 1, k, cg);
-		step_count = 0;
+		p_bucket = cg->get_p3_bucket();
+		with_merging = true;
+
+		if(SOLVER_OPTIMAL)
+			solver_optimal = true;
+		else if(SOLVER_NON_OPTIMAL)
+			solver_non_optimal = true;
+		else if(SOLVER_OPTIMAL_WITH_CPLEX)
+		{
+			solver_optimal = true;
+			solver_with_cplex = true;
 		}
-		solve(k, cg);
+		else if(CPLEX_WITH_REDUCTION_RULES)
+			use_cplex_with_reduction_rules = true;
+		else if(CPLEX_WITHOUT_REDUCTION_RULES)
+			use_cplex_without_reduction_rules = true;
+
+		int k;
+		if(use_cplex_without_reduction_rules || use_cplex_with_reduction_rules)
+		{
+			if(use_cplex_without_reduction_rules)
+			{
+				pair<int, set<pair<int, int>>> solution = cplex_solve(cg);
+				k = solution.first;
+				for (auto e : solution.second)
+					cg->flip_connection_between(e.first, e.second);
+			}
+			else
+			{
+				pair<cluster_graph::merge_result, int> m_res;
+				int previous_merge_nodes = cg->m;
+				bool merge_successfull;
+				while (with_merging)
+				{
+					pair<cluster_graph::merge_result, int> result;
+					merge_successfull = false;
+					int i, j;
+					set<int>::iterator it_i, it_j;
+					for (it_i = cg->non_composed_nodes.begin(); it_i != cg->non_composed_nodes.end() && !merge_successfull; it_i++)
+						for (it_j = cg->non_composed_nodes.begin(); it_j != cg->non_composed_nodes.end() && !merge_successfull; it_j++)
+						{
+							i = *it_i;
+							j = *it_j;
+							if (i != j)
+							{
+								if (merge_reduction_rule_1(i, j, cg) && merge_reduction_rule_2(i, j, cg))
+								{
+									result = cg->merge(i, j, INT_MAX);
+									if (result.first
+										!= cluster_graph::merge_result::POSSIBLE_WITH_COST)        // not sure about second condition, it donot fails, but dont want to take risk
+										int i = 1 / 0;
+									merge_successfull = true;
+								}
+							}
+						}
+
+					if(!merge_successfull)
+						break;
+				}
+
+				set<pair<int, int>> reduction_rule_1_violation;
+				for(auto i : cg->non_composed_nodes)
+					for(auto j : cg->non_composed_nodes)
+						if(i != j && !cg->get_connection_connected_status_from_to(i, j) && !data_reduction_rules(i, j, cg))
+							reduction_rule_1_violation.insert(pair<int, int>(i, j));
+
+
+				if (p_bucket->is_empty())
+				{
+					while (cg->m != previous_merge_nodes)
+						cg->demerge(true);
+				}
+				else
+				{
+					for(auto p : reduction_rule_1_violation)
+						cg->all_edge_statuses[p.first][p.second] |= cg->CONNECTION_CHANGED;
+					pair<int, set<pair<int, int>>> solution = cplex_solve(cg);
+					for(auto p : reduction_rule_1_violation)
+						cg->all_edge_statuses[p.first][p.second] &= (cg->CONNECTION_PRESENT | cg->CONNECTION_CONNECTED | 0);
+
+					k = solution.first;
+					for (auto e : solution.second)
+						cg->flip_connection_between(e.first, e.second);
+
+					while (cg->m != previous_merge_nodes)
+						cg->demerge(true);
+				}
+			}
+		}
+		else if(solver_optimal || solver_non_optimal)
+		{
+			k = INT32_MAX;
+			if(solver_optimal == solver_non_optimal)
+				int i=1/0;
+			if (solver_optimal)
+			{
+				for (k = 1; solve(k, cg) == -1; k *= 2); // if no solution is found, graph remains in original state
+				cg->reset_graph();
+
+				k = binary_search_for_optimal_k(k / 2 + 1, k, cg);
+				step_count = 0;
+			}
+			solve(k, cg);
+		}
 		// cout <<    "-------------------------------------------------\n";
+
+		_mutex->lock();
+
 		int changed_edges_cost = 0;
 		for (int i = 0; i < cg->n; i++)
 		{
@@ -793,6 +927,7 @@ class processor
 				}
 		}
 		cout << "#recursive steps: " << step_count << endl;
+
 		// cout << "#recursive steps: " << cg->c11 << "/" << cg->c1 << endl;
 		// cout << "#recursive steps: " << cg->c22 << "/" << cg->c2 << endl;
 		// cout << "#recursive steps: " << cg->c33 << "/" << cg->c3 << endl;
@@ -825,6 +960,9 @@ class processor
 				cout << "verification failed at cost: " << k << ", with edge modified cost: " << changed_edges_cost
 					 << ", p3 count: " << p3_count << endl;
 		}
+
+		exit(0);
+		_mutex->unlock();
 	}
 };
 

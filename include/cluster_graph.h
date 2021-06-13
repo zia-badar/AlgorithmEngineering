@@ -865,19 +865,19 @@ class cluster_graph
 			{
 				stringstream ss(line);
 				ss >> u >> v >> w;
-				if (w >= 0)
+				if (w > 0)
 				{
 					all_nodes[u - 1].connected_nodes.insert(node_weight_pair(v - 1, w));
 					all_nodes[v - 1].connected_nodes.insert(node_weight_pair(u - 1, w));
 				}
-				else if (w < 0)
+				else if (w <= 0)
 				{
 					all_nodes[u - 1].disconnected_nodes.insert(node_weight_pair(v - 1, w));
 					all_nodes[v - 1].disconnected_nodes.insert(node_weight_pair(u - 1, w));
 				}
 
-				all_edge_statuses[u - 1][v - 1] = CONNECTION_PRESENT | (w >= 0 ? CONNECTION_CONNECTED : 0) | 0;
-				all_edge_statuses[v - 1][u - 1] = CONNECTION_PRESENT | (w >= 0 ? CONNECTION_CONNECTED : 0) | 0;
+				all_edge_statuses[u - 1][v - 1] = CONNECTION_PRESENT | (w > 0 ? CONNECTION_CONNECTED : 0) | 0;
+				all_edge_statuses[v - 1][u - 1] = CONNECTION_PRESENT | (w > 0 ? CONNECTION_CONNECTED : 0) | 0;
 				i++;
 			}
 		}

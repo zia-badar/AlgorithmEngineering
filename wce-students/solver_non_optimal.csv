@@ -1,0 +1,205 @@
+file;vertices;edges;time;solsize;recsteps;finished;verified
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a001.dimacs;10;8;0.00;41;1;1;correct;
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a003.dimacs;10;7;0.00;247;2;1;>>BAD COST<< ;105
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a005.dimacs;10;14;0.00;365;6;1;>>BAD COST<< ;136
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a007.dimacs;10;3;0.00;0;1;1;correct;
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a009.dimacs;10;3;0.00;28;1;1;correct;
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a011.dimacs;20;8;0.00;24;1;1;correct;
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a013.dimacs;20;20;0.00;295;5;1;>>BAD COST<< ;91
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a015.dimacs;20;15;0.00;259;1;1;correct;
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a017.dimacs;20;23;0.00;328;5;1;correct;
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a019.dimacs;20;10;0.00;445;5;1;>>BAD COST<< ;193
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a021.dimacs;50;68;0.03;1890;19;1;>>BAD COST<< ;524
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a023.dimacs;50;97;0.07;3634;49;1;>>BAD COST<< ;1111
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a025.dimacs;50;170;0.18;7227;117;1;>>BAD COST<< ;2403
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a027.dimacs;75;200;0.41;7413;131;1;>>BAD COST<< ;2874
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a029.dimacs;75;262;0.63;11631;185;1;>>BAD COST<< ;4339
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a031.dimacs;100;390;1.70;15365;289;1;>>BAD COST<< ;5021
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a033.dimacs;100;371;1.50;15446;267;1;>>BAD COST<< ;5509
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a035.dimacs;100;335;1.36;13899;244;1;>>BAD COST<< ;4978
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a037.dimacs;100;375;1.56;15271;268;1;>>BAD COST<< ;4958
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a039.dimacs;100;372;1.51;15345;264;1;>>BAD COST<< ;4319
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a041.dimacs;100;418;1.84;17068;302;1;>>BAD COST<< ;4880
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a043.dimacs;150;857;10.85;37469;678;1;our own cost is weird
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a045.dimacs;150;1469;28.48;70598;1279;1;our own cost is weird
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a047.dimacs;150;848;10.60;37950;674;1;our own cost is weird
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a049.dimacs;150;1395;25.61;67598;1225;1;our own cost is weird
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a051.dimacs;150;758;7.87;31952;547;1;our own cost is weird
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a053.dimacs;150;925;12.10;39598;748;1;our own cost is weird
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a055.dimacs;200;1657;47.89;71712;1408;1;our own cost is weird
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a057.dimacs;200;1668;49.55;75099;1431;1;our own cost is weird
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a059.dimacs;200;1373;33.33;52405;1095;1;our own cost is weird
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a061.dimacs;200;1706;50.16;73356;1468;1;our own cost is weird
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a063.dimacs;200;1387;34.32;57071;1134;1;our own cost is weird
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a065.dimacs;200;1553;41.93;65104;1263;1;our own cost is weird
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r001.dimacs;10;22;0.00;372;13;1;>>BAD COST<< ;279
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r003.dimacs;10;13;0.00;190;4;1;>>BAD COST<< ;124
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r005.dimacs;10;22;0.00;359;13;1;>>BAD COST<< ;297
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r007.dimacs;10;17;0.00;243;9;1;>>BAD COST<< ;145
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r009.dimacs;10;22;0.00;372;13;1;>>BAD COST<< ;279
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r011.dimacs;10;13;0.00;190;4;1;>>BAD COST<< ;124
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r013.dimacs;10;22;0.00;359;13;1;>>BAD COST<< ;297
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r015.dimacs;10;17;0.00;243;9;1;>>BAD COST<< ;145
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r017.dimacs;10;22;0.00;372;13;1;>>BAD COST<< ;279
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r019.dimacs;10;13;0.00;190;4;1;>>BAD COST<< ;124
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r021.dimacs;10;22;0.01;359;13;1;>>BAD COST<< ;297
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r023.dimacs;10;17;0.00;243;9;1;>>BAD COST<< ;145
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r025.dimacs;10;20;0.00;365;12;1;>>BAD COST<< ;280
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r027.dimacs;10;20;0.00;365;12;1;>>BAD COST<< ;280
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r029.dimacs;10;20;0.00;365;12;1;>>BAD COST<< ;280
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r031.dimacs;20;159;0.08;3854;141;1;>>BAD COST<< ;3487
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r033.dimacs;20;162;0.09;4463;150;1;>>BAD COST<< ;4183
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r035.dimacs;20;165;0.09;4116;147;1;>>BAD COST<< ;3873
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r037.dimacs;20;159;0.08;3854;141;1;>>BAD COST<< ;3487
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r039.dimacs;20;162;0.12;4463;150;1;>>BAD COST<< ;4183
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r041.dimacs;20;116;0.06;2673;85;1;>>BAD COST<< ;2440
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r043.dimacs;20;72;0.03;1472;57;1;>>BAD COST<< ;1136
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r045.dimacs;20;108;0.04;2778;89;1;>>BAD COST<< ;2419
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r047.dimacs;20;104;0.05;2461;87;1;>>BAD COST<< ;2139
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r049.dimacs;20;66;0.02;1277;43;1;>>BAD COST<< ;808
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r051.dimacs;20;114;0.05;2788;92;1;>>BAD COST<< ;2377
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r053.dimacs;20;114;0.05;3028;94;1;>>BAD COST<< ;2588
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r055.dimacs;20;116;0.05;2673;85;1;>>BAD COST<< ;2440
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r057.dimacs;20;72;0.02;1472;57;1;>>BAD COST<< ;1136
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r059.dimacs;20;108;0.04;2778;89;1;>>BAD COST<< ;2419
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r061.dimacs;30;231;0.33;5477;207;1;>>BAD COST<< ;4778
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r063.dimacs;30;141;0.10;2986;101;1;>>BAD COST<< ;2135
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r065.dimacs;30;223;0.20;5784;186;1;>>BAD COST<< ;4765
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r067.dimacs;30;159;0.14;3346;136;1;>>BAD COST<< ;2413
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r069.dimacs;30;197;0.19;4677;159;1;>>BAD COST<< ;3884
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r071.dimacs;30;165;0.12;3699;134;1;>>BAD COST<< ;2806
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r073.dimacs;30;165;0.12;3699;134;1;>>BAD COST<< ;2806
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r075.dimacs;30;150;0.12;3168;128;1;>>BAD COST<< ;2461
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r077.dimacs;30;163;0.11;3703;133;1;>>BAD COST<< ;2814
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r079.dimacs;30;163;0.12;3703;133;1;>>BAD COST<< ;2814
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r081.dimacs;40;440;1.00;11167;398;1;>>BAD COST<< ;9769
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r083.dimacs;40;302;0.45;7122;257;1;>>BAD COST<< ;5381
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r085.dimacs;40;291;0.42;6344;245;1;>>BAD COST<< ;4755
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r087.dimacs;40;421;0.87;10742;384;1;>>BAD COST<< ;9111
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r089.dimacs;40;346;0.58;8178;300;1;>>BAD COST<< ;6770
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r091.dimacs;40;276;0.37;6205;237;1;>>BAD COST<< ;4825
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r093.dimacs;40;533;1.44;13425;490;1;>>BAD COST<< ;11781
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r095.dimacs;40;377;0.69;9161;336;1;>>BAD COST<< ;7673
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r097.dimacs;50;747;3.31;19092;698;1;>>BAD COST<< ;16911
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r099.dimacs;50;439;1.08;9766;385;1;>>BAD COST<< ;7821
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r101.dimacs;50;439;1.08;9766;385;1;>>BAD COST<< ;7821
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r103.dimacs;50;405;0.92;8316;342;1;>>BAD COST<< ;6331
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r105.dimacs;50;513;1.47;11784;451;1;>>BAD COST<< ;9670
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r107.dimacs;50;513;1.47;11784;451;1;>>BAD COST<< ;9670
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r109.dimacs;50;469;1.29;10350;419;1;>>BAD COST<< ;7950
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r111.dimacs;50;469;1.40;10350;419;1;>>BAD COST<< ;7950
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r113.dimacs;50;606;2.11;14301;558;1;>>BAD COST<< ;12140
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r115.dimacs;60;1244;10.92;32100;1171;1;>>BAD COST<< ;28615
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r117.dimacs;60;516;1.78;10296;455;1;>>BAD COST<< ;7053
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r119.dimacs;60;534;1.83;11541;466;1;>>BAD COST<< ;8221
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r121.dimacs;60;943;5.77;23333;870;1;>>BAD COST<< ;20340
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r123.dimacs;60;854;4.72;20586;779;1;>>BAD COST<< ;16978
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r125.dimacs;70;1481;16.57;37597;1400;1;>>BAD COST<< ;33344
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r127.dimacs;70;1433;15.39;36244;1364;1;>>BAD COST<< ;32116
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r129.dimacs;70;909;5.96;20943;829;1;>>BAD COST<< ;16591
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r131.dimacs;80;2084;37.26;54092;1997;1;>>BAD COST<< ;47104
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r133.dimacs;80;1629;21.61;40450;1546;1;>>BAD COST<< ;34777
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r135.dimacs;80;1137;10.18;25762;1045;1;>>BAD COST<< ;20295
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r137.dimacs;80;1619;20.95;41167;1530;1;>>BAD COST<< ;35601
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r139.dimacs;90;1760;27.01;42451;1643;1;>>BAD COST<< ;35222
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r141.dimacs;90;1384;16.27;30460;1279;1;>>BAD COST<< ;23155
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r143.dimacs;90;2515;56.55;63640;2399;1;>>BAD COST<< ;56432
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r145.dimacs;90;2970;60.01;77044;9999999;1;>>BAD COST<< ;69678
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r147.dimacs;100;3157;60.01;81704;9999999;1;>>BAD COST<< ;72776
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r149.dimacs;100;1708;25.31;38002;1593;1;>>BAD COST<< ;29711
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r151.dimacs;100;1708;25.35;38002;1593;1;>>BAD COST<< ;29711
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r153.dimacs;100;2624;60.01;63645;9999999;1;>>BAD COST<< ;54539
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r155.dimacs;100;2067;37.78;49292;1957;1;>>BAD COST<< ;41206
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r157.dimacs;100;2067;37.76;49292;1957;1;>>BAD COST<< ;41206
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r159.dimacs;100;2944;60.01;74935;9999999;1;>>BAD COST<< ;66050
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w001.dimacs;4;3;0.00;0;1;1;correct;
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w003.dimacs;6;8;0.00;21;1;1;correct;
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w005.dimacs;16;118;0.04;6485;107;1;>>BAD COST<< ;6481
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w007.dimacs;16;107;0.04;14637;101;1;>>BAD COST<< ;14630
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w009.dimacs;13;77;0.02;8222;63;1;>>BAD COST<< ;8214
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w011.dimacs;14;88;0.02;4069;70;1;>>BAD COST<< ;4059
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w013.dimacs;15;48;0.01;396;35;1;>>BAD COST<< ;382
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w015.dimacs;10;14;0.00;269;7;1;>>BAD COST<< ;253
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w017.dimacs;14;60;0.01;2823;52;1;>>BAD COST<< ;2803
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w019.dimacs;16;112;0.03;2525;92;1;>>BAD COST<< ;2503
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w021.dimacs;11;22;0.00;160;14;1;>>BAD COST<< ;136
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w023.dimacs;16;39;0.00;123;7;1;>>BAD COST<< ;43
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w025.dimacs;16;95;0.03;2284;82;1;>>BAD COST<< ;2200
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w027.dimacs;16;84;0.01;4817;48;1;>>BAD COST<< ;4729
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w029.dimacs;16;68;0.01;1096;46;1;>>BAD COST<< ;1004
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w031.dimacs;13;75;0.02;965;64;1;>>BAD COST<< ;863
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w033.dimacs;16;48;0.00;717;18;1;>>BAD COST<< ;612
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w035.dimacs;16;45;0.00;435;18;1;>>BAD COST<< ;313
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w037.dimacs;15;45;0.01;462;23;1;>>BAD COST<< ;322
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w039.dimacs;18;139;0.06;3659;124;1;>>BAD COST<< ;3652
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w041.dimacs;17;40;0.01;319;21;1;>>BAD COST<< ;303
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w043.dimacs;16;92;0.00;21;1;1;correct;
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w045.dimacs;15;86;0.02;2528;78;1;>>BAD COST<< ;2501
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w047.dimacs;15;81;0.02;1283;62;1;>>BAD COST<< ;1245
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w049.dimacs;18;143;0.07;2830;129;1;>>BAD COST<< ;2784
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w051.dimacs;17;115;0.04;4331;103;1;>>BAD COST<< ;4278
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w053.dimacs;15;82;0.02;2188;65;1;>>BAD COST<< ;2132
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w055.dimacs;43;268;0.27;6873;190;1;>>BAD COST<< ;5809
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w057.dimacs;44;893;4.38;22696;866;1;>>BAD COST<< ;22480
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w059.dimacs;44;784;3.23;15808;739;1;>>BAD COST<< ;14612
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w061.dimacs;44;634;2.05;10039;577;1;>>BAD COST<< ;8576
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w063.dimacs;44;759;3.12;36424;726;1;>>BAD COST<< ;36144
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w065.dimacs;44;304;0.38;10254;234;1;>>BAD COST<< ;9909
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w067.dimacs;44;554;1.57;12020;512;1;>>BAD COST<< ;11233
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w069.dimacs;44;910;4.57;67740;887;1;>>BAD COST<< ;67587
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w071.dimacs;45;313;0.49;4913;274;1;>>BAD COST<< ;4687
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w073.dimacs;45;926;4.75;10903;890;1;>>BAD COST<< ;10745
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w075.dimacs;45;438;0.96;9595;385;1;>>BAD COST<< ;8821
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w077.dimacs;45;635;2.06;17250;576;1;>>BAD COST<< ;15929
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w079.dimacs;42;470;0.96;6880;392;1;>>BAD COST<< ;5419
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w081.dimacs;45;833;3.81;23799;796;1;>>BAD COST<< ;22959
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w083.dimacs;45;811;3.57;16508;778;1;>>BAD COST<< ;15734
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w085.dimacs;45;782;3.29;16717;716;1;>>BAD COST<< ;15686
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w087.dimacs;46;927;4.88;48349;888;1;>>BAD COST<< ;48006
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w089.dimacs;49;515;1.38;5634;459;1;>>BAD COST<< ;3895
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w091.dimacs;64;902;5.15;38498;821;1;>>BAD COST<< ;36738
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w093.dimacs;62;1785;23.25;73449;1736;1;>>BAD COST<< ;72804
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w095.dimacs;64;1632;19.21;25001;1593;1;>>BAD COST<< ;23200
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w097.dimacs;60;805;3.96;12185;726;1;>>BAD COST<< ;8872
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w099.dimacs;65;2023;31.46;103540;1992;1;>>BAD COST<< ;103112
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w101.dimacs;65;1254;10.68;36978;1151;1;>>BAD COST<< ;33821
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w103.dimacs;62;1166;9.02;16889;1089;1;>>BAD COST<< ;14858
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w105.dimacs;65;1441;14.33;19823;1367;1;>>BAD COST<< ;17003
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w107.dimacs;57;917;5.22;12331;863;1;>>BAD COST<< ;9503
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w109.dimacs;77;618;2.71;19060;522;1;>>BAD COST<< ;17590
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w111.dimacs;78;1837;26.73;27254;1734;1;>>BAD COST<< ;22569
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w113.dimacs;79;861;5.20;25375;762;1;>>BAD COST<< ;23567
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w115.dimacs;80;2387;50.09;91071;2339;1;>>BAD COST<< ;90299
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w117.dimacs;81;531;2.11;17837;449;1;>>BAD COST<< ;17352
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w119.dimacs;82;1278;12.52;23981;1206;1;>>BAD COST<< ;21925
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w121.dimacs;119;2717;60.00;146791;9999999;1;>>BAD COST<< ;143245
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w123.dimacs;119;2029;42.57;52017;1881;1;>>BAD COST<< ;45503
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w125.dimacs;128;4088;60.01;129365;9999999;1;>>BAD COST<< ;127357
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w127.dimacs;123;2155;49.60;38621;2003;1;>>BAD COST<< ;33576
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w129.dimacs;130;7692;60.02;308105;9999999;1;>>BAD COST<< ;306706
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w131.dimacs;137;1525;26.28;44292;1346;1;>>BAD COST<< ;38220
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w133.dimacs;127;1443;22.36;20672;1302;1;>>BAD COST<< ;16301
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w135.dimacs;108;2811;60.01;45232;9999999;1;>>BAD COST<< ;34208
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w137.dimacs;146;3495;60.01;156151;9999999;1;>>BAD COST<< ;154367
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w139.dimacs;154;5117;60.01;169373;9999999;1;>>BAD COST<< ;161428
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w141.dimacs;152;3960;60.01;118324;9999999;1;>>BAD COST<< ;109467
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w143.dimacs;159;1751;37.43;70479;1533;1;>>BAD COST<< ;63364
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w145.dimacs;160;1673;31.97;60069;1390;1;>>BAD COST<< ;55086
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w147.dimacs;163;1322;23.12;30542;1083;1;>>BAD COST<< ;26128
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w149.dimacs;202;10730;60.02;1407753;9999999;1;>>BAD COST<< ;1407337
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w151.dimacs;216;7190;60.02;384053;9999999;1;>>BAD COST<< ;363319
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w153.dimacs;204;938;14.77;18641;665;1;>>BAD COST<< ;15476
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w155.dimacs;126;1469;22.17;38799;1279;1;>>BAD COST<< ;34143
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w157.dimacs;449;8631;60.03;195212;9999999;1;our own cost is weird
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w159.dimacs;551;18828;60.07;438727;9999999;1;our own cost is weird
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w161.dimacs;276;5142;60.02;90323;9999999;1;our own cost is weird
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w163.dimacs;361;18009;60.05;251206;9999999;1;our own cost is weird
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w165.dimacs;252;10967;60.03;152978;9999999;1;our own cost is weird
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w167.dimacs;296;22208;60.06;526087;9999999;1;our own cost is weird
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w169.dimacs;216;2403;60.01;62109;9999999;1;>>BAD COST<< ;49707
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w171.dimacs;3387;237398;;;;0;
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w173.dimacs;2362;72462;60.38;3086751;9999999;1;our own cost is weird
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w175.dimacs;264;29164;60.06;484084;9999999;1;our own cost is weird
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w177.dimacs;276;3501;60.01;111330;9999999;1;our own cost is weird
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w179.dimacs;263;30527;60.07;640318;9999999;1;our own cost is weird
+/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w181.dimacs;298;6088;60.02;215977;9999999;1;our own cost is weird

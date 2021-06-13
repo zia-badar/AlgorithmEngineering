@@ -2,7 +2,8 @@
 
 
 if [ -z "$1" ]; then
-	PROGRAMM_NAME="../cmake-build-debug/main"									  		# insert your program here ...
+	#PROGRAMM_NAME="../cmake-build-debug/main"									  		# insert your program here ...
+	PROGRAMM_NAME="../cmake-build-debug/cplex_example"									  		# insert your program here ...
 else
 	PROGRAMM_NAME=$1													# ... or give the program as parameter to the script
 fi
@@ -11,6 +12,7 @@ today=$(date +%Y-%m-%d-%H-%M-%S)
 
 LOG="log.txt"									# specify the name of the log file
 maxSec=432000									# overall allowed time for the whole script
+#maxSecPerInstance=300							# allowed time (in seconds) for one instance
 maxSecPerInstance=300							# allowed time (in seconds) for one instance
 maxNotSolved=10									# no of instances the program is allowed to fail to solve. If reached, then the script is aborted
 
