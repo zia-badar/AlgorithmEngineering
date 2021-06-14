@@ -5,6 +5,9 @@
 #include <iostream>
 #include <ctime>
 #include <string>
+#include <mutex>
+#include <csignal>
+
 #include "include/cluster_graph.h"
 #include "include/verifier.h"
 #include "include/processor.h"
@@ -152,18 +155,62 @@ vector<vector<string>> generate_permutations_of_demerge()
 	return demerge_permutations;
 }
 
+cluster_graph *cg;
+mutex _mutex;
+
+void signal_handler(int signal)
+{
+	if(signal == SIGINT && SOLVER_NON_OPTIMAL)
+	{
+		_mutex.lock();
+		node *all_nodes = cg->all_nodes_reset;
+		int n = cg->n;
+
+		node *node;
+		set<node_weight_pair>::iterator it;
+		int j;
+		for(int i=0; i<n; i++)
+		{
+			node = &all_nodes[i];
+			it = node->disconnected_nodes.upper_bound(node_weight_pair(i, 0));
+			j = i + 1;
+			for (; it != node->disconnected_nodes.end(); it++)
+			{
+				while (j < it->node_index)
+				{
+					cout << i + 1 << " " << j + 1 << endl;
+					j++;
+				}
+				j = it->node_index + 1;
+			}
+			while(j < n)
+			{
+				cout << i+1 << " " << j+1 << endl;
+				j++;
+			}
+		}
+		cout << "#recursive steps: " << 9999999 << endl;
+
+		exit(0);
+		_mutex.unlock();
+	}
+}
+
 // O(3^log(k)*n*log(n) + log(k)*n^(2) + n^3)  -- n^3 is for calculating p3 for the first time when graph data is loaded
 int main(int argc, char** args)
 {
 	string filename = "";
 //	 filename = "/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w037.dimacs";
-//	filename = "/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r043.dimacs";
-//	filename = "/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a003.dimacs";
-	// ename = "/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w057.dimacs";
+//	filename = "/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r001.dimacs";
+//	filename = "/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a001.dimacs";
+	filename = "/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w165.dimacs";
+
+	cg = new cluster_graph();
+	signal(SIGINT, signal_handler);
 
 	processor _procs;
-//	_procs.verify(filename);
-	_procs.verify("");
+//	_procs.verify(filename, cg, &_mutex);
+	_procs.verify("", cg, &_mutex);
 
 	return 0;
 }

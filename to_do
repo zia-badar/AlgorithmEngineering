@@ -1,0 +1,31 @@
+branch on highest weight edge first
+check cut rule
+
+
+//				bool stop_cut_rule = false;
+//				int largest_neighbours_node_index;
+//				int largest_neighbours;
+//				while(!stop_cut_rule)
+//				{
+//					int largest_neighbours_node_index = -1;
+//					int largest_neighbours = INT32_MIN;
+//					for (auto i : cg->non_composed_nodes)
+//					{
+//						m_res = cut_rule_1(i, cg, INT32_MAX, true);
+//						if (m_res.first == cluster_graph::POSSIBLE_WITH_COST)
+//						{
+//							if (largest_neighbours < cg->get_connected_nodes_of(i)->size())
+//							{
+//								int i=1/0;
+//								largest_neighbours_node_index = i;
+//								largest_neighbours = cg->get_connected_nodes_of(i)->size();
+//							}
+//						}
+//					}
+//
+//					if (largest_neighbours_node_index != -1)
+//					{
+//						m_res = cut_rule_1(largest_neighbours_node_index, cg, INT32_MAX, false, true);
+//					}
+//					else stop_cut_rule = true;
+//				}

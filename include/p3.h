@@ -17,20 +17,21 @@ class p3
 		UVW_SEARCHABLE, WEIGHT_SEARCHABLE
 	};
 
+	static bool compare_p3(const p3& p3_1, const p3& p3_2)
+	{
+		int u1 = p3_1.u < p3_1.w ? p3_1.u : p3_1.w;
+		int v1 = p3_1.v;
+		int w1 = p3_1.u < p3_1.w ? p3_1.w : p3_1.u;
+
+		int u2 = p3_2.u < p3_2.w ? p3_2.u : p3_2.w;
+		int v2 = p3_2.v;
+		int w2 = p3_2.u < p3_2.w ? p3_2.w : p3_2.u;
+
+		return (u1 < u2 ? true : (u1 > u2 ? false : (v1 < v2 ? true : (v1 > v2 ? false : (w1 < w2 ? true : (w1 > w2 ? false : false))))));
+	}
+
  private:
 	static int n;
-
-	unsigned long long to_hash() const
-	{
-		unsigned long long _n = n;
-		unsigned long long _u = u;
-		unsigned long long _v = v;
-		unsigned long long _w = w;
-		return
-			_n * _n * (_u < _w ? _u : _w) +
-				_n * _v +
-				(_u > _w ? _u : _w);
-	}
 
 	search_type search_t;
 
@@ -46,9 +47,9 @@ class p3
 	friend bool operator<(const p3& p3_1, const p3& p3_2)
 	{
 		if (p3_1.search_t == UVW_SEARCHABLE && p3_2.search_t == UVW_SEARCHABLE)
-			return p3_1.to_hash() < p3_2.to_hash();
+			return compare_p3(p3_1, p3_2);
 		else if (p3_1.search_t == WEIGHT_SEARCHABLE && p3_2.search_t == WEIGHT_SEARCHABLE)
-			return (p3_1.weight == p3_2.weight) ? (p3_1.to_hash() < p3_2.to_hash()) : (p3_1.weight > p3_2.weight);
+			return (p3_1.weight == p3_2.weight) ? (compare_p3(p3_1, p3_2)) : (p3_1.weight > p3_2.weight);
 		exit(-1);       // should never reach this line
 	}
 

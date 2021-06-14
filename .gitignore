@@ -13,3 +13,5 @@ CMakeFiles/
 cmake_install.cmake
 Makefile
 main
+cplex*
+solver*
