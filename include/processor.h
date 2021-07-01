@@ -115,7 +115,7 @@ class processor
 
 		max_depth = max_depth < depth ? depth : max_depth;
 		int c = cg->n * 0.5;
-		if(depth % (c == 0 ? 1 : c) == 0 && false)
+//		if(depth % (c == 0 ? 1 : c) == 0 && false)
 //		if (step_count % 200 == 0)
 //		if (cg->non_composed_nodes.size() < cg->n/2)
 		{
@@ -158,7 +158,7 @@ class processor
 					depth--;
 					return m_res.second;
 				}
-				else if(!solver_optimal && m_res.first == cluster_graph::NOT_POSSIBLE_EDGES_MODIFIED && m_res.second == -2)
+				else if(m_res.first == cluster_graph::NOT_POSSIBLE_EDGES_MODIFIED && m_res.second == -2)
 				{
 					while (cg->m != previous_merge_nodes)
 						cg->demerge(false);
@@ -571,7 +571,7 @@ class processor
 			else int i = 1 / 0;
 
 //		possible &= ((2 * cost_of_making_clique + cost_of_cutting_graph) < total_connected_cost_u);
-		possible &= (cost_of_making_clique + cost_of_cutting_graph <= minimum_cut_cost(u, cg));
+		possible &= (cost_of_making_clique + cost_of_cutting_graph < minimum_cut_cost(u, cg));
 
 		if (!possible)
 			return pair<cluster_graph::merge_result, int>(cluster_graph::NOT_POSSIBLE_EDGES_MODIFIED, -1);
@@ -685,10 +685,13 @@ class processor
 //		unsigned int lb_1_non_zero = lower_bound_1(cg, &non_zero_edge_p3s);
 //		unsigned int lb_1_zero = lower_bound_2(cg, &zero_edge_p3s);
 //		unsigned int lb_1 = (lb_1_non_zero > lb_1_zero ? lb_1_non_zero : lb_1_zero);
+
+
 		unsigned int lb_1 = lower_bound_1(cg, p3s);
 		unsigned int lb_2 = lower_bound_2(cg, p3s);
+		unsigned int lb_3 = cplex_lower_bound(cg).first;
 
-		return lb_2 > lb_1 ? lb_2 : lb_1;
+		return max(lb_1, max(lb_2, lb_3));
 	}
 
 	unsigned int lower_bound_1(cluster_graph* cg, const set<p3>* p3s)
