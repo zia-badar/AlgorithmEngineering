@@ -912,6 +912,13 @@ class cluster_graph
 			all_nodes_reset[i] = all_nodes[i];
 	}
 
+	node* get_node_by_index(int index)
+	{
+		if(index < 0 || !(index < 2*n))
+			int i = 1/0;
+		return &all_nodes[index];
+	}
+
 	void reset_graph()
 	{
 		m = 0;
