@@ -200,10 +200,10 @@ void signal_handler(int signal)
 int main(int argc, char** args)
 {
 	string filename = "";
-//	 filename = "/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w037.dimacs";
-//	filename = "/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r001.dimacs";
+//	 filename = "/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w003.dimacs";
+//	filename = "/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/1-random/r045.dimacs";
 //	filename = "/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/3-actionseq/a001.dimacs";
-	filename = "/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w165.dimacs";
+//	filename = "/home/zia/studies/Algorithm_Engineering/AlgorithmEngineering/wce-students/2-real-world/w165.dimacs";
 
 	cg = new cluster_graph();
 	signal(SIGINT, signal_handler);

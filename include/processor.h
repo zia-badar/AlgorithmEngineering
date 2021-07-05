@@ -300,6 +300,125 @@ class processor
 		return -1;
 	}
 
+	int solve_branching_2(cluster_graph *cg)
+	{
+		pair<int, list<pair<char, pair<int, int>>>> solution = solve_branching_2_helper(cg, 0, cplex_solve(cg).first);
+
+		for(auto it = solution.second.begin(); it != solution.second.end(); it++)
+			if(it->first == 'm')
+				cg->merge(it->second.first, it->second.second, INT32_MAX);
+			else if(it->first == 'd')
+				cg->disconnect_nodes(it->second.first, it->second.second);
+
+		while(cg->m != 0)
+			cg->demerge(true);
+
+		return solution.first;
+	}
+
+	pair<int, list<pair<char, pair<int, int>>>> solve_branching_2_helper(cluster_graph *cg, int current_cost, int upper_bound)
+	{
+		if(lower_bound(cg) + current_cost > upper_bound)
+			return pair<int, list<pair<char, pair<int, int>>>>(-1, list<pair<char, pair<int, int>>>());
+		if(p_bucket->is_empty())
+			return pair<int, list<pair<char, pair<int, int>>>>(current_cost, list<pair<char, pair<int, int>>>());
+
+		int previous_merge_nodes = cg->m;
+		pair<cluster_graph::merge_result, int> m_res;
+		list<pair<char, pair<int, int>>> reduction_steps = list<pair<char, pair<int, int>>>();
+		while (true)
+		{
+			m_res = try_merge(INT_MAX, cg);
+			if (m_res.first == cluster_graph::POSSIBLE_WITH_COST)
+			{
+				current_cost += m_res.second;
+			}
+			else if (m_res.first == cluster_graph::NOT_POSSIBLE_EDGES_MODIFIED)
+			{
+				while (cg->m != previous_merge_nodes)
+					cg->demerge(false);
+				return pair<int, list<pair<char, pair<int, int>>>>(-1, list<pair<char, pair<int, int>>>());
+			}
+			else if (m_res.first == cluster_graph::TOO_EXPENSIVE)
+				break;
+		}
+
+		if(lower_bound(cg) + current_cost > upper_bound)
+		{
+			while (cg->m != previous_merge_nodes) cg->demerge(false);
+			return pair<int, list < pair<char, pair<int, int>>>>
+			(-1, list<pair<char, pair<int, int>>>());
+		}
+
+		pair<int, list < pair<char, pair<int, int>>>> final_solution = pair<int, list<pair<char, pair<int, int>>>>(current_cost, list<pair<char, pair<int, int>>>());
+
+		if(!p_bucket->is_empty())
+		{
+			p3 _p3 = p_bucket->retrieve_max_weight_p3();
+			int u = _p3.u;
+			int v = _p3.v;
+			int w = _p3.w;
+
+			if(cg->get_weight_between(v, u) < cg->get_weight_from_to(v, w))
+				u = w;
+
+			pair<int, list < pair<char, pair<int, int>>>>
+			solution_1, solution_2;
+			solution_1 = pair<int, list < pair<char, pair<int, int>>>>
+			(-1, list<pair<char, pair<int, int>>>());
+			solution_2 = pair<int, list < pair<char, pair<int, int>>>>
+			(-1, list<pair<char, pair<int, int>>>());
+
+			m_res = cg->merge(u, v, INT32_MAX);
+			if (m_res.first == cluster_graph::POSSIBLE_WITH_COST)
+			{
+//			int merge_index = cg->n + cg->m - 1;
+				solution_1 = solve_branching_2_helper(cg, current_cost + m_res.second, upper_bound);
+				cg->demerge(false);
+			}
+			if (!cg->get_connection_changed_status_from_to(u, v))
+			{
+				cg->disconnect_nodes(u, v);
+				solution_2 =
+					solve_branching_2_helper(cg, current_cost + abs(cg->get_weight_from_to(u, v)), upper_bound);
+				cg->connect_nodes(u, v, true);
+			}
+
+			final_solution = pair<int, list < pair<char, pair<int, int>>>>
+			(-1, list<pair<char, pair<int, int>>>());
+			char solution_type = ' ';
+
+			if (solution_1.first != -1 && solution_2.first != -1)
+			{
+				final_solution = solution_1.first < solution_2.first ? solution_1 : solution_2;
+				solution_type = solution_1.first < solution_2.first ? 'm' : 'd';
+			}
+			else if (solution_1.first == -1)
+			{
+				final_solution = solution_2;
+				solution_type = 'd';
+			}
+			else if (solution_2.first == -1)
+			{
+				final_solution = solution_1;
+				solution_type = 'm';
+			}
+
+			if (solution_type != ' ')
+				final_solution.second.push_front(pair<char, pair<int, int>>(solution_type, pair<int, int>(u, v)));
+		}
+
+		while(cg->m != previous_merge_nodes)
+		{
+			node* merged_node = cg->get_node_by_index(cg->n + cg->m - 1);
+			if (final_solution.first != -1)
+				final_solution.second.push_front(pair<char, pair<int, int>>('m', pair<int, int>(merged_node->composed_node_index_1, merged_node->composed_node_index_2)));
+			cg->demerge(false);
+		}
+
+		return final_solution;
+	}
+
 	bool data_reduction_rules(int u, int v, cluster_graph* cg)
 	{
 		// return true;
@@ -782,6 +901,7 @@ class processor
 	bool solver_optimal = false;
 	bool solver_non_optimal = false;
 	bool solver_with_cplex = false;
+	bool solver_branching_2 = false;
 
 	void verify(string file_name, cluster_graph *cg, mutex *_mutex, bool with_mergin = true) // file_name is "" if asked to read from cin
 	{
@@ -817,6 +937,8 @@ class processor
 			use_cplex_with_reduction_rules = true;
 		else if(CPLEX_WITHOUT_REDUCTION_RULES)
 			use_cplex_without_reduction_rules = true;
+		else if(SOLVER_BRANCHING_2)
+			solver_branching_2 = true;
 
 		int k;
 		if(use_cplex_without_reduction_rules || use_cplex_with_reduction_rules)
@@ -904,6 +1026,10 @@ class processor
 				step_count = 0;
 			}
 			solve(k, cg);
+		}
+		else if(solver_branching_2)
+		{
+			k = solve_branching_2(cg);
 		}
 		// cout <<    "-------------------------------------------------\n";
 
