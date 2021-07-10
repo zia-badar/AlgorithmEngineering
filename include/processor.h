@@ -318,6 +318,7 @@ class processor
 
 	pair<int, list<pair<char, pair<int, int>>>> solve_branching_2_helper(cluster_graph *cg, int current_cost, int upper_bound)
 	{
+		step_count++;
 		if(lower_bound(cg) + current_cost > upper_bound)
 			return pair<int, list<pair<char, pair<int, int>>>>(-1, list<pair<char, pair<int, int>>>());
 		if(p_bucket->is_empty())
