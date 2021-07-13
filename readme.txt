@@ -1,3 +1,6 @@
+this repository contains my Algorithm Engineering course project, which was efficiently solving cluster graph problem, *code needs some cleanup
+
+
 running "compile.sh" compiles the program
 running "benchmark-wce.sh <program-name>" i.e "benchmark-wce.sh ../solver_branching_2" script with program name in "wce-students" directory starts testing the program
 
